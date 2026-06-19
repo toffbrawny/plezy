@@ -4106,6 +4106,24 @@ class TranslationsSeerEn {
 
 	/// en: 'Retry'
 	String get retry => 'Retry';
+
+	/// en: 'Movie Genres'
+	String get movieGenres => 'Movie Genres';
+
+	/// en: 'TV Genres'
+	String get tvGenres => 'TV Genres';
+
+	/// en: 'Studios'
+	String get studios => 'Studios';
+
+	/// en: 'Networks'
+	String get networks => 'Networks';
+
+	/// en: 'Upcoming Movies'
+	String get upcomingMovies => 'Upcoming Movies';
+
+	/// en: 'Upcoming TV'
+	String get upcomingTv => 'Upcoming TV';
 }
 
 // Path: hotkeys.actions
@@ -6043,6 +6061,12 @@ extension on Translations {
 			'seer.noRequestsDescription' => 'Search and request media to see it here',
 			'seer.overview' => 'Overview',
 			'seer.retry' => 'Retry',
+			'seer.movieGenres' => 'Movie Genres',
+			'seer.tvGenres' => 'TV Genres',
+			'seer.studios' => 'Studios',
+			'seer.networks' => 'Networks',
+			'seer.upcomingMovies' => 'Upcoming Movies',
+			'seer.upcomingTv' => 'Upcoming TV',
 			_ => null,
 		};
 	}

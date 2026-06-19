@@ -118,9 +118,7 @@ Map<String, dynamic> _$SeerMediaInfoToJson(_SeerMediaInfo instance) =>
 _SeerRequest _$SeerRequestFromJson(Map<String, dynamic> json) => _SeerRequest(
   id: (json['id'] as num).toInt(),
   status: (json['status'] as num?)?.toInt() ?? 1,
-  media: json['media'] == null
-      ? null
-      : SeerMediaInfo.fromJson(json['media'] as Map<String, dynamic>),
+  media: _parseMediaInfo(json['media']),
   requestedBy: json['requestedBy'] == null
       ? null
       : SeerRequestUser.fromJson(json['requestedBy'] as Map<String, dynamic>),
@@ -402,4 +400,21 @@ Map<String, dynamic> _$SeerJellyfinLoginRequestToJson(
 ) => <String, dynamic>{
   'username': instance.username,
   'password': instance.password,
+};
+
+_SeerGenreSliderItem _$SeerGenreSliderItemFromJson(Map<String, dynamic> json) =>
+    _SeerGenreSliderItem(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String?,
+      backdrops: (json['backdrops'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
+
+Map<String, dynamic> _$SeerGenreSliderItemToJson(
+  _SeerGenreSliderItem instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'backdrops': instance.backdrops,
 };

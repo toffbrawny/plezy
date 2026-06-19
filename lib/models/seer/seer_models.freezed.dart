@@ -121,10 +121,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerUser():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -183,10 +180,7 @@ return $default(_that.id,_that.email,_that.username,_that.displayName,_that.perm
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'email')  String? email, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'displayName')  String? displayName, @JsonKey(name: 'permissions')  int permissions, @JsonKey(name: 'avatar')  String? avatar, @JsonKey(name: 'requestCount')  int requestCount)  $default,) {final _that = this;
 switch (_that) {
 case _SeerUser():
-return $default(_that.id,_that.email,_that.username,_that.displayName,_that.permissions,_that.avatar,_that.requestCount);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.email,_that.username,_that.displayName,_that.permissions,_that.avatar,_that.requestCount);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -398,10 +392,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerRequestUser():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -460,10 +451,7 @@ return $default(_that.id,_that.displayName,_that.avatar);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'displayName')  String? displayName, @JsonKey(name: 'avatar')  String? avatar)  $default,) {final _that = this;
 switch (_that) {
 case _SeerRequestUser():
-return $default(_that.id,_that.displayName,_that.avatar);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.displayName,_that.avatar);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -667,10 +655,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerSeasonRequest():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -729,10 +714,7 @@ return $default(_that.id,_that.seasonNumber,_that.status);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'seasonNumber')  int seasonNumber, @JsonKey(name: 'status')  int status)  $default,) {final _that = this;
 switch (_that) {
 case _SeerSeasonRequest():
-return $default(_that.id,_that.seasonNumber,_that.status);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.seasonNumber,_that.status);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -936,10 +918,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerMediaInfoSeason():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -998,10 +977,7 @@ return $default(_that.id,_that.seasonNumber,_that.status);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'seasonNumber')  int? seasonNumber, @JsonKey(name: 'status')  int? status)  $default,) {final _that = this;
 switch (_that) {
 case _SeerMediaInfoSeason():
-return $default(_that.id,_that.seasonNumber,_that.status);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.seasonNumber,_that.status);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1219,10 +1195,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerMediaInfo():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -1281,10 +1254,7 @@ return $default(_that.id,_that.mediaType,_that.tmdbId,_that.tvdbId,_that.status,
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'mediaType')  String? mediaType, @JsonKey(name: 'tmdbId')  int? tmdbId, @JsonKey(name: 'tvdbId')  int? tvdbId, @JsonKey(name: 'status')  int? status, @JsonKey(name: 'status4k')  int? status4k, @JsonKey(name: 'mediaAddedAt')  String? mediaAddedAt, @JsonKey(name: 'seasons')  List<SeerMediaInfoSeason>? seasons, @JsonKey(name: 'requests')  List<SeerRequest>? requests, @JsonKey(name: 'title')  String? title, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'posterPath')  String? posterPath, @JsonKey(name: 'backdropPath')  String? backdropPath, @JsonKey(name: 'releaseDate')  String? releaseDate, @JsonKey(name: 'firstAirDate')  String? firstAirDate, @JsonKey(name: 'jellyfinMediaId')  String? jellyfinMediaId, @JsonKey(name: 'jellyfinMediaId4k')  String? jellyfinMediaId4k)  $default,) {final _that = this;
 switch (_that) {
 case _SeerMediaInfo():
-return $default(_that.id,_that.mediaType,_that.tmdbId,_that.tvdbId,_that.status,_that.status4k,_that.mediaAddedAt,_that.seasons,_that.requests,_that.title,_that.name,_that.posterPath,_that.backdropPath,_that.releaseDate,_that.firstAirDate,_that.jellyfinMediaId,_that.jellyfinMediaId4k);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.mediaType,_that.tmdbId,_that.tvdbId,_that.status,_that.status4k,_that.mediaAddedAt,_that.seasons,_that.requests,_that.title,_that.name,_that.posterPath,_that.backdropPath,_that.releaseDate,_that.firstAirDate,_that.jellyfinMediaId,_that.jellyfinMediaId4k);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1312,8 +1282,8 @@ return $default(_that.id,_that.mediaType,_that.tmdbId,_that.tvdbId,_that.status,
 /// @nodoc
 @JsonSerializable()
 
-class _SeerMediaInfo implements SeerMediaInfo {
-  const _SeerMediaInfo({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'mediaType') this.mediaType, @JsonKey(name: 'tmdbId') this.tmdbId, @JsonKey(name: 'tvdbId') this.tvdbId, @JsonKey(name: 'status') this.status, @JsonKey(name: 'status4k') this.status4k, @JsonKey(name: 'mediaAddedAt') this.mediaAddedAt, @JsonKey(name: 'seasons') final  List<SeerMediaInfoSeason>? seasons, @JsonKey(name: 'requests') final  List<SeerRequest>? requests, @JsonKey(name: 'title') this.title, @JsonKey(name: 'name') this.name, @JsonKey(name: 'posterPath') this.posterPath, @JsonKey(name: 'backdropPath') this.backdropPath, @JsonKey(name: 'releaseDate') this.releaseDate, @JsonKey(name: 'firstAirDate') this.firstAirDate, @JsonKey(name: 'jellyfinMediaId') this.jellyfinMediaId, @JsonKey(name: 'jellyfinMediaId4k') this.jellyfinMediaId4k}): _seasons = seasons,_requests = requests;
+class _SeerMediaInfo extends SeerMediaInfo {
+  const _SeerMediaInfo({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'mediaType') this.mediaType, @JsonKey(name: 'tmdbId') this.tmdbId, @JsonKey(name: 'tvdbId') this.tvdbId, @JsonKey(name: 'status') this.status, @JsonKey(name: 'status4k') this.status4k, @JsonKey(name: 'mediaAddedAt') this.mediaAddedAt, @JsonKey(name: 'seasons') final  List<SeerMediaInfoSeason>? seasons, @JsonKey(name: 'requests') final  List<SeerRequest>? requests, @JsonKey(name: 'title') this.title, @JsonKey(name: 'name') this.name, @JsonKey(name: 'posterPath') this.posterPath, @JsonKey(name: 'backdropPath') this.backdropPath, @JsonKey(name: 'releaseDate') this.releaseDate, @JsonKey(name: 'firstAirDate') this.firstAirDate, @JsonKey(name: 'jellyfinMediaId') this.jellyfinMediaId, @JsonKey(name: 'jellyfinMediaId4k') this.jellyfinMediaId4k}): _seasons = seasons,_requests = requests,super._();
   factory _SeerMediaInfo.fromJson(Map<String, dynamic> json) => _$SeerMediaInfoFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
@@ -1430,7 +1400,7 @@ as String?,
 /// @nodoc
 mixin _$SeerRequest {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'status') int get status;@JsonKey(name: 'media') SeerMediaInfo? get media;@JsonKey(name: 'requestedBy') SeerRequestUser? get requestedBy;@JsonKey(name: 'modifiedBy') SeerRequestUser? get modifiedBy;@JsonKey(name: 'createdAt') String? get createdAt;@JsonKey(name: 'updatedAt') String? get updatedAt;@JsonKey(name: 'seasons') List<SeerSeasonRequest>? get seasons;@JsonKey(name: 'is4k') bool get is4k;@JsonKey(name: 'serverId') int? get serverId;@JsonKey(name: 'profileId') int? get profileId;@JsonKey(name: 'rootFolder') String? get rootFolder;
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'status') int get status;@JsonKey(name: 'media', fromJson: _parseMediaInfo) SeerMediaInfo? get media;@JsonKey(name: 'requestedBy') SeerRequestUser? get requestedBy;@JsonKey(name: 'modifiedBy') SeerRequestUser? get modifiedBy;@JsonKey(name: 'createdAt') String? get createdAt;@JsonKey(name: 'updatedAt') String? get updatedAt;@JsonKey(name: 'seasons') List<SeerSeasonRequest>? get seasons;@JsonKey(name: 'is4k') bool get is4k;@JsonKey(name: 'serverId') int? get serverId;@JsonKey(name: 'profileId') int? get profileId;@JsonKey(name: 'rootFolder') String? get rootFolder;
 /// Create a copy of SeerRequest
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1463,7 +1433,7 @@ abstract mixin class $SeerRequestCopyWith<$Res>  {
   factory $SeerRequestCopyWith(SeerRequest value, $Res Function(SeerRequest) _then) = _$SeerRequestCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'status') int status,@JsonKey(name: 'media') SeerMediaInfo? media,@JsonKey(name: 'requestedBy') SeerRequestUser? requestedBy,@JsonKey(name: 'modifiedBy') SeerRequestUser? modifiedBy,@JsonKey(name: 'createdAt') String? createdAt,@JsonKey(name: 'updatedAt') String? updatedAt,@JsonKey(name: 'seasons') List<SeerSeasonRequest>? seasons,@JsonKey(name: 'is4k') bool is4k,@JsonKey(name: 'serverId') int? serverId,@JsonKey(name: 'profileId') int? profileId,@JsonKey(name: 'rootFolder') String? rootFolder
+@JsonKey(name: 'id') int id,@JsonKey(name: 'status') int status,@JsonKey(name: 'media', fromJson: _parseMediaInfo) SeerMediaInfo? media,@JsonKey(name: 'requestedBy') SeerRequestUser? requestedBy,@JsonKey(name: 'modifiedBy') SeerRequestUser? modifiedBy,@JsonKey(name: 'createdAt') String? createdAt,@JsonKey(name: 'updatedAt') String? updatedAt,@JsonKey(name: 'seasons') List<SeerSeasonRequest>? seasons,@JsonKey(name: 'is4k') bool is4k,@JsonKey(name: 'serverId') int? serverId,@JsonKey(name: 'profileId') int? profileId,@JsonKey(name: 'rootFolder') String? rootFolder
 });
 
 
@@ -1577,10 +1547,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerRequest():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -1615,7 +1582,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'status')  int status, @JsonKey(name: 'media')  SeerMediaInfo? media, @JsonKey(name: 'requestedBy')  SeerRequestUser? requestedBy, @JsonKey(name: 'modifiedBy')  SeerRequestUser? modifiedBy, @JsonKey(name: 'createdAt')  String? createdAt, @JsonKey(name: 'updatedAt')  String? updatedAt, @JsonKey(name: 'seasons')  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'status')  int status, @JsonKey(name: 'media', fromJson: _parseMediaInfo)  SeerMediaInfo? media, @JsonKey(name: 'requestedBy')  SeerRequestUser? requestedBy, @JsonKey(name: 'modifiedBy')  SeerRequestUser? modifiedBy, @JsonKey(name: 'createdAt')  String? createdAt, @JsonKey(name: 'updatedAt')  String? updatedAt, @JsonKey(name: 'seasons')  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SeerRequest() when $default != null:
 return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifiedBy,_that.createdAt,_that.updatedAt,_that.seasons,_that.is4k,_that.serverId,_that.profileId,_that.rootFolder);case _:
@@ -1636,13 +1603,10 @@ return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'status')  int status, @JsonKey(name: 'media')  SeerMediaInfo? media, @JsonKey(name: 'requestedBy')  SeerRequestUser? requestedBy, @JsonKey(name: 'modifiedBy')  SeerRequestUser? modifiedBy, @JsonKey(name: 'createdAt')  String? createdAt, @JsonKey(name: 'updatedAt')  String? updatedAt, @JsonKey(name: 'seasons')  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'status')  int status, @JsonKey(name: 'media', fromJson: _parseMediaInfo)  SeerMediaInfo? media, @JsonKey(name: 'requestedBy')  SeerRequestUser? requestedBy, @JsonKey(name: 'modifiedBy')  SeerRequestUser? modifiedBy, @JsonKey(name: 'createdAt')  String? createdAt, @JsonKey(name: 'updatedAt')  String? updatedAt, @JsonKey(name: 'seasons')  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)  $default,) {final _that = this;
 switch (_that) {
 case _SeerRequest():
-return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifiedBy,_that.createdAt,_that.updatedAt,_that.seasons,_that.is4k,_that.serverId,_that.profileId,_that.rootFolder);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifiedBy,_that.createdAt,_that.updatedAt,_that.seasons,_that.is4k,_that.serverId,_that.profileId,_that.rootFolder);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1656,7 +1620,7 @@ return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'status')  int status, @JsonKey(name: 'media')  SeerMediaInfo? media, @JsonKey(name: 'requestedBy')  SeerRequestUser? requestedBy, @JsonKey(name: 'modifiedBy')  SeerRequestUser? modifiedBy, @JsonKey(name: 'createdAt')  String? createdAt, @JsonKey(name: 'updatedAt')  String? updatedAt, @JsonKey(name: 'seasons')  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'status')  int status, @JsonKey(name: 'media', fromJson: _parseMediaInfo)  SeerMediaInfo? media, @JsonKey(name: 'requestedBy')  SeerRequestUser? requestedBy, @JsonKey(name: 'modifiedBy')  SeerRequestUser? modifiedBy, @JsonKey(name: 'createdAt')  String? createdAt, @JsonKey(name: 'updatedAt')  String? updatedAt, @JsonKey(name: 'seasons')  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)?  $default,) {final _that = this;
 switch (_that) {
 case _SeerRequest() when $default != null:
 return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifiedBy,_that.createdAt,_that.updatedAt,_that.seasons,_that.is4k,_that.serverId,_that.profileId,_that.rootFolder);case _:
@@ -1671,12 +1635,12 @@ return $default(_that.id,_that.status,_that.media,_that.requestedBy,_that.modifi
 @JsonSerializable()
 
 class _SeerRequest implements SeerRequest {
-  const _SeerRequest({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'status') this.status = 1, @JsonKey(name: 'media') this.media, @JsonKey(name: 'requestedBy') this.requestedBy, @JsonKey(name: 'modifiedBy') this.modifiedBy, @JsonKey(name: 'createdAt') this.createdAt, @JsonKey(name: 'updatedAt') this.updatedAt, @JsonKey(name: 'seasons') final  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k') this.is4k = false, @JsonKey(name: 'serverId') this.serverId, @JsonKey(name: 'profileId') this.profileId, @JsonKey(name: 'rootFolder') this.rootFolder}): _seasons = seasons;
+  const _SeerRequest({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'status') this.status = 1, @JsonKey(name: 'media', fromJson: _parseMediaInfo) this.media, @JsonKey(name: 'requestedBy') this.requestedBy, @JsonKey(name: 'modifiedBy') this.modifiedBy, @JsonKey(name: 'createdAt') this.createdAt, @JsonKey(name: 'updatedAt') this.updatedAt, @JsonKey(name: 'seasons') final  List<SeerSeasonRequest>? seasons, @JsonKey(name: 'is4k') this.is4k = false, @JsonKey(name: 'serverId') this.serverId, @JsonKey(name: 'profileId') this.profileId, @JsonKey(name: 'rootFolder') this.rootFolder}): _seasons = seasons;
   factory _SeerRequest.fromJson(Map<String, dynamic> json) => _$SeerRequestFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
 @override@JsonKey(name: 'status') final  int status;
-@override@JsonKey(name: 'media') final  SeerMediaInfo? media;
+@override@JsonKey(name: 'media', fromJson: _parseMediaInfo) final  SeerMediaInfo? media;
 @override@JsonKey(name: 'requestedBy') final  SeerRequestUser? requestedBy;
 @override@JsonKey(name: 'modifiedBy') final  SeerRequestUser? modifiedBy;
 @override@JsonKey(name: 'createdAt') final  String? createdAt;
@@ -1728,7 +1692,7 @@ abstract mixin class _$SeerRequestCopyWith<$Res> implements $SeerRequestCopyWith
   factory _$SeerRequestCopyWith(_SeerRequest value, $Res Function(_SeerRequest) _then) = __$SeerRequestCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'status') int status,@JsonKey(name: 'media') SeerMediaInfo? media,@JsonKey(name: 'requestedBy') SeerRequestUser? requestedBy,@JsonKey(name: 'modifiedBy') SeerRequestUser? modifiedBy,@JsonKey(name: 'createdAt') String? createdAt,@JsonKey(name: 'updatedAt') String? updatedAt,@JsonKey(name: 'seasons') List<SeerSeasonRequest>? seasons,@JsonKey(name: 'is4k') bool is4k,@JsonKey(name: 'serverId') int? serverId,@JsonKey(name: 'profileId') int? profileId,@JsonKey(name: 'rootFolder') String? rootFolder
+@JsonKey(name: 'id') int id,@JsonKey(name: 'status') int status,@JsonKey(name: 'media', fromJson: _parseMediaInfo) SeerMediaInfo? media,@JsonKey(name: 'requestedBy') SeerRequestUser? requestedBy,@JsonKey(name: 'modifiedBy') SeerRequestUser? modifiedBy,@JsonKey(name: 'createdAt') String? createdAt,@JsonKey(name: 'updatedAt') String? updatedAt,@JsonKey(name: 'seasons') List<SeerSeasonRequest>? seasons,@JsonKey(name: 'is4k') bool is4k,@JsonKey(name: 'serverId') int? serverId,@JsonKey(name: 'profileId') int? profileId,@JsonKey(name: 'rootFolder') String? rootFolder
 });
 
 
@@ -1929,10 +1893,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerSearchResultItem():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -1991,10 +1952,7 @@ return $default(_that.id,_that.mediaType,_that.title,_that.name,_that.overview,_
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'mediaType')  String? mediaType, @JsonKey(name: 'title')  String? title, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'overview')  String? overview, @JsonKey(name: 'posterPath')  String? posterPath, @JsonKey(name: 'backdropPath')  String? backdropPath, @JsonKey(name: 'releaseDate')  String? releaseDate, @JsonKey(name: 'firstAirDate')  String? firstAirDate, @JsonKey(name: 'voteAverage')  double? voteAverage, @JsonKey(name: 'genreIds')  List<int>? genreIds, @JsonKey(name: 'mediaInfo')  SeerMediaInfo? mediaInfo)  $default,) {final _that = this;
 switch (_that) {
 case _SeerSearchResultItem():
-return $default(_that.id,_that.mediaType,_that.title,_that.name,_that.overview,_that.posterPath,_that.backdropPath,_that.releaseDate,_that.firstAirDate,_that.voteAverage,_that.genreIds,_that.mediaInfo);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.mediaType,_that.title,_that.name,_that.overview,_that.posterPath,_that.backdropPath,_that.releaseDate,_that.firstAirDate,_that.voteAverage,_that.genreIds,_that.mediaInfo);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -2237,10 +2195,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerSearchResponse():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -2299,10 +2254,7 @@ return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);ca
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'page')  int page, @JsonKey(name: 'totalPages')  int totalPages, @JsonKey(name: 'totalResults')  int totalResults, @JsonKey(name: 'results')  List<SeerSearchResultItem> results)  $default,) {final _that = this;
 switch (_that) {
 case _SeerSearchResponse():
-return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -2515,10 +2467,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerRequestsResponse():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -2577,10 +2526,7 @@ return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);ca
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'page')  int page, @JsonKey(name: 'totalPages')  int totalPages, @JsonKey(name: 'totalResults')  int totalResults, @JsonKey(name: 'results')  List<SeerRequest> results)  $default,) {final _that = this;
 switch (_that) {
 case _SeerRequestsResponse():
-return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -2796,10 +2742,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerSeason():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -2858,10 +2801,7 @@ return $default(_that.id,_that.seasonNumber,_that.name,_that.overview,_that.epis
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'seasonNumber')  int seasonNumber, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'overview')  String? overview, @JsonKey(name: 'episodeCount')  int episodeCount, @JsonKey(name: 'airDate')  String? airDate, @JsonKey(name: 'posterPath')  String? posterPath)  $default,) {final _that = this;
 switch (_that) {
 case _SeerSeason():
-return $default(_that.id,_that.seasonNumber,_that.name,_that.overview,_that.episodeCount,_that.airDate,_that.posterPath);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.seasonNumber,_that.name,_that.overview,_that.episodeCount,_that.airDate,_that.posterPath);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -3100,10 +3040,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerMediaDetails():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -3162,10 +3099,7 @@ return $default(_that.id,_that.title,_that.name,_that.overview,_that.posterPath,
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'title')  String? title, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'overview')  String? overview, @JsonKey(name: 'posterPath')  String? posterPath, @JsonKey(name: 'backdropPath')  String? backdropPath, @JsonKey(name: 'numberOfSeasons')  int? numberOfSeasons, @JsonKey(name: 'numberOfEpisodes')  int? numberOfEpisodes, @JsonKey(name: 'seasons')  List<SeerSeason>? seasons, @JsonKey(name: 'status')  String? status, @JsonKey(name: 'voteAverage')  double? voteAverage, @JsonKey(name: 'mediaInfo')  SeerMediaInfo? mediaInfo, @JsonKey(name: 'tagline')  String? tagline, @JsonKey(name: 'runtime')  int? runtime, @JsonKey(name: 'originalLanguage')  String? originalLanguage, @JsonKey(name: 'genres')  List<SeerGenre>? genres, @JsonKey(name: 'releaseDate')  String? releaseDate, @JsonKey(name: 'firstAirDate')  String? firstAirDate)  $default,) {final _that = this;
 switch (_that) {
 case _SeerMediaDetails():
-return $default(_that.id,_that.title,_that.name,_that.overview,_that.posterPath,_that.backdropPath,_that.numberOfSeasons,_that.numberOfEpisodes,_that.seasons,_that.status,_that.voteAverage,_that.mediaInfo,_that.tagline,_that.runtime,_that.originalLanguage,_that.genres,_that.releaseDate,_that.firstAirDate);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.title,_that.name,_that.overview,_that.posterPath,_that.backdropPath,_that.numberOfSeasons,_that.numberOfEpisodes,_that.seasons,_that.status,_that.voteAverage,_that.mediaInfo,_that.tagline,_that.runtime,_that.originalLanguage,_that.genres,_that.releaseDate,_that.firstAirDate);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -3426,10 +3360,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerGenre():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -3488,10 +3419,7 @@ return $default(_that.id,_that.name);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String? name)  $default,) {final _that = this;
 switch (_that) {
 case _SeerGenre():
-return $default(_that.id,_that.name);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.name);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -3694,10 +3622,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerTrendingResponse():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -3756,10 +3681,7 @@ return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);ca
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'page')  int page, @JsonKey(name: 'totalPages')  int totalPages, @JsonKey(name: 'totalResults')  int totalResults, @JsonKey(name: 'results')  List<SeerSearchResultItem> results)  $default,) {final _that = this;
 switch (_that) {
 case _SeerTrendingResponse():
-return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.page,_that.totalPages,_that.totalResults,_that.results);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -3972,10 +3894,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerServiceSettings():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -4034,10 +3953,7 @@ return $default(_that.id,_that.name,_that.is4k,_that.isDefault);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'isDefault')  bool isDefault)  $default,) {final _that = this;
 switch (_that) {
 case _SeerServiceSettings():
-return $default(_that.id,_that.name,_that.is4k,_that.isDefault);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.name,_that.is4k,_that.isDefault);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -4247,10 +4163,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerCreateRequestBody():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -4309,10 +4222,7 @@ return $default(_that.mediaType,_that.mediaId,_that.seasons,_that.is4k,_that.ser
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'mediaType')  String mediaType, @JsonKey(name: 'mediaId')  int mediaId, @JsonKey(name: 'seasons')  List<int>? seasons, @JsonKey(name: 'is4k')  bool is4k, @JsonKey(name: 'serverId')  int? serverId, @JsonKey(name: 'profileId')  int? profileId, @JsonKey(name: 'rootFolder')  String? rootFolder)  $default,) {final _that = this;
 switch (_that) {
 case _SeerCreateRequestBody():
-return $default(_that.mediaType,_that.mediaId,_that.seasons,_that.is4k,_that.serverId,_that.profileId,_that.rootFolder);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.mediaType,_that.mediaId,_that.seasons,_that.is4k,_that.serverId,_that.profileId,_that.rootFolder);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -4531,10 +4441,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerLoginRequest():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -4593,10 +4500,7 @@ return $default(_that.username,_that.password);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'username')  String username, @JsonKey(name: 'password')  String password)  $default,) {final _that = this;
 switch (_that) {
 case _SeerLoginRequest():
-return $default(_that.username,_that.password);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.username,_that.password);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -4952,6 +4856,283 @@ class __$SeerJellyfinLoginRequestCopyWithImpl<$Res>
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$SeerGenreSliderItem {
+
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'backdrops') List<String>? get backdrops;
+/// Create a copy of SeerGenreSliderItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SeerGenreSliderItemCopyWith<SeerGenreSliderItem> get copyWith => _$SeerGenreSliderItemCopyWithImpl<SeerGenreSliderItem>(this as SeerGenreSliderItem, _$identity);
+
+  /// Serializes this SeerGenreSliderItem to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SeerGenreSliderItem&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.backdrops, backdrops));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,const DeepCollectionEquality().hash(backdrops));
+
+@override
+String toString() {
+  return 'SeerGenreSliderItem(id: $id, name: $name, backdrops: $backdrops)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SeerGenreSliderItemCopyWith<$Res>  {
+  factory $SeerGenreSliderItemCopyWith(SeerGenreSliderItem value, $Res Function(SeerGenreSliderItem) _then) = _$SeerGenreSliderItemCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'backdrops') List<String>? backdrops
+});
+
+
+
+
+}
+/// @nodoc
+class _$SeerGenreSliderItemCopyWithImpl<$Res>
+    implements $SeerGenreSliderItemCopyWith<$Res> {
+  _$SeerGenreSliderItemCopyWithImpl(this._self, this._then);
+
+  final SeerGenreSliderItem _self;
+  final $Res Function(SeerGenreSliderItem) _then;
+
+/// Create a copy of SeerGenreSliderItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = freezed,Object? backdrops = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,backdrops: freezed == backdrops ? _self.backdrops : backdrops // ignore: cast_nullable_to_non_nullable
+as List<String>?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SeerGenreSliderItem].
+extension SeerGenreSliderItemPatterns on SeerGenreSliderItem {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SeerGenreSliderItem value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SeerGenreSliderItem() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SeerGenreSliderItem value)  $default,){
+final _that = this;
+switch (_that) {
+case _SeerGenreSliderItem():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SeerGenreSliderItem value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SeerGenreSliderItem() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'backdrops')  List<String>? backdrops)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SeerGenreSliderItem() when $default != null:
+return $default(_that.id,_that.name,_that.backdrops);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'backdrops')  List<String>? backdrops)  $default,) {final _that = this;
+switch (_that) {
+case _SeerGenreSliderItem():
+return $default(_that.id,_that.name,_that.backdrops);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'backdrops')  List<String>? backdrops)?  $default,) {final _that = this;
+switch (_that) {
+case _SeerGenreSliderItem() when $default != null:
+return $default(_that.id,_that.name,_that.backdrops);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SeerGenreSliderItem extends SeerGenreSliderItem {
+  const _SeerGenreSliderItem({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'name') this.name, @JsonKey(name: 'backdrops') final  List<String>? backdrops}): _backdrops = backdrops,super._();
+  factory _SeerGenreSliderItem.fromJson(Map<String, dynamic> json) => _$SeerGenreSliderItemFromJson(json);
+
+@override@JsonKey(name: 'id') final  int id;
+@override@JsonKey(name: 'name') final  String? name;
+ final  List<String>? _backdrops;
+@override@JsonKey(name: 'backdrops') List<String>? get backdrops {
+  final value = _backdrops;
+  if (value == null) return null;
+  if (_backdrops is EqualUnmodifiableListView) return _backdrops;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+
+/// Create a copy of SeerGenreSliderItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SeerGenreSliderItemCopyWith<_SeerGenreSliderItem> get copyWith => __$SeerGenreSliderItemCopyWithImpl<_SeerGenreSliderItem>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SeerGenreSliderItemToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SeerGenreSliderItem&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._backdrops, _backdrops));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,const DeepCollectionEquality().hash(_backdrops));
+
+@override
+String toString() {
+  return 'SeerGenreSliderItem(id: $id, name: $name, backdrops: $backdrops)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SeerGenreSliderItemCopyWith<$Res> implements $SeerGenreSliderItemCopyWith<$Res> {
+  factory _$SeerGenreSliderItemCopyWith(_SeerGenreSliderItem value, $Res Function(_SeerGenreSliderItem) _then) = __$SeerGenreSliderItemCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'backdrops') List<String>? backdrops
+});
+
+
+
+
+}
+/// @nodoc
+class __$SeerGenreSliderItemCopyWithImpl<$Res>
+    implements _$SeerGenreSliderItemCopyWith<$Res> {
+  __$SeerGenreSliderItemCopyWithImpl(this._self, this._then);
+
+  final _SeerGenreSliderItem _self;
+  final $Res Function(_SeerGenreSliderItem) _then;
+
+/// Create a copy of SeerGenreSliderItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = freezed,Object? backdrops = freezed,}) {
+  return _then(_SeerGenreSliderItem(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,backdrops: freezed == backdrops ? _self._backdrops : backdrops // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 

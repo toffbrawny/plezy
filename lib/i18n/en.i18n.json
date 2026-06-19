@@ -1462,6 +1462,12 @@
     "noRequests": "No requests yet",
     "noRequestsDescription": "Search and request media to see it here",
     "overview": "Overview",
-    "retry": "Retry"
+    "retry": "Retry",
+    "movieGenres": "Movie Genres",
+    "tvGenres": "TV Genres",
+    "studios": "Studios",
+    "networks": "Networks",
+    "upcomingMovies": "Upcoming Movies",
+    "upcomingTv": "Upcoming TV"
   }
 }

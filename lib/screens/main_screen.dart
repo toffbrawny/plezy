@@ -879,7 +879,7 @@ class _MainScreenState extends State<MainScreen>
   NavigationTabId _defaultTabForMode(bool isOffline) => NavigationTab.resolveDefaultTab(
     isOffline: isOffline,
     hasLiveTv: _hasLiveTv,
-    hasRequests: context.read<SeerProvider>().isAuthenticated,
+    hasRequests: true,
     preferredStartup: SettingsService.instanceOrNull?.read(SettingsService.startupSection),
   );
 
@@ -1448,7 +1448,7 @@ class _MainScreenState extends State<MainScreen>
 
   /// Get navigation tabs filtered by offline mode
   List<NavigationTab> _getVisibleTabs(bool isOffline) {
-    final hasRequests = context.read<SeerProvider>().isAuthenticated;
+    final hasRequests = true;
     return NavigationTab.getVisibleTabs(
       isOffline: isOffline,
       hasLiveTv: _hasLiveTv,

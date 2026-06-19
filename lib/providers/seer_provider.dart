@@ -13,6 +13,27 @@ import 'package:plezy/utils/app_logger.dart';
 /// State for the Requests screen.
 enum SeerLoadState { idle, loading, success, error }
 
+/// Filter type for the filtered media screen.
+enum SeerFilterType {
+  trending,
+  popularMovies,
+  popularTv,
+  upcomingMovies,
+  upcomingTv,
+  genreMovie,
+  genreTv,
+  studio,
+  network,
+}
+
+class SeerFilterParams {
+  final SeerFilterType type;
+  final int id;
+  final String name;
+
+  const SeerFilterParams({required this.type, required this.id, required this.name});
+}
+
 /// Provider for the Seer (Jellyseerr/Overseerr) integration.
 ///
 /// Manages authentication, requests, search, and discover content. The
@@ -35,7 +56,15 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   List<SeerSearchResultItem> _trending = [];
   List<SeerSearchResultItem> _discoverMovies = [];
   List<SeerSearchResultItem> _discoverTv = [];
+  List<SeerSearchResultItem> _upcomingMovies = [];
+  List<SeerSearchResultItem> _upcomingTv = [];
   List<SeerSearchResultItem> _searchResults = [];
+  List<SeerGenreSliderItem> _movieGenres = [];
+  List<SeerGenreSliderItem> _tvGenres = [];
+  List<SeerStudio> _studios = SeerStudio.popular;
+  List<SeerNetwork> _networks = SeerNetwork.popular;
+  List<SeerSearchResultItem> _filteredResults = [];
+  bool _isLoadingFiltered = false;
   bool _isSearching = false;
   bool _isAuthenticating = false;
 
@@ -97,7 +126,15 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   List<SeerSearchResultItem> get trending => _trending;
   List<SeerSearchResultItem> get discoverMovies => _discoverMovies;
   List<SeerSearchResultItem> get discoverTv => _discoverTv;
+  List<SeerSearchResultItem> get upcomingMovies => _upcomingMovies;
+  List<SeerSearchResultItem> get upcomingTv => _upcomingTv;
   List<SeerSearchResultItem> get searchResults => _searchResults;
+  List<SeerGenreSliderItem> get movieGenres => _movieGenres;
+  List<SeerGenreSliderItem> get tvGenres => _tvGenres;
+  List<SeerStudio> get studios => _studios;
+  List<SeerNetwork> get networks => _networks;
+  List<SeerSearchResultItem> get filteredResults => _filteredResults;
+  bool get isLoadingFiltered => _isLoadingFiltered;
   bool get isSearching => _isSearching;
 
   // ─── Auth ───
@@ -182,6 +219,9 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
     _trending = [];
     _discoverMovies = [];
     _discoverTv = [];
+    _searchResults = [];
+    _loadState = SeerLoadState.idle;
+    _error = null;
     safeNotifyListeners();
   }
 
@@ -217,17 +257,70 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
     _error = null;
     safeNotifyListeners();
 
+    final errors = <String>[];
+
+    // Load each independently so one failure doesn't block the others
     try {
-      await Future.wait([
-        _loadRequests(),
-        _loadTrending(),
-        _loadDiscoverMovies(),
-        _loadDiscoverTv(),
-      ]);
-      _loadState = SeerLoadState.success;
+      await _loadRequests();
     } catch (e) {
-      _error = e.toString();
+      errors.add('Requests: $e');
+      appLogger.e('Seer: requests failed: $e');
+    }
+
+    try {
+      await _loadTrending();
+    } catch (e) {
+      errors.add('Trending: $e');
+      appLogger.e('Seer: trending failed: $e');
+    }
+
+    try {
+      await _loadDiscoverMovies();
+    } catch (e) {
+      errors.add('Movies: $e');
+      appLogger.e('Seer: discover movies failed: $e');
+    }
+
+    try {
+      await _loadDiscoverTv();
+    } catch (e) {
+      errors.add('TV: $e');
+      appLogger.e('Seer: discover TV failed: $e');
+    }
+
+    try {
+      await _loadUpcomingMovies();
+    } catch (e) {
+      appLogger.e('Seer: upcoming movies failed: $e');
+    }
+
+    try {
+      await _loadUpcomingTv();
+    } catch (e) {
+      appLogger.e('Seer: upcoming TV failed: $e');
+    }
+
+    try {
+      _movieGenres = await _client.getMovieGenreSlider();
+    } catch (e) {
+      appLogger.e('Seer: movie genre slider failed: $e');
+    }
+
+    try {
+      _tvGenres = await _client.getTvGenreSlider();
+    } catch (e) {
+      appLogger.e('Seer: TV genre slider failed: $e');
+    }
+
+    final allEmpty = _requests.isEmpty && _trending.isEmpty && _discoverMovies.isEmpty && _discoverTv.isEmpty;
+    if (allEmpty) {
       _loadState = SeerLoadState.error;
+      // Show the first error message so the user knows what went wrong
+      _error = errors.isNotEmpty
+          ? 'Failed to load content: ${errors.first}'
+          : 'Failed to load content. Check your Seer connection.';
+    } else {
+      _loadState = SeerLoadState.success;
     }
     safeNotifyListeners();
   }
@@ -237,6 +330,40 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   Future<void> _loadRequests() async {
     try {
       _requests = await _client.getRequests();
+
+      // Enrich: the /request endpoint's embedded media object doesn't include
+      // title/name/posterPath. Fetch them from /movie/{tmdbId} or /tv/{tmdbId}.
+      // This mirrors AFinity's approach — show immediately, enrich in background.
+      final enriched = <SeerRequest>[];
+      for (final req in _requests) {
+        final media = req.media;
+        final tmdbId = media?.tmdbId;
+        final mediaType = media?.mediaType;
+        if (tmdbId != null && mediaType != null && media!.displayTitle.isEmpty) {
+          try {
+            final details = mediaType == 'movie'
+                ? await _client.getMovieDetails(tmdbId)
+                : await _client.getTvDetails(tmdbId);
+            enriched.add(req.copyWith(
+              media: media.copyWith(
+                title: details.title,
+                name: details.name,
+                posterPath: details.posterPath,
+                backdropPath: details.backdropPath,
+                releaseDate: details.releaseDate,
+                firstAirDate: details.firstAirDate,
+              ),
+            ));
+          } catch (e) {
+            appLogger.w('Seer: failed to enrich request ${req.id}: $e');
+            enriched.add(req);
+          }
+        } else {
+          enriched.add(req);
+        }
+      }
+      _requests = enriched;
+
       // Cache to DB for offline
       if (_serverId != null && _userId != null) {
         final companions = _requests.map((r) => SeerRequestsCompanion.insert(
@@ -246,7 +373,7 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
               status: Value(r.status),
               mediaType: Value(r.media?.mediaType),
               tmdbId: Value(r.media?.tmdbId),
-              title: Value(r.media?.title ?? r.media?.name),
+              title: Value(r.media?.displayTitle.isNotEmpty == true ? r.media!.displayTitle : null),
               posterPath: Value(r.media?.posterPath),
               backdropPath: Value(r.media?.backdropPath),
               releaseDate: Value(r.media?.releaseDate ?? r.media?.firstAirDate),
@@ -271,8 +398,12 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
           serverId: _serverId!,
           userId: _userId!,
         );
-        _requests = cached.map(_cachedToRequest).toList();
+        if (cached.isNotEmpty) {
+          _requests = cached.map(_cachedToRequest).toList();
+          return;
+        }
       }
+      rethrow;
     }
   }
 
@@ -300,27 +431,51 @@ class SeerProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   }
 
   Future<void> _loadTrending() async {
-    try {
-      _trending = await _client.getTrending();
-    } catch (e) {
-      appLogger.w('Seer: failed to load trending: $e');
-    }
+    _trending = await _client.getTrending();
   }
 
   Future<void> _loadDiscoverMovies() async {
-    try {
-      _discoverMovies = await _client.getDiscoverMovies();
-    } catch (e) {
-      appLogger.w('Seer: failed to load discover movies: $e');
-    }
+    _discoverMovies = await _client.getDiscoverMovies();
   }
 
   Future<void> _loadDiscoverTv() async {
+    _discoverTv = await _client.getDiscoverTv();
+  }
+
+  Future<void> _loadUpcomingMovies() async {
+    _upcomingMovies = await _client.getUpcomingMovies();
+  }
+
+  Future<void> _loadUpcomingTv() async {
+    _upcomingTv = await _client.getUpcomingTv();
+  }
+
+  // ─── Filtered Media ───
+
+  Future<void> loadFilteredMedia(SeerFilterParams params, {int page = 1}) async {
+    _isLoadingFiltered = true;
+    safeNotifyListeners();
+
     try {
-      _discoverTv = await _client.getDiscoverTv();
+      final results = switch (params.type) {
+        SeerFilterType.trending => await _client.getTrending(page: page),
+        SeerFilterType.popularMovies => await _client.getDiscoverMovies(page: page),
+        SeerFilterType.popularTv => await _client.getDiscoverTv(page: page),
+        SeerFilterType.upcomingMovies => await _client.getUpcomingMovies(page: page),
+        SeerFilterType.upcomingTv => await _client.getUpcomingTv(page: page),
+        SeerFilterType.genreMovie => await _client.getMoviesByGenre(params.id, page: page),
+        SeerFilterType.genreTv => await _client.getTvByGenre(params.id, page: page),
+        SeerFilterType.studio => await _client.getMoviesByStudio(params.id, page: page),
+        SeerFilterType.network => await _client.getTvByNetwork(params.id, page: page),
+      };
+      _filteredResults = results;
     } catch (e) {
-      appLogger.w('Seer: failed to load discover TV: $e');
+      _error = 'Failed to load: $e';
+      _filteredResults = [];
     }
+
+    _isLoadingFiltered = false;
+    safeNotifyListeners();
   }
 
   // ─── Search ───

@@ -125,10 +125,44 @@ class RequestsScreenState extends State<RequestsScreen> {
 
     if (provider.loadState == SeerLoadState.error && provider.trending.isEmpty) {
       return Scaffold(
-        body: StateMessageWidget(
-          icon: Symbols.error_outline_rounded,
-          message: provider.error ?? 'Error',
-          subtitle: '',
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const AppIcon(Symbols.error_outline_rounded, size: 64),
+                const SizedBox(height: 16),
+                Text(
+                  provider.error ?? 'Error',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                if (provider.error != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: SelectableText(
+                      provider.error!,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                    ),
+                  ),
+                const SizedBox(height: 24),
+                FilledButton.icon(
+                  onPressed: () => provider.refresh(),
+                  icon: const AppIcon(Symbols.refresh_rounded),
+                  label: Text(t.seer.retry),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: () => _showLoginSheet(),
+                  child: Text(t.seer.connect),
+                ),
+              ],
+            ),
+          ),
         ),
       );
     }
@@ -223,10 +257,52 @@ class RequestsScreenState extends State<RequestsScreen> {
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
           ],
 
+          // Movie Genres
+          if (!_showSearch && provider.movieGenres.isNotEmpty) ...[
+            _buildSectionHeader(t.seer.movieGenres, provider.movieGenres.length),
+            _buildGenreList(provider.movieGenres, provider, isMovie: true),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          ],
+
+          // Upcoming Movies
+          if (!_showSearch && provider.upcomingMovies.isNotEmpty) ...[
+            _buildSectionHeader(t.seer.upcomingMovies, provider.upcomingMovies.length),
+            _buildHorizontalList(provider.upcomingMovies, provider),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          ],
+
+          // Studios
+          if (!_showSearch && provider.studios.isNotEmpty) ...[
+            _buildSectionHeader(t.seer.studios, provider.studios.length),
+            _buildStudioNetworkList(provider.studios.map((s) => (id: s.id, name: s.name, imageUrl: s.logoUrl)).toList(), provider, isStudio: true),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          ],
+
           // Popular TV
           if (!_showSearch && provider.discoverTv.isNotEmpty) ...[
             _buildSectionHeader(t.seer.discoverTv, provider.discoverTv.length),
             _buildHorizontalList(provider.discoverTv, provider),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          ],
+
+          // TV Genres
+          if (!_showSearch && provider.tvGenres.isNotEmpty) ...[
+            _buildSectionHeader(t.seer.tvGenres, provider.tvGenres.length),
+            _buildGenreList(provider.tvGenres, provider, isMovie: false),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          ],
+
+          // Upcoming TV
+          if (!_showSearch && provider.upcomingTv.isNotEmpty) ...[
+            _buildSectionHeader(t.seer.upcomingTv, provider.upcomingTv.length),
+            _buildHorizontalList(provider.upcomingTv, provider),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          ],
+
+          // Networks
+          if (!_showSearch && provider.networks.isNotEmpty) ...[
+            _buildSectionHeader(t.seer.networks, provider.networks.length),
+            _buildStudioNetworkList(provider.networks.map((n) => (id: n.id, name: n.name, imageUrl: n.logoUrl)).toList(), provider, isStudio: false),
             const SliverToBoxAdapter(child: SizedBox(height: 32)),
           ],
 
@@ -281,6 +357,146 @@ class RequestsScreenState extends State<RequestsScreen> {
             final item = items[index];
             return _buildDiscoverCard(item, provider);
           },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGenreList(List<SeerGenreSliderItem> genres, SeerProvider provider, {required bool isMovie}) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 140,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          itemCount: genres.length,
+          itemBuilder: (context, index) {
+            final genre = genres[index];
+            return _buildGenreCard(genre, provider, isMovie: isMovie);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGenreCard(SeerGenreSliderItem genre, SeerProvider provider, {required bool isMovie}) {
+    final backdropUrl = genre.backdropUrl;
+    return GestureDetector(
+      onTap: () {
+        provider.loadFilteredMedia(SeerFilterParams(
+          type: isMovie ? SeerFilterType.genreMovie : SeerFilterType.genreTv,
+          id: genre.id,
+          name: genre.displayTitle,
+        ));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => _FilteredMediaScreen(
+              title: genre.displayTitle,
+              params: SeerFilterParams(
+                type: isMovie ? SeerFilterType.genreMovie : SeerFilterType.genreTv,
+                id: genre.id,
+                name: genre.displayTitle,
+              ),
+            ),
+          ),
+        );
+      },
+      child: Container(
+        width: 240,
+        margin: const EdgeInsets.only(right: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          image: backdropUrl != null
+              ? DecorationImage(
+                  image: NetworkImage(backdropUrl),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withValues(alpha: 0.4),
+                    BlendMode.darken,
+                  ),
+                )
+              : null,
+          color: backdropUrl == null ? Theme.of(context).colorScheme.surfaceContainerHighest : null,
+        ),
+        child: Center(
+          child: Text(
+            genre.displayTitle,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStudioNetworkList(
+      List<({int id, String name, String imageUrl})> items, SeerProvider provider,
+      {required bool isStudio}) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 120,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return _buildStudioNetworkCard(item, provider, isStudio: isStudio);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStudioNetworkCard(
+      ({int id, String name, String imageUrl}) item, SeerProvider provider,
+      {required bool isStudio}) {
+    return GestureDetector(
+      onTap: () {
+        provider.loadFilteredMedia(SeerFilterParams(
+          type: isStudio ? SeerFilterType.studio : SeerFilterType.network,
+          id: item.id,
+          name: item.name,
+        ));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => _FilteredMediaScreen(
+              title: item.name,
+              params: SeerFilterParams(
+                type: isStudio ? SeerFilterType.studio : SeerFilterType.network,
+                id: item.id,
+                name: item.name,
+              ),
+            ),
+          ),
+        );
+      },
+      child: Container(
+        width: 200,
+        margin: const EdgeInsets.only(right: 12),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1C1C1C),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: item.imageUrl.isNotEmpty
+              ? Center(
+                  child: Image.network(
+                    item.imageUrl,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) => Center(
+                      child: Text(item.name, style: const TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                )
+              : Center(
+                  child: Text(item.name, style: const TextStyle(color: Colors.white)),
+                ),
         ),
       ),
     );
@@ -538,6 +754,124 @@ class RequestsScreenState extends State<RequestsScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+/// Screen for filtered media (by genre, studio, network, or discover type).
+class _FilteredMediaScreen extends StatefulWidget {
+  final String title;
+  final SeerFilterParams params;
+
+  const _FilteredMediaScreen({super.key, required this.title, required this.params});
+
+  @override
+  State<_FilteredMediaScreen> createState() => _FilteredMediaScreenState();
+}
+
+class _FilteredMediaScreenState extends State<_FilteredMediaScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SeerProvider>().loadFilteredMedia(widget.params);
+    });
+  }
+
+  void _showRequestDialog(SeerSearchResultItem item) async {
+    final provider = context.read<SeerProvider>();
+    final mediaType = item.mediaTypeEnum;
+    if (mediaType == null) return;
+
+    final details = await provider.getMediaDetails(item.id, mediaType);
+    if (!mounted) return;
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => RequestConfirmationDialog(
+        tmdbId: item.id,
+        mediaType: mediaType,
+        title: item.displayTitle,
+        posterUrl: item.displayPoster,
+        backdropUrl: item.displayBackdrop,
+        overview: item.overview,
+        details: details,
+        onRequest: (seasons, is4k) async {
+          final result = await provider.createRequest(
+            mediaId: item.id,
+            mediaType: mediaType,
+            seasons: seasons,
+            is4k: is4k,
+          );
+          return result != null;
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<SeerProvider>(
+      builder: (context, provider, _) {
+        return Scaffold(
+          appBar: AppBar(title: Text(widget.title)),
+          body: provider.isLoadingFiltered
+              ? const Center(child: CircularProgressIndicator())
+              : provider.filteredResults.isEmpty
+                  ? Center(
+                      child: Text(
+                        provider.error ?? 'No results found',
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  : GridView.builder(
+                      padding: const EdgeInsets.all(16),
+                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 130,
+                        childAspectRatio: 2 / 3,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                      ),
+                      itemCount: provider.filteredResults.length,
+                      itemBuilder: (context, index) {
+                        final item = provider.filteredResults[index];
+                        return GestureDetector(
+                          onTap: () => _showRequestDialog(item),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: item.displayPoster.isNotEmpty
+                                      ? Image.network(
+                                          item.displayPoster,
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (_, __, ___) => Container(
+                                            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                                            child: const Center(child: AppIcon(Symbols.movie_rounded, size: 32)),
+                                          ),
+                                        )
+                                      : Container(
+                                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                                          child: const Center(child: AppIcon(Symbols.movie_rounded, size: 32)),
+                                        ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  item.displayTitle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.labelSmall,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+        );
+      },
     );
   }
 }

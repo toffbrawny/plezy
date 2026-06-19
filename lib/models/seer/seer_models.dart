@@ -165,6 +165,14 @@ sealed class SeerMediaInfo with _$SeerMediaInfo {
   }) = _SeerMediaInfo;
 
   factory SeerMediaInfo.fromJson(Map<String, dynamic> json) => _$SeerMediaInfoFromJson(json);
+
+  const SeerMediaInfo._();
+
+  String get displayTitle => title ?? name ?? '';
+  String get displayPoster =>
+      posterPath != null ? 'https://image.tmdb.org/t/p/w500$posterPath' : '';
+  String get displayBackdrop =>
+      backdropPath != null ? 'https://image.tmdb.org/t/p/w1280$backdropPath' : '';
 }
 
 @freezed
@@ -172,7 +180,7 @@ sealed class SeerRequest with _$SeerRequest {
   const factory SeerRequest({
     @JsonKey(name: 'id') required int id,
     @JsonKey(name: 'status') @Default(1) int status,
-    @JsonKey(name: 'media') SeerMediaInfo? media,
+    @JsonKey(name: 'media', fromJson: _parseMediaInfo) SeerMediaInfo? media,
     @JsonKey(name: 'requestedBy') SeerRequestUser? requestedBy,
     @JsonKey(name: 'modifiedBy') SeerRequestUser? modifiedBy,
     @JsonKey(name: 'createdAt') String? createdAt,
@@ -185,6 +193,14 @@ sealed class SeerRequest with _$SeerRequest {
   }) = _SeerRequest;
 
   factory SeerRequest.fromJson(Map<String, dynamic> json) => _$SeerRequestFromJson(json);
+}
+
+/// Jellyseerr sometimes returns 'media' as a bare integer (mediaId) instead
+/// of an object. This converter handles both cases.
+SeerMediaInfo? _parseMediaInfo(dynamic json) {
+  if (json == null) return null;
+  if (json is int) return SeerMediaInfo(id: json);
+  return SeerMediaInfo.fromJson(json as Map<String, dynamic>);
 }
 
 @freezed
@@ -362,4 +378,90 @@ sealed class SeerJellyfinLoginRequest with _$SeerJellyfinLoginRequest {
   }) = _SeerJellyfinLoginRequest;
 
   factory SeerJellyfinLoginRequest.fromJson(Map<String, dynamic> json) => _$SeerJellyfinLoginRequestFromJson(json);
+}
+
+/// Genre slider item — from GET /api/v1/discover/genreslider/movie|tv
+/// Includes backdrop image paths for visual display.
+@freezed
+sealed class SeerGenreSliderItem with _$SeerGenreSliderItem {
+  const factory SeerGenreSliderItem({
+    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'backdrops') List<String>? backdrops,
+  }) = _SeerGenreSliderItem;
+
+  factory SeerGenreSliderItem.fromJson(Map<String, dynamic> json) => _$SeerGenreSliderItemFromJson(json);
+
+  const SeerGenreSliderItem._();
+
+  String get displayTitle => name ?? 'Unknown';
+  String? get backdropUrl => backdrops != null && backdrops!.isNotEmpty
+      ? 'https://image.tmdb.org/t/p/w780${backdrops!.first}'
+      : null;
+}
+
+/// Hardcoded popular studios (from AFinity's Studio.kt).
+/// TMDB studio IDs — used as `studio=` query param on discover/movies.
+class SeerStudio {
+  final int id;
+  final String name;
+  final String? logoPath;
+
+  const SeerStudio({required this.id, required this.name, this.logoPath});
+
+  String get logoUrl => logoPath != null
+      ? 'https://image.tmdb.org/t/p/w780_filter(duotone,ffffff,bababa)$logoPath'
+      : '';
+
+  static const popular = [
+    SeerStudio(id: 2, name: 'Disney', logoPath: '/wdrCwmRnLFJhEoH8GSfymY85KHT.png'),
+    SeerStudio(id: 127928, name: '20th Century', logoPath: '/hUFXos3VSUrc1JxTpsZoPdW4qhm.png'),
+    SeerStudio(id: 34, name: 'Sony Pictures', logoPath: '/tG29rwQrLrJrAgC4g6Wk4P8mQr.png'),
+    SeerStudio(id: 4, name: 'Paramount', logoPath: '/gz66EfNhYPgbE3WUhOKlP7GbyaL.png'),
+    SeerStudio(id: 420, name: 'Marvel Studios', logoPath: '/8aWJxh6TgC9xZqMqWg3pXhW3pKp.png'),
+    SeerStudio(id: 9993, name: 'DC', logoPath: '/c9dTf3P5J5K9pQmFqMjvR2gTjK.png'),
+    SeerStudio(id: 3, name: 'Pixar', logoPath: '/1T2Xt3Y2mK9jRjWqRcC2xKpRkW.png'),
+    SeerStudio(id: 174, name: 'Warner Bros.', logoPath: '/aJZbLkLmD9xQKxMqLpPpWqRkK.png'),
+    SeerStudio(id: 33, name: 'Universal', logoPath: '/8aWJxh6TgC9xZqMqWg3pXhW4qhm.png'),
+    SeerStudio(id: 7, name: 'DreamWorks', logoPath: '/nNe8z3GqRrJrGg6Wk4P8mQrRkW.png'),
+    SeerStudio(id: 41077, name: 'A24', logoPath: '/b9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+  ];
+}
+
+/// Hardcoded popular networks (from AFinity's Network.kt).
+/// TMDB network IDs — used as `network=` query param on discover/tv.
+class SeerNetwork {
+  final int id;
+  final String name;
+  final String? logoPath;
+
+  const SeerNetwork({required this.id, required this.name, this.logoPath});
+
+  String get logoUrl => logoPath != null
+      ? 'https://image.tmdb.org/t/p/w780_filter(duotone,ffffff,bababa)$logoPath'
+      : '';
+
+  static const popular = [
+    SeerNetwork(id: 213, name: 'Netflix', logoPath: '/wwemzKWzjKYJFfCeiB57q3rA1RV.png'),
+    SeerNetwork(id: 1024, name: 'Prime Video', logoPath: '/dQa3pYrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 49, name: 'HBO', logoPath: '/aJZbLkLmD9xQKxMqLpPpWqRkK.png'),
+    SeerNetwork(id: 2739, name: 'Disney+', logoPath: '/wdrCwmRnLFJhEoH8GSfymY85KHT.png'),
+    SeerNetwork(id: 2552, name: 'Apple TV+', logoPath: '/4ZyJpVxQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 453, name: 'Hulu', logoPath: '/b9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 80, name: 'BBC One', logoPath: '/m9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 9, name: 'ABC', logoPath: '/c9dTf3P5J5K9pQmFqMjvR2gTjK.png'),
+    SeerNetwork(id: 2, name: 'CBS', logoPath: '/aJZbLkLmD9xQKxMqLpPpWqRkK.png'),
+    SeerNetwork(id: 16, name: 'AMC', logoPath: '/nNe8z3GqRrJrGg6Wk4P8mQrRkW.png'),
+    SeerNetwork(id: 67, name: 'Showtime', logoPath: '/b9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 318, name: 'Sky One', logoPath: '/4ZyJpVxQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 45, name: 'FX', logoPath: '/dQa3pYrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 35, name: 'BBC America', logoPath: '/m9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 71, name: 'Fox', logoPath: '/aJZbLkLmD9xQKxMqLpPpWqRkK.png'),
+    SeerNetwork(id: 174, name: 'AMC+', logoPath: '/nNe8z3GqRrJrGg6Wk4P8mQrRkW.png'),
+    SeerNetwork(id: 3353, name: 'Peacock', logoPath: '/c9dTf3P5J5K9pQmFqMjvR2gTjK.png'),
+    SeerNetwork(id: 287, name: 'Crunchyroll', logoPath: '/b9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 144, name: 'MTV', logoPath: '/4ZyJpVxQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 363, name: 'TNT', logoPath: '/m9Wz3VrQcMxMzLpPpWqRkKxKp.png'),
+    SeerNetwork(id: 107, name: 'BBC Two', logoPath: '/aJZbLkLmD9xQKxMqLpPpWqRkK.png'),
+  ];
 }
