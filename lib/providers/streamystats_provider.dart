@@ -60,8 +60,13 @@ class StreamyStatsProvider extends ChangeNotifier with DisposableChangeNotifierM
   }
 
   /// Load recommendations from StreamyStats and hydrate via Jellyfin.
-  Future<void> loadRecommendations() async {
+  /// Set [force] to bypass the empty-check cache.
+  Future<void> loadRecommendations({bool force = false}) async {
     if (!isConfigured || !_multiServerProvider.hasConnectedServers) {
+      return;
+    }
+
+    if (!force && _movieRecommendations.isNotEmpty && _seriesRecommendations.isNotEmpty) {
       return;
     }
 
@@ -96,17 +101,21 @@ class StreamyStatsProvider extends ChangeNotifier with DisposableChangeNotifierM
         jellyfinServerId: jellyfinServerId,
       );
 
-      // Fetch recommendation IDs
-      final recs = await _client.getRecommendations(limit: 20);
-
-      // Hydrate movies and series in parallel
+      // Fetch movie and series recommendations separately (like StreamyFin)
+      // so each gets the full limit, not split across types.
       final results = await Future.wait([
-        _hydrateItems(recs.movies, client),
-        _hydrateItems(recs.series, client),
+        _client.getRecommendations(type: 'Movie', limit: 20),
+        _client.getRecommendations(type: 'Series', limit: 20),
       ]);
 
-      _movieRecommendations = results[0];
-      _seriesRecommendations = results[1];
+      // Hydrate movies and series in parallel
+      final hydrated = await Future.wait([
+        _hydrateItems(results[0].movies, client),
+        _hydrateItems(results[1].series, client),
+      ]);
+
+      _movieRecommendations = hydrated[0];
+      _seriesRecommendations = hydrated[1];
       appLogger.i('StreamyStats: loaded ${_movieRecommendations.length} movies, ${_seriesRecommendations.length} series');
     } catch (e) {
       _error = e.toString();

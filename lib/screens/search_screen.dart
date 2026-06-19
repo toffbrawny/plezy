@@ -295,9 +295,20 @@ class _SearchScreenState extends State<SearchScreen>
                 t.streamystats.error,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Text(
+                  'Note: StreamyStats recommendations require a Jellyfin server connection.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                ),
+              ),
               const SizedBox(height: 16),
               FilledButton.icon(
-                onPressed: () => streamyStats.loadRecommendations(),
+                onPressed: () => streamyStats.loadRecommendations(force: true),
                 icon: const AppIcon(Symbols.refresh_rounded),
                 label: Text(t.streamystats.retry),
               ),
@@ -313,17 +324,70 @@ class _SearchScreenState extends State<SearchScreen>
 
     if (movies.isEmpty && series.isEmpty) {
       return SliverFillRemaining(
-        child: StateMessageWidget(
-          message: t.search.searchYourMedia,
-          subtitle: t.search.enterTitleActorOrKeyword,
-          icon: Symbols.search_rounded,
-          iconSize: 80,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const AppIcon(Symbols.search_rounded, size: 80),
+              const SizedBox(height: 16),
+              Text(
+                t.search.searchYourMedia,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Text(
+                  'Note: StreamyStats recommendations require a Jellyfin server connection.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              FilledButton.icon(
+                onPressed: () => streamyStats.loadRecommendations(force: true),
+                icon: const AppIcon(Symbols.refresh_rounded),
+                label: Text(t.streamystats.retry),
+              ),
+            ],
+          ),
         ),
       );
     }
 
     return SliverList(
       delegate: SliverChildListDelegate(<Widget>[
+        // Refresh button + Jellyfin notice
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
+          child: Row(
+            children: [
+              Text(
+                'AI Recommendations',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const Spacer(),
+              IconButton(
+                icon: const AppIcon(Symbols.refresh_rounded, size: 20),
+                tooltip: 'Refresh recommendations',
+                onPressed: () => streamyStats.loadRecommendations(force: true),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+          child: Text(
+            'Powered by StreamyStats · Requires Jellyfin',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+          ),
+        ),
         if (movies.isNotEmpty) ...[
           _buildRecommendationSection(t.streamystats.recommendedMovies, movies),
           const SizedBox(height: 16),
