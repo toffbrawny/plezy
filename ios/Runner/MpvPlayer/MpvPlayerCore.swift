@@ -228,11 +228,9 @@ class MpvPlayerCore: MpvPlayerCoreBase {
       guard let videoLayer else { return }
 
       let shouldEnableEDR = hdrEnabled && sigPeak > 1.0
-      if #available(iOS 26.0, *) {
-        withoutLayerAnimations {
-          videoLayer.preferredDynamicRange = shouldEnableEDR ? .high : .standard
-        }
-      } else if #available(iOS 17.0, *) {
+      // iOS 26+ preferredDynamicRange API not available in Xcode 16.2 SDK.
+      // Use the iOS 17+ fallback instead.
+      if #available(iOS 17.0, *) {
         withoutLayerAnimations {
           videoLayer.wantsExtendedDynamicRangeContent = shouldEnableEDR
         }
