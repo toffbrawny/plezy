@@ -48,6 +48,7 @@ import 'providers/theme_provider.dart';
 import 'providers/download_provider.dart';
 import 'providers/watchlist_provider.dart';
 import 'providers/seer_provider.dart';
+import 'providers/streamystats_provider.dart';
 import 'providers/offline_mode_provider.dart';
 import 'providers/offline_watch_provider.dart';
 import 'providers/shader_provider.dart';
@@ -795,6 +796,28 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
             // For now, we use the profile ID as a proxy — full wiring
             // would extract the actual Jellyfin/Plex user id.
             provider.setActiveSession(activeProfile.activeId, activeProfile.activeId);
+            return provider;
+          },
+        ),
+        // StreamyStats AI recommendations provider.
+        ChangeNotifierProxyProvider<MultiServerProvider, StreamyStatsProvider>(
+          create: (context) => StreamyStatsProvider(
+            multiServerProvider: context.read<MultiServerProvider>(),
+          ),
+          update: (context, multiServer, previous) {
+            final provider = previous ?? StreamyStatsProvider(
+              multiServerProvider: multiServer,
+            );
+            // Load settings from SharedPreferences
+            final settings = context.read<SettingsService>();
+            final url = settings.readString('streamystats_server_url', defaultValue: '');
+            provider.setServerUrl(url.isEmpty ? null : url);
+            provider.setMovieRecsEnabled(settings.readBool('streamystats_movie_recs', defaultValue: true));
+            provider.setSeriesRecsEnabled(settings.readBool('streamystats_series_recs', defaultValue: true));
+            // Auto-load recommendations if configured
+            if (provider.isConfigured && provider.movieRecommendations.isEmpty && provider.seriesRecommendations.isEmpty) {
+              provider.loadRecommendations();
+            }
             return provider;
           },
         ),

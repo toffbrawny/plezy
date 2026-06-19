@@ -3,6 +3,7 @@ import 'package:plezy/widgets/app_icon.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:rate_limiter/rate_limiter.dart';
+import 'package:cached_network_image_ce/cached_network_image.dart';
 
 import '../focus/focusable_text_field.dart';
 import '../i18n/strings.g.dart';
@@ -11,6 +12,7 @@ import '../mixins/controller_disposer_mixin.dart';
 import '../mixins/mounted_set_state_mixin.dart';
 import '../mixins/refreshable.dart';
 import '../providers/multi_server_provider.dart';
+import '../providers/streamystats_provider.dart';
 import '../utils/app_logger.dart';
 import '../utils/platform_detector.dart';
 import '../utils/snackbar_helper.dart';
@@ -243,6 +245,138 @@ class _SearchScreenState extends State<SearchScreen>
     );
   }
 
+  /// Build recommendations (from StreamyStats) or empty state when no search.
+  Widget _buildRecommendationsOrEmpty(BuildContext context) {
+    final streamyStats = context.watch<StreamyStatsProvider>();
+
+    // If StreamyStats is not configured, show the default empty state
+    if (!streamyStats.isConfigured) {
+      return SliverFillRemaining(
+        child: StateMessageWidget(
+          message: t.search.searchYourMedia,
+          subtitle: t.search.enterTitleActorOrKeyword,
+          icon: Symbols.search_rounded,
+          iconSize: 80,
+        ),
+      );
+    }
+
+    // Loading state
+    if (streamyStats.isLoading && streamyStats.movieRecommendations.isEmpty && streamyStats.seriesRecommendations.isEmpty) {
+      return SliverFillRemaining(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              Text(
+                t.streamystats.loading,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Error state
+    if (streamyStats.error != null && streamyStats.movieRecommendations.isEmpty && streamyStats.seriesRecommendations.isEmpty) {
+      return SliverFillRemaining(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const AppIcon(Symbols.error_outline_rounded, size: 64),
+              const SizedBox(height: 16),
+              Text(
+                t.streamystats.error,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 16),
+              FilledButton.icon(
+                onPressed: () => streamyStats.loadRecommendations(),
+                icon: const AppIcon(Symbols.refresh_rounded),
+                label: Text(t.streamystats.retry),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Show recommendations
+    final List<MediaItem> movies = streamyStats.movieRecsEnabled ? streamyStats.movieRecommendations : [];
+    final List<MediaItem> series = streamyStats.seriesRecsEnabled ? streamyStats.seriesRecommendations : [];
+
+    if (movies.isEmpty && series.isEmpty) {
+      return SliverFillRemaining(
+        child: StateMessageWidget(
+          message: t.search.searchYourMedia,
+          subtitle: t.search.enterTitleActorOrKeyword,
+          icon: Symbols.search_rounded,
+          iconSize: 80,
+        ),
+      );
+    }
+
+    return SliverList(
+      delegate: SliverChildListDelegate(<Widget>[
+        if (movies.isNotEmpty) ...[
+          _buildRecommendationSection(t.streamystats.recommendedMovies, movies),
+          const SizedBox(height: 16),
+        ],
+        if (series.isNotEmpty) ...[
+          _buildRecommendationSection(t.streamystats.recommendedSeries, series),
+          const SizedBox(height: 32),
+        ],
+      ]),
+    );
+  }
+
+  Widget _buildRecommendationSection(String title, List<MediaItem> items) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+        ),
+        SizedBox(
+          height: 240,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return _buildRecommendationCard(item);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRecommendationCard(MediaItem item) {
+    return Container(
+      width: 130,
+      margin: const EdgeInsets.only(right: 12),
+      child: FocusableMediaCard(
+        key: Key('rec_${item.globalKey}'),
+        item: item,
+        onRefresh: updateItem,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -289,14 +423,7 @@ class _SearchScreenState extends State<SearchScreen>
             if (_isSearching)
               LoadingIndicatorBox.sliver
             else if (!_hasSearched)
-              SliverFillRemaining(
-                child: StateMessageWidget(
-                  message: t.search.searchYourMedia,
-                  subtitle: t.search.enterTitleActorOrKeyword,
-                  icon: Symbols.search_rounded,
-                  iconSize: 80,
-                ),
-              )
+              _buildRecommendationsOrEmpty(context)
             else if (_searchResults.isEmpty)
               SliverFillRemaining(
                 child: StateMessageWidget(

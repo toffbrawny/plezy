@@ -88,6 +88,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsAddServerEn addServer = TranslationsAddServerEn.internal(_root);
 	late final TranslationsWatchlistEn watchlist = TranslationsWatchlistEn.internal(_root);
 	late final TranslationsSeerEn seer = TranslationsSeerEn.internal(_root);
+	late final TranslationsStreamystatsEn streamystats = TranslationsStreamystatsEn.internal(_root);
 }
 
 // Path: app
@@ -4126,6 +4127,42 @@ class TranslationsSeerEn {
 	String get upcomingTv => 'Upcoming TV';
 }
 
+// Path: streamystats
+class TranslationsStreamystatsEn {
+	TranslationsStreamystatsEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Recommended Movies'
+	String get recommendedMovies => 'Recommended Movies';
+
+	/// en: 'Recommended Series'
+	String get recommendedSeries => 'Recommended Series';
+
+	/// en: 'Configure StreamyStats in Settings for AI recommendations'
+	String get configureInSettings => 'Configure StreamyStats in Settings for AI recommendations';
+
+	/// en: 'StreamyStats Server URL'
+	String get serverUrl => 'StreamyStats Server URL';
+
+	/// en: 'Movie Recommendations'
+	String get movieRecs => 'Movie Recommendations';
+
+	/// en: 'Series Recommendations'
+	String get seriesRecs => 'Series Recommendations';
+
+	/// en: 'Loading recommendations...'
+	String get loading => 'Loading recommendations...';
+
+	/// en: 'Failed to load recommendations'
+	String get error => 'Failed to load recommendations';
+
+	/// en: 'Retry'
+	String get retry => 'Retry';
+}
+
 // Path: hotkeys.actions
 class TranslationsHotkeysActionsEn {
 	TranslationsHotkeysActionsEn.internal(this._root);
@@ -6067,6 +6104,15 @@ extension on Translations {
 			'seer.networks' => 'Networks',
 			'seer.upcomingMovies' => 'Upcoming Movies',
 			'seer.upcomingTv' => 'Upcoming TV',
+			'streamystats.recommendedMovies' => 'Recommended Movies',
+			'streamystats.recommendedSeries' => 'Recommended Series',
+			'streamystats.configureInSettings' => 'Configure StreamyStats in Settings for AI recommendations',
+			'streamystats.serverUrl' => 'StreamyStats Server URL',
+			'streamystats.movieRecs' => 'Movie Recommendations',
+			'streamystats.seriesRecs' => 'Series Recommendations',
+			'streamystats.loading' => 'Loading recommendations...',
+			'streamystats.error' => 'Failed to load recommendations',
+			'streamystats.retry' => 'Retry',
 			_ => null,
 		};
 	}

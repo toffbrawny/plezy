@@ -412,6 +412,11 @@ class SettingsService extends BaseSharedPreferencesService {
   static const audioNormalization = BoolPref('audio_normalization');
   static const liveTvDefaultFavorites = BoolPref('live_tv_default_favorites');
   static const matchRefreshRate = BoolPref('match_refresh_rate');
+
+  // StreamyStats AI recommendations
+  static const streamyStatsServerUrl = StringPref('streamystats_server_url', defaultValue: '');
+  static const streamyStatsMovieRecs = BoolPref('streamystats_movie_recs', defaultValue: true);
+  static const streamyStatsSeriesRecs = BoolPref('streamystats_series_recs', defaultValue: true);
   static const matchDynamicRange = BoolPref('match_dynamic_range');
   static const appLocale = _AppLocalePref();
   static const autoPip = _AutoPipPref();

@@ -25,6 +25,7 @@ import '../../services/saf_storage_service.dart';
 import '../../services/settings_export_service.dart';
 import '../../providers/theme_provider.dart';
 import '../../providers/trackers_provider.dart';
+import '../../providers/streamystats_provider.dart';
 import '../../providers/trakt_account_provider.dart';
 import '../../services/keyboard_shortcuts_service.dart';
 import '../../services/settings_service.dart' as settings;
@@ -375,9 +376,17 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
 
   Widget _buildAdvancedSection() {
     return Column(
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SettingsSectionHeader(t.settings.advanced),
+        // StreamyStats AI Recommendations
+        ListTile(
+          leading: const AppIcon(Symbols.auto_awesome_rounded, fill: 1),
+          title: const Text('StreamyStats'),
+          subtitle: const Text('AI recommendations from your StreamyStats server'),
+          trailing: const AppIcon(Symbols.chevron_right_rounded, fill: 1),
+          onTap: () => _showStreamyStatsDialog(),
+        ),
         ListTile(
           focusNode: _focusTracker.get(_kWatchTogetherRelay),
           leading: const AppIcon(Symbols.dns_rounded, fill: 1),
@@ -650,6 +659,79 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
     await showScopedDialog<void>(
       context: context,
       builder: (_) => _RelayUrlDialog(settingsService: _settingsService),
+    );
+  }
+
+  Future<void> _showStreamyStatsDialog() async {
+    final urlController = TextEditingController(
+      text: _settingsService.readString('streamystats_server_url', defaultValue: ''),
+    );
+    final movieEnabled = ValueNotifier(_settingsService.readBool('streamystats_movie_recs', defaultValue: true));
+    final seriesEnabled = ValueNotifier(_settingsService.readBool('streamystats_series_recs', defaultValue: true));
+
+    await showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text('StreamyStats Configuration'),
+          content: SizedBox(
+            width: 400,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: urlController,
+                  decoration: const InputDecoration(
+                    labelText: 'StreamyStats Server URL',
+                    hintText: 'https://streamystats.example.com',
+                    border: OutlineInputBorder(),
+                  ),
+                  autocorrect: false,
+                ),
+                const SizedBox(height: 16),
+                ValueListenableBuilder<bool>(
+                  valueListenable: movieEnabled,
+                  builder: (_, val, __) => SwitchListTile(
+                    title: const Text('Movie Recommendations'),
+                    value: val,
+                    onChanged: (v) { movieEnabled.value = v; },
+                  ),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: seriesEnabled,
+                  builder: (_, val, __) => SwitchListTile(
+                    title: const Text('Series Recommendations'),
+                    value: val,
+                    onChanged: (v) { seriesEnabled.value = v; },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(context), child: Text(t.common.cancel)),
+            TextButton(
+              onPressed: () async {
+                await _settingsService.writeString('streamystats_server_url', urlController.text.trim());
+                await _settingsService.writeBool('streamystats_movie_recs', movieEnabled.value);
+                await _settingsService.writeBool('streamystats_series_recs', seriesEnabled.value);
+                // Update the provider
+                if (mounted) {
+                  final provider = context.read<StreamyStatsProvider>();
+                  provider.setServerUrl(urlController.text.trim().isEmpty ? null : urlController.text.trim());
+                  provider.setMovieRecsEnabled(movieEnabled.value);
+                  provider.setSeriesRecsEnabled(seriesEnabled.value);
+                  if (provider.isConfigured) {
+                    provider.loadRecommendations();
+                  }
+                }
+                if (mounted) Navigator.pop(context);
+              },
+              child: Text(t.common.save),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

@@ -348,7 +348,7 @@ class RequestsScreenState extends State<RequestsScreen> {
       List<SeerSearchResultItem> items, SeerProvider provider) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 220,
+        height: 240,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -510,8 +510,6 @@ class RequestsScreenState extends State<RequestsScreen> {
     return GestureDetector(
       onTap: () {
         if (isAvailable) {
-          // Navigate to media detail (if jellyfinMediaId is available)
-          // For now, show the request dialog
           _showRequestDialog(item);
         } else {
           _showRequestDialog(item);
@@ -562,12 +560,15 @@ class RequestsScreenState extends State<RequestsScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              item.displayTitle,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.labelSmall,
+            const SizedBox(height: 6),
+            SizedBox(
+              height: 40,
+              child: Text(
+                item.displayTitle,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
             ),
           ],
         ),
@@ -578,7 +579,7 @@ class RequestsScreenState extends State<RequestsScreen> {
   Widget _buildRequestsList(List<SeerRequest> requests, SeerProvider provider) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 220,
+        height: 240,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -641,12 +642,15 @@ class RequestsScreenState extends State<RequestsScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 4),
-          Text(
-            req.media?.title ?? req.media?.name ?? 'Unknown',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.labelSmall,
+          const SizedBox(height: 6),
+          SizedBox(
+            height: 40,
+            child: Text(
+              req.media?.title ?? req.media?.name ?? 'Unknown',
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
           ),
           if (canManage && status == SeerRequestStatus.pending) ...[
             const SizedBox(height: 4),

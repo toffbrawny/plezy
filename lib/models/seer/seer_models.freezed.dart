@@ -4701,10 +4701,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerJellyfinLoginRequest():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -4763,10 +4760,7 @@ return $default(_that.username,_that.password);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'username')  String username, @JsonKey(name: 'password')  String password)  $default,) {final _that = this;
 switch (_that) {
 case _SeerJellyfinLoginRequest():
-return $default(_that.username,_that.password);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.username,_that.password);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -4968,10 +4962,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SeerGenreSliderItem():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -5030,10 +5021,7 @@ return $default(_that.id,_that.name,_that.backdrops);case _:
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'backdrops')  List<String>? backdrops)  $default,) {final _that = this;
 switch (_that) {
 case _SeerGenreSliderItem():
-return $default(_that.id,_that.name,_that.backdrops);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.name,_that.backdrops);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
