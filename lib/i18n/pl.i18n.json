@@ -807,7 +807,8 @@
   "navigation": {
     "libraries": "Biblioteki",
     "downloads": "Pobrania",
-    "liveTv": "TV na żywo"
+    "liveTv": "TV na żywo",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "TV na żywo",

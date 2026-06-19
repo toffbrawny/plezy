@@ -807,7 +807,8 @@
   "navigation": {
     "libraries": "Medias",
     "downloads": "Téléch.",
-    "liveTv": "TV direct"
+    "liveTv": "TV direct",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "TV en direct",

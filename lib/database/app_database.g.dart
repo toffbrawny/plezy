@@ -5246,6 +5246,1275 @@ class ProfileConnectionsCompanion
   }
 }
 
+class $WatchlistItemsTable extends WatchlistItems
+    with TableInfo<$WatchlistItemsTable, WatchlistItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $WatchlistItemsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _profileIdMeta = const VerificationMeta(
+    'profileId',
+  );
+  @override
+  late final GeneratedColumn<String> profileId = GeneratedColumn<String>(
+    'profile_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _serverIdMeta = const VerificationMeta(
+    'serverId',
+  );
+  @override
+  late final GeneratedColumn<String> serverId = GeneratedColumn<String>(
+    'server_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _ratingKeyMeta = const VerificationMeta(
+    'ratingKey',
+  );
+  @override
+  late final GeneratedColumn<String> ratingKey = GeneratedColumn<String>(
+    'rating_key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _globalKeyMeta = const VerificationMeta(
+    'globalKey',
+  );
+  @override
+  late final GeneratedColumn<String> globalKey = GeneratedColumn<String>(
+    'global_key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _backendMeta = const VerificationMeta(
+    'backend',
+  );
+  @override
+  late final GeneratedColumn<String> backend = GeneratedColumn<String>(
+    'backend',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleSortMeta = const VerificationMeta(
+    'titleSort',
+  );
+  @override
+  late final GeneratedColumn<String> titleSort = GeneratedColumn<String>(
+    'title_sort',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _thumbPathMeta = const VerificationMeta(
+    'thumbPath',
+  );
+  @override
+  late final GeneratedColumn<String> thumbPath = GeneratedColumn<String>(
+    'thumb_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _artPathMeta = const VerificationMeta(
+    'artPath',
+  );
+  @override
+  late final GeneratedColumn<String> artPath = GeneratedColumn<String>(
+    'art_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _yearMeta = const VerificationMeta('year');
+  @override
+  late final GeneratedColumn<int> year = GeneratedColumn<int>(
+    'year',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _summaryMeta = const VerificationMeta(
+    'summary',
+  );
+  @override
+  late final GeneratedColumn<String> summary = GeneratedColumn<String>(
+    'summary',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _parentRatingKeyMeta = const VerificationMeta(
+    'parentRatingKey',
+  );
+  @override
+  late final GeneratedColumn<String> parentRatingKey = GeneratedColumn<String>(
+    'parent_rating_key',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _grandparentRatingKeyMeta =
+      const VerificationMeta('grandparentRatingKey');
+  @override
+  late final GeneratedColumn<String> grandparentRatingKey =
+      GeneratedColumn<String>(
+        'grandparent_rating_key',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _parentTitleMeta = const VerificationMeta(
+    'parentTitle',
+  );
+  @override
+  late final GeneratedColumn<String> parentTitle = GeneratedColumn<String>(
+    'parent_title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _grandparentTitleMeta = const VerificationMeta(
+    'grandparentTitle',
+  );
+  @override
+  late final GeneratedColumn<String> grandparentTitle = GeneratedColumn<String>(
+    'grandparent_title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _parentIndexMeta = const VerificationMeta(
+    'parentIndex',
+  );
+  @override
+  late final GeneratedColumn<int> parentIndex = GeneratedColumn<int>(
+    'parent_index',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _indexMeta = const VerificationMeta('index');
+  @override
+  late final GeneratedColumn<int> index = GeneratedColumn<int>(
+    'index',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _libraryIdMeta = const VerificationMeta(
+    'libraryId',
+  );
+  @override
+  late final GeneratedColumn<String> libraryId = GeneratedColumn<String>(
+    'library_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _libraryTitleMeta = const VerificationMeta(
+    'libraryTitle',
+  );
+  @override
+  late final GeneratedColumn<String> libraryTitle = GeneratedColumn<String>(
+    'library_title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _addedAtMeta = const VerificationMeta(
+    'addedAt',
+  );
+  @override
+  late final GeneratedColumn<int> addedAt = GeneratedColumn<int>(
+    'added_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    profileId,
+    serverId,
+    ratingKey,
+    globalKey,
+    backend,
+    kind,
+    title,
+    titleSort,
+    thumbPath,
+    artPath,
+    year,
+    summary,
+    parentRatingKey,
+    grandparentRatingKey,
+    parentTitle,
+    grandparentTitle,
+    parentIndex,
+    index,
+    libraryId,
+    libraryTitle,
+    addedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'watchlist_items';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<WatchlistItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('profile_id')) {
+      context.handle(
+        _profileIdMeta,
+        profileId.isAcceptableOrUnknown(data['profile_id']!, _profileIdMeta),
+      );
+    }
+    if (data.containsKey('server_id')) {
+      context.handle(
+        _serverIdMeta,
+        serverId.isAcceptableOrUnknown(data['server_id']!, _serverIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_serverIdMeta);
+    }
+    if (data.containsKey('rating_key')) {
+      context.handle(
+        _ratingKeyMeta,
+        ratingKey.isAcceptableOrUnknown(data['rating_key']!, _ratingKeyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_ratingKeyMeta);
+    }
+    if (data.containsKey('global_key')) {
+      context.handle(
+        _globalKeyMeta,
+        globalKey.isAcceptableOrUnknown(data['global_key']!, _globalKeyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_globalKeyMeta);
+    }
+    if (data.containsKey('backend')) {
+      context.handle(
+        _backendMeta,
+        backend.isAcceptableOrUnknown(data['backend']!, _backendMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_backendMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('title_sort')) {
+      context.handle(
+        _titleSortMeta,
+        titleSort.isAcceptableOrUnknown(data['title_sort']!, _titleSortMeta),
+      );
+    }
+    if (data.containsKey('thumb_path')) {
+      context.handle(
+        _thumbPathMeta,
+        thumbPath.isAcceptableOrUnknown(data['thumb_path']!, _thumbPathMeta),
+      );
+    }
+    if (data.containsKey('art_path')) {
+      context.handle(
+        _artPathMeta,
+        artPath.isAcceptableOrUnknown(data['art_path']!, _artPathMeta),
+      );
+    }
+    if (data.containsKey('year')) {
+      context.handle(
+        _yearMeta,
+        year.isAcceptableOrUnknown(data['year']!, _yearMeta),
+      );
+    }
+    if (data.containsKey('summary')) {
+      context.handle(
+        _summaryMeta,
+        summary.isAcceptableOrUnknown(data['summary']!, _summaryMeta),
+      );
+    }
+    if (data.containsKey('parent_rating_key')) {
+      context.handle(
+        _parentRatingKeyMeta,
+        parentRatingKey.isAcceptableOrUnknown(
+          data['parent_rating_key']!,
+          _parentRatingKeyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('grandparent_rating_key')) {
+      context.handle(
+        _grandparentRatingKeyMeta,
+        grandparentRatingKey.isAcceptableOrUnknown(
+          data['grandparent_rating_key']!,
+          _grandparentRatingKeyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('parent_title')) {
+      context.handle(
+        _parentTitleMeta,
+        parentTitle.isAcceptableOrUnknown(
+          data['parent_title']!,
+          _parentTitleMeta,
+        ),
+      );
+    }
+    if (data.containsKey('grandparent_title')) {
+      context.handle(
+        _grandparentTitleMeta,
+        grandparentTitle.isAcceptableOrUnknown(
+          data['grandparent_title']!,
+          _grandparentTitleMeta,
+        ),
+      );
+    }
+    if (data.containsKey('parent_index')) {
+      context.handle(
+        _parentIndexMeta,
+        parentIndex.isAcceptableOrUnknown(
+          data['parent_index']!,
+          _parentIndexMeta,
+        ),
+      );
+    }
+    if (data.containsKey('index')) {
+      context.handle(
+        _indexMeta,
+        index.isAcceptableOrUnknown(data['index']!, _indexMeta),
+      );
+    }
+    if (data.containsKey('library_id')) {
+      context.handle(
+        _libraryIdMeta,
+        libraryId.isAcceptableOrUnknown(data['library_id']!, _libraryIdMeta),
+      );
+    }
+    if (data.containsKey('library_title')) {
+      context.handle(
+        _libraryTitleMeta,
+        libraryTitle.isAcceptableOrUnknown(
+          data['library_title']!,
+          _libraryTitleMeta,
+        ),
+      );
+    }
+    if (data.containsKey('added_at')) {
+      context.handle(
+        _addedAtMeta,
+        addedAt.isAcceptableOrUnknown(data['added_at']!, _addedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_addedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {profileId, globalKey};
+  @override
+  WatchlistItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return WatchlistItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      profileId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}profile_id'],
+      )!,
+      serverId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}server_id'],
+      )!,
+      ratingKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rating_key'],
+      )!,
+      globalKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}global_key'],
+      )!,
+      backend: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}backend'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      titleSort: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title_sort'],
+      ),
+      thumbPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}thumb_path'],
+      ),
+      artPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}art_path'],
+      ),
+      year: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}year'],
+      ),
+      summary: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}summary'],
+      ),
+      parentRatingKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}parent_rating_key'],
+      ),
+      grandparentRatingKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}grandparent_rating_key'],
+      ),
+      parentTitle: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}parent_title'],
+      ),
+      grandparentTitle: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}grandparent_title'],
+      ),
+      parentIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}parent_index'],
+      ),
+      index: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}index'],
+      ),
+      libraryId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}library_id'],
+      ),
+      libraryTitle: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}library_title'],
+      ),
+      addedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}added_at'],
+      )!,
+    );
+  }
+
+  @override
+  $WatchlistItemsTable createAlias(String alias) {
+    return $WatchlistItemsTable(attachedDatabase, alias);
+  }
+}
+
+class WatchlistItem extends DataClass implements Insertable<WatchlistItem> {
+  /// Synthetic row id — not auto-increment; the composite PK below is the
+  /// real identity. Defaults to 0 since it's not used for lookups.
+  final int id;
+
+  /// Active Plezy profile that owns this watchlist entry.
+  /// Empty string for local profiles without an id.
+  final String profileId;
+
+  /// Server ID this media belongs to
+  final String serverId;
+
+  /// Rating key of the media item on the server
+  final String ratingKey;
+
+  /// Global key (serverId:ratingKey) for easy lookup — unique per profile
+  final String globalKey;
+
+  /// Backend kind: 'plex' or 'jellyfin'
+  final String backend;
+
+  /// Media kind: 'movie', 'show', 'season', 'episode', etc.
+  final String kind;
+
+  /// Display title
+  final String title;
+
+  /// Sort title (optional, falls back to title)
+  final String? titleSort;
+
+  /// Thumbnail/art path on the server (for poster display)
+  final String? thumbPath;
+
+  /// Background art path (for hero display)
+  final String? artPath;
+
+  /// Year (for display)
+  final int? year;
+
+  /// Summary/overview text
+  final String? summary;
+
+  /// Parent rating key (for episodes/seasons)
+  final String? parentRatingKey;
+
+  /// Grandparent rating key (for episodes)
+  final String? grandparentRatingKey;
+
+  /// Parent title (for episodes: show name; for seasons: show name)
+  final String? parentTitle;
+
+  /// Grandparent title (for episodes: show name)
+  final String? grandparentTitle;
+
+  /// Parent index (for seasons: season number)
+  final int? parentIndex;
+
+  /// Index (for episodes: episode number; for seasons: season number)
+  final int? index;
+
+  /// Library ID
+  final String? libraryId;
+
+  /// Library title
+  final String? libraryTitle;
+
+  /// Timestamp added to watchlist (milliseconds since epoch)
+  final int addedAt;
+  const WatchlistItem({
+    required this.id,
+    required this.profileId,
+    required this.serverId,
+    required this.ratingKey,
+    required this.globalKey,
+    required this.backend,
+    required this.kind,
+    required this.title,
+    this.titleSort,
+    this.thumbPath,
+    this.artPath,
+    this.year,
+    this.summary,
+    this.parentRatingKey,
+    this.grandparentRatingKey,
+    this.parentTitle,
+    this.grandparentTitle,
+    this.parentIndex,
+    this.index,
+    this.libraryId,
+    this.libraryTitle,
+    required this.addedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['profile_id'] = Variable<String>(profileId);
+    map['server_id'] = Variable<String>(serverId);
+    map['rating_key'] = Variable<String>(ratingKey);
+    map['global_key'] = Variable<String>(globalKey);
+    map['backend'] = Variable<String>(backend);
+    map['kind'] = Variable<String>(kind);
+    map['title'] = Variable<String>(title);
+    if (!nullToAbsent || titleSort != null) {
+      map['title_sort'] = Variable<String>(titleSort);
+    }
+    if (!nullToAbsent || thumbPath != null) {
+      map['thumb_path'] = Variable<String>(thumbPath);
+    }
+    if (!nullToAbsent || artPath != null) {
+      map['art_path'] = Variable<String>(artPath);
+    }
+    if (!nullToAbsent || year != null) {
+      map['year'] = Variable<int>(year);
+    }
+    if (!nullToAbsent || summary != null) {
+      map['summary'] = Variable<String>(summary);
+    }
+    if (!nullToAbsent || parentRatingKey != null) {
+      map['parent_rating_key'] = Variable<String>(parentRatingKey);
+    }
+    if (!nullToAbsent || grandparentRatingKey != null) {
+      map['grandparent_rating_key'] = Variable<String>(grandparentRatingKey);
+    }
+    if (!nullToAbsent || parentTitle != null) {
+      map['parent_title'] = Variable<String>(parentTitle);
+    }
+    if (!nullToAbsent || grandparentTitle != null) {
+      map['grandparent_title'] = Variable<String>(grandparentTitle);
+    }
+    if (!nullToAbsent || parentIndex != null) {
+      map['parent_index'] = Variable<int>(parentIndex);
+    }
+    if (!nullToAbsent || index != null) {
+      map['index'] = Variable<int>(index);
+    }
+    if (!nullToAbsent || libraryId != null) {
+      map['library_id'] = Variable<String>(libraryId);
+    }
+    if (!nullToAbsent || libraryTitle != null) {
+      map['library_title'] = Variable<String>(libraryTitle);
+    }
+    map['added_at'] = Variable<int>(addedAt);
+    return map;
+  }
+
+  WatchlistItemsCompanion toCompanion(bool nullToAbsent) {
+    return WatchlistItemsCompanion(
+      id: Value(id),
+      profileId: Value(profileId),
+      serverId: Value(serverId),
+      ratingKey: Value(ratingKey),
+      globalKey: Value(globalKey),
+      backend: Value(backend),
+      kind: Value(kind),
+      title: Value(title),
+      titleSort: titleSort == null && nullToAbsent
+          ? const Value.absent()
+          : Value(titleSort),
+      thumbPath: thumbPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(thumbPath),
+      artPath: artPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(artPath),
+      year: year == null && nullToAbsent ? const Value.absent() : Value(year),
+      summary: summary == null && nullToAbsent
+          ? const Value.absent()
+          : Value(summary),
+      parentRatingKey: parentRatingKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(parentRatingKey),
+      grandparentRatingKey: grandparentRatingKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(grandparentRatingKey),
+      parentTitle: parentTitle == null && nullToAbsent
+          ? const Value.absent()
+          : Value(parentTitle),
+      grandparentTitle: grandparentTitle == null && nullToAbsent
+          ? const Value.absent()
+          : Value(grandparentTitle),
+      parentIndex: parentIndex == null && nullToAbsent
+          ? const Value.absent()
+          : Value(parentIndex),
+      index: index == null && nullToAbsent
+          ? const Value.absent()
+          : Value(index),
+      libraryId: libraryId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(libraryId),
+      libraryTitle: libraryTitle == null && nullToAbsent
+          ? const Value.absent()
+          : Value(libraryTitle),
+      addedAt: Value(addedAt),
+    );
+  }
+
+  factory WatchlistItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return WatchlistItem(
+      id: serializer.fromJson<int>(json['id']),
+      profileId: serializer.fromJson<String>(json['profileId']),
+      serverId: serializer.fromJson<String>(json['serverId']),
+      ratingKey: serializer.fromJson<String>(json['ratingKey']),
+      globalKey: serializer.fromJson<String>(json['globalKey']),
+      backend: serializer.fromJson<String>(json['backend']),
+      kind: serializer.fromJson<String>(json['kind']),
+      title: serializer.fromJson<String>(json['title']),
+      titleSort: serializer.fromJson<String?>(json['titleSort']),
+      thumbPath: serializer.fromJson<String?>(json['thumbPath']),
+      artPath: serializer.fromJson<String?>(json['artPath']),
+      year: serializer.fromJson<int?>(json['year']),
+      summary: serializer.fromJson<String?>(json['summary']),
+      parentRatingKey: serializer.fromJson<String?>(json['parentRatingKey']),
+      grandparentRatingKey: serializer.fromJson<String?>(
+        json['grandparentRatingKey'],
+      ),
+      parentTitle: serializer.fromJson<String?>(json['parentTitle']),
+      grandparentTitle: serializer.fromJson<String?>(json['grandparentTitle']),
+      parentIndex: serializer.fromJson<int?>(json['parentIndex']),
+      index: serializer.fromJson<int?>(json['index']),
+      libraryId: serializer.fromJson<String?>(json['libraryId']),
+      libraryTitle: serializer.fromJson<String?>(json['libraryTitle']),
+      addedAt: serializer.fromJson<int>(json['addedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'profileId': serializer.toJson<String>(profileId),
+      'serverId': serializer.toJson<String>(serverId),
+      'ratingKey': serializer.toJson<String>(ratingKey),
+      'globalKey': serializer.toJson<String>(globalKey),
+      'backend': serializer.toJson<String>(backend),
+      'kind': serializer.toJson<String>(kind),
+      'title': serializer.toJson<String>(title),
+      'titleSort': serializer.toJson<String?>(titleSort),
+      'thumbPath': serializer.toJson<String?>(thumbPath),
+      'artPath': serializer.toJson<String?>(artPath),
+      'year': serializer.toJson<int?>(year),
+      'summary': serializer.toJson<String?>(summary),
+      'parentRatingKey': serializer.toJson<String?>(parentRatingKey),
+      'grandparentRatingKey': serializer.toJson<String?>(grandparentRatingKey),
+      'parentTitle': serializer.toJson<String?>(parentTitle),
+      'grandparentTitle': serializer.toJson<String?>(grandparentTitle),
+      'parentIndex': serializer.toJson<int?>(parentIndex),
+      'index': serializer.toJson<int?>(index),
+      'libraryId': serializer.toJson<String?>(libraryId),
+      'libraryTitle': serializer.toJson<String?>(libraryTitle),
+      'addedAt': serializer.toJson<int>(addedAt),
+    };
+  }
+
+  WatchlistItem copyWith({
+    int? id,
+    String? profileId,
+    String? serverId,
+    String? ratingKey,
+    String? globalKey,
+    String? backend,
+    String? kind,
+    String? title,
+    Value<String?> titleSort = const Value.absent(),
+    Value<String?> thumbPath = const Value.absent(),
+    Value<String?> artPath = const Value.absent(),
+    Value<int?> year = const Value.absent(),
+    Value<String?> summary = const Value.absent(),
+    Value<String?> parentRatingKey = const Value.absent(),
+    Value<String?> grandparentRatingKey = const Value.absent(),
+    Value<String?> parentTitle = const Value.absent(),
+    Value<String?> grandparentTitle = const Value.absent(),
+    Value<int?> parentIndex = const Value.absent(),
+    Value<int?> index = const Value.absent(),
+    Value<String?> libraryId = const Value.absent(),
+    Value<String?> libraryTitle = const Value.absent(),
+    int? addedAt,
+  }) => WatchlistItem(
+    id: id ?? this.id,
+    profileId: profileId ?? this.profileId,
+    serverId: serverId ?? this.serverId,
+    ratingKey: ratingKey ?? this.ratingKey,
+    globalKey: globalKey ?? this.globalKey,
+    backend: backend ?? this.backend,
+    kind: kind ?? this.kind,
+    title: title ?? this.title,
+    titleSort: titleSort.present ? titleSort.value : this.titleSort,
+    thumbPath: thumbPath.present ? thumbPath.value : this.thumbPath,
+    artPath: artPath.present ? artPath.value : this.artPath,
+    year: year.present ? year.value : this.year,
+    summary: summary.present ? summary.value : this.summary,
+    parentRatingKey: parentRatingKey.present
+        ? parentRatingKey.value
+        : this.parentRatingKey,
+    grandparentRatingKey: grandparentRatingKey.present
+        ? grandparentRatingKey.value
+        : this.grandparentRatingKey,
+    parentTitle: parentTitle.present ? parentTitle.value : this.parentTitle,
+    grandparentTitle: grandparentTitle.present
+        ? grandparentTitle.value
+        : this.grandparentTitle,
+    parentIndex: parentIndex.present ? parentIndex.value : this.parentIndex,
+    index: index.present ? index.value : this.index,
+    libraryId: libraryId.present ? libraryId.value : this.libraryId,
+    libraryTitle: libraryTitle.present ? libraryTitle.value : this.libraryTitle,
+    addedAt: addedAt ?? this.addedAt,
+  );
+  WatchlistItem copyWithCompanion(WatchlistItemsCompanion data) {
+    return WatchlistItem(
+      id: data.id.present ? data.id.value : this.id,
+      profileId: data.profileId.present ? data.profileId.value : this.profileId,
+      serverId: data.serverId.present ? data.serverId.value : this.serverId,
+      ratingKey: data.ratingKey.present ? data.ratingKey.value : this.ratingKey,
+      globalKey: data.globalKey.present ? data.globalKey.value : this.globalKey,
+      backend: data.backend.present ? data.backend.value : this.backend,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      title: data.title.present ? data.title.value : this.title,
+      titleSort: data.titleSort.present ? data.titleSort.value : this.titleSort,
+      thumbPath: data.thumbPath.present ? data.thumbPath.value : this.thumbPath,
+      artPath: data.artPath.present ? data.artPath.value : this.artPath,
+      year: data.year.present ? data.year.value : this.year,
+      summary: data.summary.present ? data.summary.value : this.summary,
+      parentRatingKey: data.parentRatingKey.present
+          ? data.parentRatingKey.value
+          : this.parentRatingKey,
+      grandparentRatingKey: data.grandparentRatingKey.present
+          ? data.grandparentRatingKey.value
+          : this.grandparentRatingKey,
+      parentTitle: data.parentTitle.present
+          ? data.parentTitle.value
+          : this.parentTitle,
+      grandparentTitle: data.grandparentTitle.present
+          ? data.grandparentTitle.value
+          : this.grandparentTitle,
+      parentIndex: data.parentIndex.present
+          ? data.parentIndex.value
+          : this.parentIndex,
+      index: data.index.present ? data.index.value : this.index,
+      libraryId: data.libraryId.present ? data.libraryId.value : this.libraryId,
+      libraryTitle: data.libraryTitle.present
+          ? data.libraryTitle.value
+          : this.libraryTitle,
+      addedAt: data.addedAt.present ? data.addedAt.value : this.addedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WatchlistItem(')
+          ..write('id: $id, ')
+          ..write('profileId: $profileId, ')
+          ..write('serverId: $serverId, ')
+          ..write('ratingKey: $ratingKey, ')
+          ..write('globalKey: $globalKey, ')
+          ..write('backend: $backend, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('titleSort: $titleSort, ')
+          ..write('thumbPath: $thumbPath, ')
+          ..write('artPath: $artPath, ')
+          ..write('year: $year, ')
+          ..write('summary: $summary, ')
+          ..write('parentRatingKey: $parentRatingKey, ')
+          ..write('grandparentRatingKey: $grandparentRatingKey, ')
+          ..write('parentTitle: $parentTitle, ')
+          ..write('grandparentTitle: $grandparentTitle, ')
+          ..write('parentIndex: $parentIndex, ')
+          ..write('index: $index, ')
+          ..write('libraryId: $libraryId, ')
+          ..write('libraryTitle: $libraryTitle, ')
+          ..write('addedAt: $addedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    id,
+    profileId,
+    serverId,
+    ratingKey,
+    globalKey,
+    backend,
+    kind,
+    title,
+    titleSort,
+    thumbPath,
+    artPath,
+    year,
+    summary,
+    parentRatingKey,
+    grandparentRatingKey,
+    parentTitle,
+    grandparentTitle,
+    parentIndex,
+    index,
+    libraryId,
+    libraryTitle,
+    addedAt,
+  ]);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is WatchlistItem &&
+          other.id == this.id &&
+          other.profileId == this.profileId &&
+          other.serverId == this.serverId &&
+          other.ratingKey == this.ratingKey &&
+          other.globalKey == this.globalKey &&
+          other.backend == this.backend &&
+          other.kind == this.kind &&
+          other.title == this.title &&
+          other.titleSort == this.titleSort &&
+          other.thumbPath == this.thumbPath &&
+          other.artPath == this.artPath &&
+          other.year == this.year &&
+          other.summary == this.summary &&
+          other.parentRatingKey == this.parentRatingKey &&
+          other.grandparentRatingKey == this.grandparentRatingKey &&
+          other.parentTitle == this.parentTitle &&
+          other.grandparentTitle == this.grandparentTitle &&
+          other.parentIndex == this.parentIndex &&
+          other.index == this.index &&
+          other.libraryId == this.libraryId &&
+          other.libraryTitle == this.libraryTitle &&
+          other.addedAt == this.addedAt);
+}
+
+class WatchlistItemsCompanion extends UpdateCompanion<WatchlistItem> {
+  final Value<int> id;
+  final Value<String> profileId;
+  final Value<String> serverId;
+  final Value<String> ratingKey;
+  final Value<String> globalKey;
+  final Value<String> backend;
+  final Value<String> kind;
+  final Value<String> title;
+  final Value<String?> titleSort;
+  final Value<String?> thumbPath;
+  final Value<String?> artPath;
+  final Value<int?> year;
+  final Value<String?> summary;
+  final Value<String?> parentRatingKey;
+  final Value<String?> grandparentRatingKey;
+  final Value<String?> parentTitle;
+  final Value<String?> grandparentTitle;
+  final Value<int?> parentIndex;
+  final Value<int?> index;
+  final Value<String?> libraryId;
+  final Value<String?> libraryTitle;
+  final Value<int> addedAt;
+  final Value<int> rowid;
+  const WatchlistItemsCompanion({
+    this.id = const Value.absent(),
+    this.profileId = const Value.absent(),
+    this.serverId = const Value.absent(),
+    this.ratingKey = const Value.absent(),
+    this.globalKey = const Value.absent(),
+    this.backend = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.title = const Value.absent(),
+    this.titleSort = const Value.absent(),
+    this.thumbPath = const Value.absent(),
+    this.artPath = const Value.absent(),
+    this.year = const Value.absent(),
+    this.summary = const Value.absent(),
+    this.parentRatingKey = const Value.absent(),
+    this.grandparentRatingKey = const Value.absent(),
+    this.parentTitle = const Value.absent(),
+    this.grandparentTitle = const Value.absent(),
+    this.parentIndex = const Value.absent(),
+    this.index = const Value.absent(),
+    this.libraryId = const Value.absent(),
+    this.libraryTitle = const Value.absent(),
+    this.addedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  WatchlistItemsCompanion.insert({
+    this.id = const Value.absent(),
+    this.profileId = const Value.absent(),
+    required String serverId,
+    required String ratingKey,
+    required String globalKey,
+    required String backend,
+    required String kind,
+    required String title,
+    this.titleSort = const Value.absent(),
+    this.thumbPath = const Value.absent(),
+    this.artPath = const Value.absent(),
+    this.year = const Value.absent(),
+    this.summary = const Value.absent(),
+    this.parentRatingKey = const Value.absent(),
+    this.grandparentRatingKey = const Value.absent(),
+    this.parentTitle = const Value.absent(),
+    this.grandparentTitle = const Value.absent(),
+    this.parentIndex = const Value.absent(),
+    this.index = const Value.absent(),
+    this.libraryId = const Value.absent(),
+    this.libraryTitle = const Value.absent(),
+    required int addedAt,
+    this.rowid = const Value.absent(),
+  }) : serverId = Value(serverId),
+       ratingKey = Value(ratingKey),
+       globalKey = Value(globalKey),
+       backend = Value(backend),
+       kind = Value(kind),
+       title = Value(title),
+       addedAt = Value(addedAt);
+  static Insertable<WatchlistItem> custom({
+    Expression<int>? id,
+    Expression<String>? profileId,
+    Expression<String>? serverId,
+    Expression<String>? ratingKey,
+    Expression<String>? globalKey,
+    Expression<String>? backend,
+    Expression<String>? kind,
+    Expression<String>? title,
+    Expression<String>? titleSort,
+    Expression<String>? thumbPath,
+    Expression<String>? artPath,
+    Expression<int>? year,
+    Expression<String>? summary,
+    Expression<String>? parentRatingKey,
+    Expression<String>? grandparentRatingKey,
+    Expression<String>? parentTitle,
+    Expression<String>? grandparentTitle,
+    Expression<int>? parentIndex,
+    Expression<int>? index,
+    Expression<String>? libraryId,
+    Expression<String>? libraryTitle,
+    Expression<int>? addedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (profileId != null) 'profile_id': profileId,
+      if (serverId != null) 'server_id': serverId,
+      if (ratingKey != null) 'rating_key': ratingKey,
+      if (globalKey != null) 'global_key': globalKey,
+      if (backend != null) 'backend': backend,
+      if (kind != null) 'kind': kind,
+      if (title != null) 'title': title,
+      if (titleSort != null) 'title_sort': titleSort,
+      if (thumbPath != null) 'thumb_path': thumbPath,
+      if (artPath != null) 'art_path': artPath,
+      if (year != null) 'year': year,
+      if (summary != null) 'summary': summary,
+      if (parentRatingKey != null) 'parent_rating_key': parentRatingKey,
+      if (grandparentRatingKey != null)
+        'grandparent_rating_key': grandparentRatingKey,
+      if (parentTitle != null) 'parent_title': parentTitle,
+      if (grandparentTitle != null) 'grandparent_title': grandparentTitle,
+      if (parentIndex != null) 'parent_index': parentIndex,
+      if (index != null) 'index': index,
+      if (libraryId != null) 'library_id': libraryId,
+      if (libraryTitle != null) 'library_title': libraryTitle,
+      if (addedAt != null) 'added_at': addedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  WatchlistItemsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? profileId,
+    Value<String>? serverId,
+    Value<String>? ratingKey,
+    Value<String>? globalKey,
+    Value<String>? backend,
+    Value<String>? kind,
+    Value<String>? title,
+    Value<String?>? titleSort,
+    Value<String?>? thumbPath,
+    Value<String?>? artPath,
+    Value<int?>? year,
+    Value<String?>? summary,
+    Value<String?>? parentRatingKey,
+    Value<String?>? grandparentRatingKey,
+    Value<String?>? parentTitle,
+    Value<String?>? grandparentTitle,
+    Value<int?>? parentIndex,
+    Value<int?>? index,
+    Value<String?>? libraryId,
+    Value<String?>? libraryTitle,
+    Value<int>? addedAt,
+    Value<int>? rowid,
+  }) {
+    return WatchlistItemsCompanion(
+      id: id ?? this.id,
+      profileId: profileId ?? this.profileId,
+      serverId: serverId ?? this.serverId,
+      ratingKey: ratingKey ?? this.ratingKey,
+      globalKey: globalKey ?? this.globalKey,
+      backend: backend ?? this.backend,
+      kind: kind ?? this.kind,
+      title: title ?? this.title,
+      titleSort: titleSort ?? this.titleSort,
+      thumbPath: thumbPath ?? this.thumbPath,
+      artPath: artPath ?? this.artPath,
+      year: year ?? this.year,
+      summary: summary ?? this.summary,
+      parentRatingKey: parentRatingKey ?? this.parentRatingKey,
+      grandparentRatingKey: grandparentRatingKey ?? this.grandparentRatingKey,
+      parentTitle: parentTitle ?? this.parentTitle,
+      grandparentTitle: grandparentTitle ?? this.grandparentTitle,
+      parentIndex: parentIndex ?? this.parentIndex,
+      index: index ?? this.index,
+      libraryId: libraryId ?? this.libraryId,
+      libraryTitle: libraryTitle ?? this.libraryTitle,
+      addedAt: addedAt ?? this.addedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (profileId.present) {
+      map['profile_id'] = Variable<String>(profileId.value);
+    }
+    if (serverId.present) {
+      map['server_id'] = Variable<String>(serverId.value);
+    }
+    if (ratingKey.present) {
+      map['rating_key'] = Variable<String>(ratingKey.value);
+    }
+    if (globalKey.present) {
+      map['global_key'] = Variable<String>(globalKey.value);
+    }
+    if (backend.present) {
+      map['backend'] = Variable<String>(backend.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (titleSort.present) {
+      map['title_sort'] = Variable<String>(titleSort.value);
+    }
+    if (thumbPath.present) {
+      map['thumb_path'] = Variable<String>(thumbPath.value);
+    }
+    if (artPath.present) {
+      map['art_path'] = Variable<String>(artPath.value);
+    }
+    if (year.present) {
+      map['year'] = Variable<int>(year.value);
+    }
+    if (summary.present) {
+      map['summary'] = Variable<String>(summary.value);
+    }
+    if (parentRatingKey.present) {
+      map['parent_rating_key'] = Variable<String>(parentRatingKey.value);
+    }
+    if (grandparentRatingKey.present) {
+      map['grandparent_rating_key'] = Variable<String>(
+        grandparentRatingKey.value,
+      );
+    }
+    if (parentTitle.present) {
+      map['parent_title'] = Variable<String>(parentTitle.value);
+    }
+    if (grandparentTitle.present) {
+      map['grandparent_title'] = Variable<String>(grandparentTitle.value);
+    }
+    if (parentIndex.present) {
+      map['parent_index'] = Variable<int>(parentIndex.value);
+    }
+    if (index.present) {
+      map['index'] = Variable<int>(index.value);
+    }
+    if (libraryId.present) {
+      map['library_id'] = Variable<String>(libraryId.value);
+    }
+    if (libraryTitle.present) {
+      map['library_title'] = Variable<String>(libraryTitle.value);
+    }
+    if (addedAt.present) {
+      map['added_at'] = Variable<int>(addedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WatchlistItemsCompanion(')
+          ..write('id: $id, ')
+          ..write('profileId: $profileId, ')
+          ..write('serverId: $serverId, ')
+          ..write('ratingKey: $ratingKey, ')
+          ..write('globalKey: $globalKey, ')
+          ..write('backend: $backend, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('titleSort: $titleSort, ')
+          ..write('thumbPath: $thumbPath, ')
+          ..write('artPath: $artPath, ')
+          ..write('year: $year, ')
+          ..write('summary: $summary, ')
+          ..write('parentRatingKey: $parentRatingKey, ')
+          ..write('grandparentRatingKey: $grandparentRatingKey, ')
+          ..write('parentTitle: $parentTitle, ')
+          ..write('grandparentTitle: $grandparentTitle, ')
+          ..write('parentIndex: $parentIndex, ')
+          ..write('index: $index, ')
+          ..write('libraryId: $libraryId, ')
+          ..write('libraryTitle: $libraryTitle, ')
+          ..write('addedAt: $addedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -5262,6 +6531,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $ProfilesTable profiles = $ProfilesTable(this);
   late final $ProfileConnectionsTable profileConnections =
       $ProfileConnectionsTable(this);
+  late final $WatchlistItemsTable watchlistItems = $WatchlistItemsTable(this);
   late final Index idxDownloadedMediaStatus = Index(
     'idx_downloaded_media_status',
     'CREATE INDEX idx_downloaded_media_status ON downloaded_media (status)',
@@ -5314,6 +6584,14 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     'idx_profile_connections_profile_id',
     'CREATE INDEX idx_profile_connections_profile_id ON profile_connections (profile_id)',
   );
+  late final Index idxWatchlistProfile = Index(
+    'idx_watchlist_profile',
+    'CREATE INDEX idx_watchlist_profile ON watchlist_items (profile_id)',
+  );
+  late final Index idxWatchlistProfileKey = Index(
+    'idx_watchlist_profile_key',
+    'CREATE INDEX idx_watchlist_profile_key ON watchlist_items (profile_id, global_key)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -5328,6 +6606,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     connections,
     profiles,
     profileConnections,
+    watchlistItems,
     idxDownloadedMediaStatus,
     idxDownloadedMediaServer,
     idxDownloadedMediaParent,
@@ -5341,6 +6620,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     idxProfilesKind,
     idxProfileConnectionsConnectionId,
     idxProfileConnectionsProfileId,
+    idxWatchlistProfile,
+    idxWatchlistProfileKey,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -8168,6 +9449,543 @@ typedef $$ProfileConnectionsTableProcessedTableManager =
       ProfileConnectionRow,
       PrefetchHooks Function({bool connectionId})
     >;
+typedef $$WatchlistItemsTableCreateCompanionBuilder =
+    WatchlistItemsCompanion Function({
+      Value<int> id,
+      Value<String> profileId,
+      required String serverId,
+      required String ratingKey,
+      required String globalKey,
+      required String backend,
+      required String kind,
+      required String title,
+      Value<String?> titleSort,
+      Value<String?> thumbPath,
+      Value<String?> artPath,
+      Value<int?> year,
+      Value<String?> summary,
+      Value<String?> parentRatingKey,
+      Value<String?> grandparentRatingKey,
+      Value<String?> parentTitle,
+      Value<String?> grandparentTitle,
+      Value<int?> parentIndex,
+      Value<int?> index,
+      Value<String?> libraryId,
+      Value<String?> libraryTitle,
+      required int addedAt,
+      Value<int> rowid,
+    });
+typedef $$WatchlistItemsTableUpdateCompanionBuilder =
+    WatchlistItemsCompanion Function({
+      Value<int> id,
+      Value<String> profileId,
+      Value<String> serverId,
+      Value<String> ratingKey,
+      Value<String> globalKey,
+      Value<String> backend,
+      Value<String> kind,
+      Value<String> title,
+      Value<String?> titleSort,
+      Value<String?> thumbPath,
+      Value<String?> artPath,
+      Value<int?> year,
+      Value<String?> summary,
+      Value<String?> parentRatingKey,
+      Value<String?> grandparentRatingKey,
+      Value<String?> parentTitle,
+      Value<String?> grandparentTitle,
+      Value<int?> parentIndex,
+      Value<int?> index,
+      Value<String?> libraryId,
+      Value<String?> libraryTitle,
+      Value<int> addedAt,
+      Value<int> rowid,
+    });
+
+class $$WatchlistItemsTableFilterComposer
+    extends Composer<_$AppDatabase, $WatchlistItemsTable> {
+  $$WatchlistItemsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get profileId => $composableBuilder(
+    column: $table.profileId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get serverId => $composableBuilder(
+    column: $table.serverId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get ratingKey => $composableBuilder(
+    column: $table.ratingKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get globalKey => $composableBuilder(
+    column: $table.globalKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get backend => $composableBuilder(
+    column: $table.backend,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get titleSort => $composableBuilder(
+    column: $table.titleSort,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get thumbPath => $composableBuilder(
+    column: $table.thumbPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get artPath => $composableBuilder(
+    column: $table.artPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get summary => $composableBuilder(
+    column: $table.summary,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get parentRatingKey => $composableBuilder(
+    column: $table.parentRatingKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get grandparentRatingKey => $composableBuilder(
+    column: $table.grandparentRatingKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get parentTitle => $composableBuilder(
+    column: $table.parentTitle,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get grandparentTitle => $composableBuilder(
+    column: $table.grandparentTitle,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get parentIndex => $composableBuilder(
+    column: $table.parentIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get index => $composableBuilder(
+    column: $table.index,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get libraryId => $composableBuilder(
+    column: $table.libraryId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get libraryTitle => $composableBuilder(
+    column: $table.libraryTitle,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get addedAt => $composableBuilder(
+    column: $table.addedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$WatchlistItemsTableOrderingComposer
+    extends Composer<_$AppDatabase, $WatchlistItemsTable> {
+  $$WatchlistItemsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get profileId => $composableBuilder(
+    column: $table.profileId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get serverId => $composableBuilder(
+    column: $table.serverId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get ratingKey => $composableBuilder(
+    column: $table.ratingKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get globalKey => $composableBuilder(
+    column: $table.globalKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get backend => $composableBuilder(
+    column: $table.backend,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get titleSort => $composableBuilder(
+    column: $table.titleSort,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get thumbPath => $composableBuilder(
+    column: $table.thumbPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get artPath => $composableBuilder(
+    column: $table.artPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get summary => $composableBuilder(
+    column: $table.summary,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get parentRatingKey => $composableBuilder(
+    column: $table.parentRatingKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get grandparentRatingKey => $composableBuilder(
+    column: $table.grandparentRatingKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get parentTitle => $composableBuilder(
+    column: $table.parentTitle,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get grandparentTitle => $composableBuilder(
+    column: $table.grandparentTitle,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get parentIndex => $composableBuilder(
+    column: $table.parentIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get index => $composableBuilder(
+    column: $table.index,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get libraryId => $composableBuilder(
+    column: $table.libraryId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get libraryTitle => $composableBuilder(
+    column: $table.libraryTitle,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get addedAt => $composableBuilder(
+    column: $table.addedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$WatchlistItemsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $WatchlistItemsTable> {
+  $$WatchlistItemsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get profileId =>
+      $composableBuilder(column: $table.profileId, builder: (column) => column);
+
+  GeneratedColumn<String> get serverId =>
+      $composableBuilder(column: $table.serverId, builder: (column) => column);
+
+  GeneratedColumn<String> get ratingKey =>
+      $composableBuilder(column: $table.ratingKey, builder: (column) => column);
+
+  GeneratedColumn<String> get globalKey =>
+      $composableBuilder(column: $table.globalKey, builder: (column) => column);
+
+  GeneratedColumn<String> get backend =>
+      $composableBuilder(column: $table.backend, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get titleSort =>
+      $composableBuilder(column: $table.titleSort, builder: (column) => column);
+
+  GeneratedColumn<String> get thumbPath =>
+      $composableBuilder(column: $table.thumbPath, builder: (column) => column);
+
+  GeneratedColumn<String> get artPath =>
+      $composableBuilder(column: $table.artPath, builder: (column) => column);
+
+  GeneratedColumn<int> get year =>
+      $composableBuilder(column: $table.year, builder: (column) => column);
+
+  GeneratedColumn<String> get summary =>
+      $composableBuilder(column: $table.summary, builder: (column) => column);
+
+  GeneratedColumn<String> get parentRatingKey => $composableBuilder(
+    column: $table.parentRatingKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get grandparentRatingKey => $composableBuilder(
+    column: $table.grandparentRatingKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get parentTitle => $composableBuilder(
+    column: $table.parentTitle,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get grandparentTitle => $composableBuilder(
+    column: $table.grandparentTitle,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get parentIndex => $composableBuilder(
+    column: $table.parentIndex,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get index =>
+      $composableBuilder(column: $table.index, builder: (column) => column);
+
+  GeneratedColumn<String> get libraryId =>
+      $composableBuilder(column: $table.libraryId, builder: (column) => column);
+
+  GeneratedColumn<String> get libraryTitle => $composableBuilder(
+    column: $table.libraryTitle,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get addedAt =>
+      $composableBuilder(column: $table.addedAt, builder: (column) => column);
+}
+
+class $$WatchlistItemsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $WatchlistItemsTable,
+          WatchlistItem,
+          $$WatchlistItemsTableFilterComposer,
+          $$WatchlistItemsTableOrderingComposer,
+          $$WatchlistItemsTableAnnotationComposer,
+          $$WatchlistItemsTableCreateCompanionBuilder,
+          $$WatchlistItemsTableUpdateCompanionBuilder,
+          (
+            WatchlistItem,
+            BaseReferences<_$AppDatabase, $WatchlistItemsTable, WatchlistItem>,
+          ),
+          WatchlistItem,
+          PrefetchHooks Function()
+        > {
+  $$WatchlistItemsTableTableManager(
+    _$AppDatabase db,
+    $WatchlistItemsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$WatchlistItemsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$WatchlistItemsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$WatchlistItemsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> profileId = const Value.absent(),
+                Value<String> serverId = const Value.absent(),
+                Value<String> ratingKey = const Value.absent(),
+                Value<String> globalKey = const Value.absent(),
+                Value<String> backend = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<String?> titleSort = const Value.absent(),
+                Value<String?> thumbPath = const Value.absent(),
+                Value<String?> artPath = const Value.absent(),
+                Value<int?> year = const Value.absent(),
+                Value<String?> summary = const Value.absent(),
+                Value<String?> parentRatingKey = const Value.absent(),
+                Value<String?> grandparentRatingKey = const Value.absent(),
+                Value<String?> parentTitle = const Value.absent(),
+                Value<String?> grandparentTitle = const Value.absent(),
+                Value<int?> parentIndex = const Value.absent(),
+                Value<int?> index = const Value.absent(),
+                Value<String?> libraryId = const Value.absent(),
+                Value<String?> libraryTitle = const Value.absent(),
+                Value<int> addedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => WatchlistItemsCompanion(
+                id: id,
+                profileId: profileId,
+                serverId: serverId,
+                ratingKey: ratingKey,
+                globalKey: globalKey,
+                backend: backend,
+                kind: kind,
+                title: title,
+                titleSort: titleSort,
+                thumbPath: thumbPath,
+                artPath: artPath,
+                year: year,
+                summary: summary,
+                parentRatingKey: parentRatingKey,
+                grandparentRatingKey: grandparentRatingKey,
+                parentTitle: parentTitle,
+                grandparentTitle: grandparentTitle,
+                parentIndex: parentIndex,
+                index: index,
+                libraryId: libraryId,
+                libraryTitle: libraryTitle,
+                addedAt: addedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> profileId = const Value.absent(),
+                required String serverId,
+                required String ratingKey,
+                required String globalKey,
+                required String backend,
+                required String kind,
+                required String title,
+                Value<String?> titleSort = const Value.absent(),
+                Value<String?> thumbPath = const Value.absent(),
+                Value<String?> artPath = const Value.absent(),
+                Value<int?> year = const Value.absent(),
+                Value<String?> summary = const Value.absent(),
+                Value<String?> parentRatingKey = const Value.absent(),
+                Value<String?> grandparentRatingKey = const Value.absent(),
+                Value<String?> parentTitle = const Value.absent(),
+                Value<String?> grandparentTitle = const Value.absent(),
+                Value<int?> parentIndex = const Value.absent(),
+                Value<int?> index = const Value.absent(),
+                Value<String?> libraryId = const Value.absent(),
+                Value<String?> libraryTitle = const Value.absent(),
+                required int addedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => WatchlistItemsCompanion.insert(
+                id: id,
+                profileId: profileId,
+                serverId: serverId,
+                ratingKey: ratingKey,
+                globalKey: globalKey,
+                backend: backend,
+                kind: kind,
+                title: title,
+                titleSort: titleSort,
+                thumbPath: thumbPath,
+                artPath: artPath,
+                year: year,
+                summary: summary,
+                parentRatingKey: parentRatingKey,
+                grandparentRatingKey: grandparentRatingKey,
+                parentTitle: parentTitle,
+                grandparentTitle: grandparentTitle,
+                parentIndex: parentIndex,
+                index: index,
+                libraryId: libraryId,
+                libraryTitle: libraryTitle,
+                addedAt: addedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$WatchlistItemsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $WatchlistItemsTable,
+      WatchlistItem,
+      $$WatchlistItemsTableFilterComposer,
+      $$WatchlistItemsTableOrderingComposer,
+      $$WatchlistItemsTableAnnotationComposer,
+      $$WatchlistItemsTableCreateCompanionBuilder,
+      $$WatchlistItemsTableUpdateCompanionBuilder,
+      (
+        WatchlistItem,
+        BaseReferences<_$AppDatabase, $WatchlistItemsTable, WatchlistItem>,
+      ),
+      WatchlistItem,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -8190,4 +10008,6 @@ class $AppDatabaseManager {
       $$ProfilesTableTableManager(_db, _db.profiles);
   $$ProfileConnectionsTableTableManager get profileConnections =>
       $$ProfileConnectionsTableTableManager(_db, _db.profileConnections);
+  $$WatchlistItemsTableTableManager get watchlistItems =>
+      $$WatchlistItemsTableTableManager(_db, _db.watchlistItems);
 }

@@ -86,6 +86,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsTraktEn trakt = TranslationsTraktEn.internal(_root);
 	late final TranslationsTrackersEn trackers = TranslationsTrackersEn.internal(_root);
 	late final TranslationsAddServerEn addServer = TranslationsAddServerEn.internal(_root);
+	late final TranslationsWatchlistEn watchlist = TranslationsWatchlistEn.internal(_root);
 }
 
 // Path: app
@@ -2393,6 +2394,9 @@ class TranslationsNavigationEn {
 
 	/// en: 'Live TV'
 	String get liveTv => 'Live TV';
+
+	/// en: 'Watchlist'
+	String get watchlist => 'Watchlist';
 }
 
 // Path: liveTv
@@ -3908,6 +3912,54 @@ class TranslationsAddServerEn {
 	String get borrowFromAnotherProfileSubtitle => 'Reuse another profile\'s connection. PIN-protected profiles require a PIN.';
 }
 
+// Path: watchlist
+class TranslationsWatchlistEn {
+	TranslationsWatchlistEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Watchlist'
+	String get title => 'Watchlist';
+
+	/// en: 'Your watchlist is empty'
+	String get empty => 'Your watchlist is empty';
+
+	/// en: 'Bookmark movies and shows to find them quickly here'
+	String get emptyDescription => 'Bookmark movies and shows to find them quickly here';
+
+	/// en: 'Remove from watchlist'
+	String get remove => 'Remove from watchlist';
+
+	/// en: 'Added to watchlist'
+	String get added => 'Added to watchlist';
+
+	/// en: 'Removed from watchlist'
+	String get removed => 'Removed from watchlist';
+
+	/// en: 'Clear all'
+	String get clearAll => 'Clear all';
+
+	/// en: 'Remove all items from your watchlist?'
+	String get clearAllConfirm => 'Remove all items from your watchlist?';
+
+	/// en: 'Movies'
+	String get movies => 'Movies';
+
+	/// en: 'TV Shows'
+	String get shows => 'TV Shows';
+
+	/// en: 'Seasons'
+	String get seasons => 'Seasons';
+
+	/// en: 'Episodes'
+	String get episodes => 'Episodes';
+
+	/// en: 'Added on'
+	String get addedOn => 'Added on';
+}
+
 // Path: hotkeys.actions
 class TranslationsHotkeysActionsEn {
 	TranslationsHotkeysActionsEn.internal(this._root);
@@ -5244,6 +5296,7 @@ extension on Translations {
 			'navigation.libraries' => 'Libraries',
 			'navigation.downloads' => 'Downloads',
 			'navigation.liveTv' => 'Live TV',
+			'navigation.watchlist' => 'Watchlist',
 			'liveTv.title' => 'Live TV',
 			'liveTv.guide' => 'Guide',
 			'liveTv.noChannels' => 'No channels available',
@@ -5523,9 +5576,9 @@ extension on Translations {
 			'companionRemote.pairing.cryptoInitFailed' => 'Couldn\'t start secure connection. Sign in to Plex first.',
 			'companionRemote.pairing.validationHostRequired' => 'Please enter host address',
 			'companionRemote.pairing.validationHostFormat' => 'Format must be IP:port (e.g., 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'Connection timed out. Use the same network on both devices.',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.pairing.connectionTimedOut' => 'Connection timed out. Use the same network on both devices.',
 			'companionRemote.pairing.sessionNotFound' => 'Device not found. Make sure Plezy is running on the host.',
 			'companionRemote.pairing.authFailed' => 'Authentication failed. Both devices need the same Plex account.',
 			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Failed to connect: ${error}',
@@ -5783,6 +5836,19 @@ extension on Translations {
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Sign in to a Jellyfin server. Binds to ${name}.',
 			'addServer.borrowFromAnotherProfile' => 'Borrow from another profile',
 			'addServer.borrowFromAnotherProfileSubtitle' => 'Reuse another profile\'s connection. PIN-protected profiles require a PIN.',
+			'watchlist.title' => 'Watchlist',
+			'watchlist.empty' => 'Your watchlist is empty',
+			'watchlist.emptyDescription' => 'Bookmark movies and shows to find them quickly here',
+			'watchlist.remove' => 'Remove from watchlist',
+			'watchlist.added' => 'Added to watchlist',
+			'watchlist.removed' => 'Removed from watchlist',
+			'watchlist.clearAll' => 'Clear all',
+			'watchlist.clearAllConfirm' => 'Remove all items from your watchlist?',
+			'watchlist.movies' => 'Movies',
+			'watchlist.shows' => 'TV Shows',
+			'watchlist.seasons' => 'Seasons',
+			'watchlist.episodes' => 'Episodes',
+			'watchlist.addedOn' => 'Added on',
 			_ => null,
 		};
 	}

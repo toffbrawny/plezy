@@ -187,6 +187,39 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
           )
         : null;
 
+    // Client-side watchlist bookmark toggle.
+    // Uses context.select to rebuild only when this item's watchlist state changes.
+    final isInWatchlist = context.select<WatchlistProvider, bool>(
+      (p) => p.isInWatchlist(metadata.globalKey),
+    );
+    final watchlistAction = FocusableAction(
+      debugLabel: 'detail_watchlist',
+      onPressed: () async {
+        final added = await context.read<WatchlistProvider>().toggle(metadata);
+        if (!mounted) return;
+        showSuccessSnackBar(
+          context,
+          added ? t.watchlist.added : t.watchlist.removed,
+        );
+      },
+      builder: (context, state) => iconActionButton(
+        state,
+        onPressed: () async {
+          final added = await context.read<WatchlistProvider>().toggle(metadata);
+          if (!mounted) return;
+          showSuccessSnackBar(
+            context,
+            added ? t.watchlist.added : t.watchlist.removed,
+          );
+        },
+        icon: AppIcon(
+          isInWatchlist ? Symbols.bookmark_added_rounded : Symbols.bookmark_rounded,
+          fill: 1,
+        ),
+        tooltip: isInWatchlist ? t.watchlist.remove : t.watchlist.title,
+      ),
+    );
+
     final watchedAction = FocusableAction(
       debugLabel: 'detail_watched',
       onPressed: () => unawaited(_handleWatchedTogglePressed(metadata)),
@@ -215,6 +248,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
       ?trailerAction,
       ?shuffleAction,
       ?downloadAction,
+      watchlistAction,
       watchedAction,
       ?moreActionsAction,
     ];

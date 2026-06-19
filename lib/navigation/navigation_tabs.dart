@@ -6,7 +6,7 @@ import '../i18n/strings.g.dart';
 import '../utils/platform_detector.dart';
 
 /// Navigation tab identifiers
-enum NavigationTabId { discover, libraries, liveTv, search, downloads, settings }
+enum NavigationTabId { discover, libraries, liveTv, search, downloads, watchlist, settings }
 
 /// Represents a navigation tab with its configuration
 class NavigationTab {
@@ -30,10 +30,11 @@ class NavigationTab {
   /// Get tabs filtered by offline mode and feature availability
   static List<NavigationTab> getVisibleTabs({required bool isOffline, bool hasLiveTv = false}) {
     return allNavigationTabs.where((tab) {
-      if (isOffline && tab.onlineOnly) return false;
-      if (tab.id == NavigationTabId.liveTv && !hasLiveTv) return false;
-      if (tab.id == NavigationTabId.downloads && PlatformDetector.isAppleTV()) return false;
-      return true;
+    if (isOffline && tab.onlineOnly) return false;
+    if (tab.id == NavigationTabId.liveTv && !hasLiveTv) return false;
+    if (tab.id == NavigationTabId.downloads && PlatformDetector.isAppleTV()) return false;
+    if (tab.id == NavigationTabId.watchlist && PlatformDetector.isAppleTV()) return false;
+    return true;
     }).toList();
   }
 
@@ -64,6 +65,7 @@ String _getLibrariesLabel() => t.navigation.libraries;
 String _getLiveTvLabel() => t.navigation.liveTv;
 String _getSearchLabel() => t.common.search;
 String _getDownloadsLabel() => t.navigation.downloads;
+String _getWatchlistLabel() => t.navigation.watchlist;
 String _getSettingsLabel() => t.common.settings;
 
 /// All navigation tabs in display order
@@ -82,6 +84,12 @@ const allNavigationTabs = [
     onlineOnly: false,
     icon: Symbols.download_rounded,
     getLabel: _getDownloadsLabel,
+  ),
+  NavigationTab(
+    id: NavigationTabId.watchlist,
+    onlineOnly: false,
+    icon: Symbols.bookmark_rounded,
+    getLabel: _getWatchlistLabel,
   ),
   NavigationTab(
     id: NavigationTabId.settings,

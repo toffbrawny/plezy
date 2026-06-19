@@ -813,7 +813,8 @@
   "navigation": {
     "libraries": "Libraries",
     "downloads": "Downloads",
-    "liveTv": "Live TV"
+    "liveTv": "Live TV",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "Live TV",
@@ -1399,5 +1400,20 @@
     "connectToJellyfinCardSubtitleScoped": "Sign in to a Jellyfin server. Binds to ${name}.",
     "borrowFromAnotherProfile": "Borrow from another profile",
     "borrowFromAnotherProfileSubtitle": "Reuse another profile's connection. PIN-protected profiles require a PIN."
+  },
+  "watchlist": {
+    "title": "Watchlist",
+    "empty": "Your watchlist is empty",
+    "emptyDescription": "Bookmark movies and shows to find them quickly here",
+    "remove": "Remove from watchlist",
+    "added": "Added to watchlist",
+    "removed": "Removed from watchlist",
+    "clearAll": "Clear all",
+    "clearAllConfirm": "Remove all items from your watchlist?",
+    "movies": "Movies",
+    "shows": "TV Shows",
+    "seasons": "Seasons",
+    "episodes": "Episodes",
+    "addedOn": "Added on"
   }
 }

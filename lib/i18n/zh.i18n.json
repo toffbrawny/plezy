@@ -807,7 +807,8 @@
   "navigation": {
     "libraries": "媒体库",
     "downloads": "下载",
-    "liveTv": "电视直播"
+    "liveTv": "电视直播",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "电视直播",

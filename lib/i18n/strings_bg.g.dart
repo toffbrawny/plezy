@@ -1031,6 +1031,7 @@ class _TranslationsNavigationBg extends TranslationsNavigationEn {
 	@override String get libraries => 'Библиотеки';
 	@override String get downloads => 'Изтегляния';
 	@override String get liveTv => 'Телевизия на живо';
+	@override String get watchlist => 'Watchlist';
 }
 
 // Path: liveTv
@@ -2661,6 +2662,7 @@ extension on TranslationsBg {
 			'navigation.libraries' => 'Библиотеки',
 			'navigation.downloads' => 'Изтегляния',
 			'navigation.liveTv' => 'Телевизия на живо',
+			'navigation.watchlist' => 'Watchlist',
 			'liveTv.title' => 'Телевизия на живо',
 			'liveTv.guide' => 'ТВ програма',
 			'liveTv.noChannels' => 'Няма налични канали',
@@ -2946,9 +2948,9 @@ extension on TranslationsBg {
 			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Опит ${current} от 5',
 			'companionRemote.remote.retryNow' => 'Опитай сега',
 			'companionRemote.remote.tabRemote' => 'Дистанционно',
-			'companionRemote.remote.tabPlay' => 'Пускане',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabPlay' => 'Пускане',
 			'companionRemote.remote.tabMore' => 'Още',
 			'companionRemote.remote.menu' => 'Меню',
 			'companionRemote.remote.tabNavigation' => 'Навигация с Tab',

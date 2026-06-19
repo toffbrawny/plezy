@@ -807,7 +807,8 @@
   "navigation": {
     "libraries": "Biblioteker",
     "downloads": "Nedlastinger",
-    "liveTv": "Direkte-TV"
+    "liveTv": "Direkte-TV",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "Direkte-TV",

@@ -807,7 +807,8 @@
   "navigation": {
     "libraries": "Media",
     "downloads": "Downloads",
-    "liveTv": "Live TV"
+    "liveTv": "Live TV",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "Live TV",

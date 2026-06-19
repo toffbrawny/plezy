@@ -379,6 +379,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
         return _kSearch;
       case NavigationTabId.downloads:
         return _showDownloads ? _kDownloads : null;
+      case NavigationTabId.watchlist:
+        return 'watchlist';
       case NavigationTabId.settings:
         return _kSettings;
       case NavigationTabId.liveTv:

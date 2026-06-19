@@ -53,6 +53,7 @@ import '../widgets/settings_builder.dart';
 import '../utils/grid_size_calculator.dart';
 import '../utils/layout_constants.dart';
 import '../providers/download_provider.dart';
+import '../providers/watchlist_provider.dart';
 import '../providers/offline_watch_provider.dart';
 import '../providers/watch_state_store.dart';
 import '../theme/mono_tokens.dart';

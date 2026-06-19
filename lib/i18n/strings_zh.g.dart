@@ -1031,6 +1031,7 @@ class _TranslationsNavigationZh extends TranslationsNavigationEn {
 	@override String get libraries => '媒体库';
 	@override String get downloads => '下载';
 	@override String get liveTv => '电视直播';
+	@override String get watchlist => 'Watchlist';
 }
 
 // Path: liveTv
@@ -2661,6 +2662,7 @@ extension on TranslationsZh {
 			'navigation.libraries' => '媒体库',
 			'navigation.downloads' => '下载',
 			'navigation.liveTv' => '电视直播',
+			'navigation.watchlist' => 'Watchlist',
 			'liveTv.title' => '电视直播',
 			'liveTv.guide' => '节目指南',
 			'liveTv.noChannels' => '没有可用的频道',
@@ -2946,9 +2948,9 @@ extension on TranslationsZh {
 			'companionRemote.remote.attemptOf' => ({required Object current}) => '第 ${current} 次尝试，共 5 次',
 			'companionRemote.remote.retryNow' => '立即重试',
 			'companionRemote.remote.tabRemote' => '遥控',
-			'companionRemote.remote.tabPlay' => '播放',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabPlay' => '播放',
 			'companionRemote.remote.tabMore' => '更多',
 			'companionRemote.remote.menu' => '菜单',
 			'companionRemote.remote.tabNavigation' => '标签导航',

@@ -1031,6 +1031,7 @@ class _TranslationsNavigationJa extends TranslationsNavigationEn {
 	@override String get libraries => 'ライブラリ';
 	@override String get downloads => 'ダウンロード';
 	@override String get liveTv => 'ライブTV';
+	@override String get watchlist => 'Watchlist';
 }
 
 // Path: liveTv
@@ -2661,6 +2662,7 @@ extension on TranslationsJa {
 			'navigation.libraries' => 'ライブラリ',
 			'navigation.downloads' => 'ダウンロード',
 			'navigation.liveTv' => 'ライブTV',
+			'navigation.watchlist' => 'Watchlist',
 			'liveTv.title' => 'ライブTV',
 			'liveTv.guide' => '番組表',
 			'liveTv.noChannels' => 'チャンネルがありません',
@@ -2946,9 +2948,9 @@ extension on TranslationsJa {
 			'companionRemote.remote.attemptOf' => ({required Object current}) => '試行 ${current}/5',
 			'companionRemote.remote.retryNow' => '今すぐ再試行',
 			'companionRemote.remote.tabRemote' => 'リモート',
-			'companionRemote.remote.tabPlay' => '再生',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabPlay' => '再生',
 			'companionRemote.remote.tabMore' => 'その他',
 			'companionRemote.remote.menu' => 'メニュー',
 			'companionRemote.remote.tabNavigation' => 'タブナビゲーション',

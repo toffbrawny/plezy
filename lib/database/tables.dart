@@ -259,3 +259,87 @@ class OfflineWatchProgress extends Table {
   /// Last sync error message
   TextColumn get lastError => text().nullable()();
 }
+
+/// Client-side watchlist — items the user has bookmarked for later viewing.
+///
+/// Unlike the server-side "liked"/"favorite" flags on Plex/Jellyfin, this
+/// table is purely local to Plezy. Each row is scoped to the active profile
+/// (so Plex Home users have separate watchlists), and stores enough display
+/// metadata to render the Watchlist tab even when offline (no server round-trip
+/// needed). Tapping an item navigates to the media detail screen, which will
+/// fetch fresh metadata from the server when online.
+@DataClassName('WatchlistItem')
+@TableIndex(name: 'idx_watchlist_profile', columns: {#profileId})
+@TableIndex(name: 'idx_watchlist_profile_key', columns: {#profileId, #globalKey})
+class WatchlistItems extends Table {
+  /// Synthetic row id — not auto-increment; the composite PK below is the
+  /// real identity. Defaults to 0 since it's not used for lookups.
+  IntColumn get id => integer().withDefault(const Constant(0))();
+
+  /// Active Plezy profile that owns this watchlist entry.
+  /// Empty string for local profiles without an id.
+  TextColumn get profileId => text().withDefault(const Constant(''))();
+
+  /// Server ID this media belongs to
+  TextColumn get serverId => text()();
+
+  /// Rating key of the media item on the server
+  TextColumn get ratingKey => text()();
+
+  /// Global key (serverId:ratingKey) for easy lookup — unique per profile
+  TextColumn get globalKey => text()();
+
+  /// Backend kind: 'plex' or 'jellyfin'
+  TextColumn get backend => text()();
+
+  /// Media kind: 'movie', 'show', 'season', 'episode', etc.
+  TextColumn get kind => text()();
+
+  /// Display title
+  TextColumn get title => text()();
+
+  /// Sort title (optional, falls back to title)
+  TextColumn get titleSort => text().nullable()();
+
+  /// Thumbnail/art path on the server (for poster display)
+  TextColumn get thumbPath => text().nullable()();
+
+  /// Background art path (for hero display)
+  TextColumn get artPath => text().nullable()();
+
+  /// Year (for display)
+  IntColumn get year => integer().nullable()();
+
+  /// Summary/overview text
+  TextColumn get summary => text().nullable()();
+
+  /// Parent rating key (for episodes/seasons)
+  TextColumn get parentRatingKey => text().nullable()();
+
+  /// Grandparent rating key (for episodes)
+  TextColumn get grandparentRatingKey => text().nullable()();
+
+  /// Parent title (for episodes: show name; for seasons: show name)
+  TextColumn get parentTitle => text().nullable()();
+
+  /// Grandparent title (for episodes: show name)
+  TextColumn get grandparentTitle => text().nullable()();
+
+  /// Parent index (for seasons: season number)
+  IntColumn get parentIndex => integer().nullable()();
+
+  /// Index (for episodes: episode number; for seasons: season number)
+  IntColumn get index => integer().nullable()();
+
+  /// Library ID
+  TextColumn get libraryId => text().nullable()();
+
+  /// Library title
+  TextColumn get libraryTitle => text().nullable()();
+
+  /// Timestamp added to watchlist (milliseconds since epoch)
+  IntColumn get addedAt => integer()();
+
+  @override
+  Set<Column> get primaryKey => {profileId, globalKey};
+}

@@ -1031,6 +1031,7 @@ class _TranslationsNavigationDa extends TranslationsNavigationEn {
 	@override String get libraries => 'Biblioteker';
 	@override String get downloads => 'Downloads';
 	@override String get liveTv => 'Live TV';
+	@override String get watchlist => 'Watchlist';
 }
 
 // Path: liveTv
@@ -2661,6 +2662,7 @@ extension on TranslationsDa {
 			'navigation.libraries' => 'Biblioteker',
 			'navigation.downloads' => 'Downloads',
 			'navigation.liveTv' => 'Live TV',
+			'navigation.watchlist' => 'Watchlist',
 			'liveTv.title' => 'Live TV',
 			'liveTv.guide' => 'Guide',
 			'liveTv.noChannels' => 'Ingen kanaler tilgængelige',
@@ -2946,9 +2948,9 @@ extension on TranslationsDa {
 			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Forsøg ${current} af 5',
 			'companionRemote.remote.retryNow' => 'Prøv igen nu',
 			'companionRemote.remote.tabRemote' => 'Fjernbetjening',
-			'companionRemote.remote.tabPlay' => 'Afspil',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabPlay' => 'Afspil',
 			'companionRemote.remote.tabMore' => 'Mere',
 			'companionRemote.remote.menu' => 'Menu',
 			'companionRemote.remote.tabNavigation' => 'Fanenavigation',

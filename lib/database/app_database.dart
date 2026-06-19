@@ -50,6 +50,7 @@ enum OfflineActionType {
     Connections,
     Profiles,
     ProfileConnections,
+    WatchlistItems,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -61,7 +62,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 15;
+  int get schemaVersion => 16;
 
   @override
   MigrationStrategy get migration {
@@ -212,6 +213,15 @@ class AppDatabase extends _$AppDatabase {
           await _ignoreAlreadyExists(
             'DownloadedMedia.mediaSourceId column',
             () => m.addColumn(downloadedMedia, downloadedMedia.mediaSourceId),
+          );
+        }
+        if (from < 16) {
+          appLogger.i('Adding WatchlistItems table (v16 migration)');
+          await m.createTable(watchlistItems);
+          await _ignoreAlreadyExists('Index idx_watchlist_profile', () => m.create(idxWatchlistProfile));
+          await _ignoreAlreadyExists(
+            'Index idx_watchlist_profile_key',
+            () => m.create(idxWatchlistProfileKey),
           );
         }
       },

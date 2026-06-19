@@ -807,7 +807,8 @@
   "navigation": {
     "libraries": "ライブラリ",
     "downloads": "ダウンロード",
-    "liveTv": "ライブTV"
+    "liveTv": "ライブTV",
+    "watchlist": "Watchlist"
   },
   "liveTv": {
     "title": "ライブTV",

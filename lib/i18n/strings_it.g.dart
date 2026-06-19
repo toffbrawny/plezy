@@ -1031,6 +1031,7 @@ class _TranslationsNavigationIt extends TranslationsNavigationEn {
 	@override String get libraries => 'Librerie';
 	@override String get downloads => 'Download';
 	@override String get liveTv => 'TV Live';
+	@override String get watchlist => 'Watchlist';
 }
 
 // Path: liveTv
@@ -2661,6 +2662,7 @@ extension on TranslationsIt {
 			'navigation.libraries' => 'Librerie',
 			'navigation.downloads' => 'Download',
 			'navigation.liveTv' => 'TV Live',
+			'navigation.watchlist' => 'Watchlist',
 			'liveTv.title' => 'TV in diretta',
 			'liveTv.guide' => 'Guida',
 			'liveTv.noChannels' => 'Nessun canale disponibile',
@@ -2946,9 +2948,9 @@ extension on TranslationsIt {
 			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Tentativo ${current} di 5',
 			'companionRemote.remote.retryNow' => 'Riprova ora',
 			'companionRemote.remote.tabRemote' => 'Telecomando',
-			'companionRemote.remote.tabPlay' => 'Riproduci',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabPlay' => 'Riproduci',
 			'companionRemote.remote.tabMore' => 'Altro',
 			'companionRemote.remote.menu' => 'Menu',
 			'companionRemote.remote.tabNavigation' => 'Navigazione schede',
