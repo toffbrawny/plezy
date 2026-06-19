@@ -30,6 +30,7 @@ import '../utils/global_key_utils.dart';
 import '../providers/download_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/offline_mode_provider.dart';
+import '../providers/watchlist_provider.dart';
 import '../profiles/active_profile_provider.dart';
 import '../profiles/profile.dart';
 import '../utils/provider_extensions.dart';
@@ -302,6 +303,18 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         );
       }
 
+      // Client-side watchlist toggle — works for all media kinds (movies,
+      // shows, seasons, episodes) and is available offline (no server needed).
+      final watchlistProvider = Provider.of<WatchlistProvider>(context, listen: false);
+      final isInWatchlist = watchlistProvider.isInWatchlist(mediaItem.globalKey);
+      menuActions.add(
+        _MenuAction(
+          value: 'toggle_watchlist',
+          icon: isInWatchlist ? Symbols.bookmark_added_rounded : Symbols.bookmark_rounded,
+          label: isInWatchlist ? t.watchlist.remove : t.watchlist.title,
+        ),
+      );
+
       if (widget.isInContinueWatching && canRemoveFromContinueWatching) {
         menuActions.add(
           _MenuAction(
@@ -563,6 +576,16 @@ class MediaContextMenuState extends State<MediaContextMenu> {
             await _executeAction(context, () async {
               await WatchActions.setWatched(context, item, watched: watched, offline: false);
             }, watched ? t.messages.markedAsWatched : t.messages.markedAsUnwatched);
+          }
+          break;
+
+        case 'toggle_watchlist':
+          final item = mediaItem;
+          if (item == null) break;
+          final added = await context.read<WatchlistProvider>().toggle(item);
+          if (context.mounted) {
+            showSuccessSnackBar(context, added ? t.watchlist.added : t.watchlist.removed);
+            _notifyRefresh(item.id);
           }
           break;
 

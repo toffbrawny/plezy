@@ -275,18 +275,20 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
 
     List<FocusableAction> compactActionsFor(double maxWidth) {
       if (widget.isOffline) {
-        final compact = <FocusableAction>[playAction, watchedAction];
-        if (maxWidth.isFinite && estimatedRowWidth(compact) > maxWidth) return [playAction];
+        final compact = <FocusableAction>[playAction, watchlistAction, watchedAction];
+        if (maxWidth.isFinite && estimatedRowWidth(compact) > maxWidth) {
+          return [playAction, watchlistAction];
+        }
         return compact;
       }
 
-      final medium = <FocusableAction>[playAction, ?downloadAction, watchedAction, ?moreActionsAction];
+      final medium = <FocusableAction>[playAction, ?downloadAction, watchlistAction, watchedAction, ?moreActionsAction];
       if (!maxWidth.isFinite || estimatedRowWidth(medium) <= maxWidth) return medium;
 
-      final compact = <FocusableAction>[playAction, watchedAction, ?moreActionsAction];
+      final compact = <FocusableAction>[playAction, watchlistAction, watchedAction, ?moreActionsAction];
       if (estimatedRowWidth(compact) <= maxWidth) return compact;
 
-      return [playAction, ?moreActionsAction];
+      return [playAction, watchlistAction, ?moreActionsAction];
     }
 
     Widget actionBar(List<FocusableAction> actions) {
