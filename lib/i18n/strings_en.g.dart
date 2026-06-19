@@ -87,6 +87,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsTrackersEn trackers = TranslationsTrackersEn.internal(_root);
 	late final TranslationsAddServerEn addServer = TranslationsAddServerEn.internal(_root);
 	late final TranslationsWatchlistEn watchlist = TranslationsWatchlistEn.internal(_root);
+	late final TranslationsSeerEn seer = TranslationsSeerEn.internal(_root);
 }
 
 // Path: app
@@ -2397,6 +2398,9 @@ class TranslationsNavigationEn {
 
 	/// en: 'Watchlist'
 	String get watchlist => 'Watchlist';
+
+	/// en: 'Requests'
+	String get requests => 'Requests';
 }
 
 // Path: liveTv
@@ -3960,6 +3964,150 @@ class TranslationsWatchlistEn {
 	String get addedOn => 'Added on';
 }
 
+// Path: seer
+class TranslationsSeerEn {
+	TranslationsSeerEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Requests'
+	String get title => 'Requests';
+
+	/// en: 'Login'
+	String get login => 'Login';
+
+	/// en: 'Server URL'
+	String get serverUrl => 'Server URL';
+
+	/// en: 'Username'
+	String get username => 'Username';
+
+	/// en: 'Password'
+	String get password => 'Password';
+
+	/// en: 'Login Method'
+	String get loginMethod => 'Login Method';
+
+	/// en: 'Jellyfin'
+	String get jellyfinLogin => 'Jellyfin';
+
+	/// en: 'Local'
+	String get localLogin => 'Local';
+
+	/// en: 'Login'
+	String get loginButton => 'Login';
+
+	/// en: 'Logging in…'
+	String get loggingIn => 'Logging in…';
+
+	/// en: 'Logout'
+	String get logout => 'Logout';
+
+	/// en: 'Not connected'
+	String get notConnected => 'Not connected';
+
+	/// en: 'Connect to your Jellyseerr or Overseerr instance to request media'
+	String get notConnectedDescription => 'Connect to your Jellyseerr or Overseerr instance to request media';
+
+	/// en: 'Connect'
+	String get connect => 'Connect';
+
+	/// en: 'My Requests'
+	String get myRequests => 'My Requests';
+
+	/// en: 'Available'
+	String get available => 'Available';
+
+	/// en: 'Trending'
+	String get trending => 'Trending';
+
+	/// en: 'Popular Movies'
+	String get discoverMovies => 'Popular Movies';
+
+	/// en: 'Popular TV'
+	String get discoverTv => 'Popular TV';
+
+	/// en: 'Search for movies and shows'
+	String get search => 'Search for movies and shows';
+
+	/// en: 'Request'
+	String get request => 'Request';
+
+	/// en: 'Request Movie'
+	String get requestMovie => 'Request Movie';
+
+	/// en: 'Request Show'
+	String get requestTv => 'Request Show';
+
+	/// en: 'Request submitted!'
+	String get requestConfirmed => 'Request submitted!';
+
+	/// en: 'Failed to create request'
+	String get requestFailed => 'Failed to create request';
+
+	/// en: 'Approved'
+	String get approved => 'Approved';
+
+	/// en: 'Declined'
+	String get declined => 'Declined';
+
+	/// en: 'Pending'
+	String get pending => 'Pending';
+
+	/// en: 'Processing'
+	String get processing => 'Processing';
+
+	/// en: 'Partially Available'
+	String get partiallyAvailable => 'Partially Available';
+
+	/// en: 'Available'
+	String get availableStatus => 'Available';
+
+	/// en: 'Approve'
+	String get approve => 'Approve';
+
+	/// en: 'Decline'
+	String get declineRequest => 'Decline';
+
+	/// en: 'Delete'
+	String get deleteRequest => 'Delete';
+
+	/// en: 'Seasons'
+	String get seasons => 'Seasons';
+
+	/// en: 'Select seasons to request'
+	String get selectSeasons => 'Select seasons to request';
+
+	/// en: '4K'
+	String get is4k => '4K';
+
+	/// en: 'Advanced'
+	String get advanced => 'Advanced';
+
+	/// en: 'Server'
+	String get server => 'Server';
+
+	/// en: 'Quality Profile'
+	String get qualityProfile => 'Quality Profile';
+
+	/// en: 'Root Folder'
+	String get rootFolder => 'Root Folder';
+
+	/// en: 'No requests yet'
+	String get noRequests => 'No requests yet';
+
+	/// en: 'Search and request media to see it here'
+	String get noRequestsDescription => 'Search and request media to see it here';
+
+	/// en: 'Overview'
+	String get overview => 'Overview';
+
+	/// en: 'Retry'
+	String get retry => 'Retry';
+}
+
 // Path: hotkeys.actions
 class TranslationsHotkeysActionsEn {
 	TranslationsHotkeysActionsEn.internal(this._root);
@@ -5297,6 +5445,7 @@ extension on Translations {
 			'navigation.downloads' => 'Downloads',
 			'navigation.liveTv' => 'Live TV',
 			'navigation.watchlist' => 'Watchlist',
+			'navigation.requests' => 'Requests',
 			'liveTv.title' => 'Live TV',
 			'liveTv.guide' => 'Guide',
 			'liveTv.noChannels' => 'No channels available',
@@ -5575,9 +5724,9 @@ extension on Translations {
 			'companionRemote.pairing.manualConnection' => 'Manual Connection',
 			'companionRemote.pairing.cryptoInitFailed' => 'Couldn\'t start secure connection. Sign in to Plex first.',
 			'companionRemote.pairing.validationHostRequired' => 'Please enter host address',
-			'companionRemote.pairing.validationHostFormat' => 'Format must be IP:port (e.g., 192.168.1.100:48632)',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.pairing.validationHostFormat' => 'Format must be IP:port (e.g., 192.168.1.100:48632)',
 			'companionRemote.pairing.connectionTimedOut' => 'Connection timed out. Use the same network on both devices.',
 			'companionRemote.pairing.sessionNotFound' => 'Device not found. Make sure Plezy is running on the host.',
 			'companionRemote.pairing.authFailed' => 'Authentication failed. Both devices need the same Plex account.',
@@ -5849,6 +5998,51 @@ extension on Translations {
 			'watchlist.seasons' => 'Seasons',
 			'watchlist.episodes' => 'Episodes',
 			'watchlist.addedOn' => 'Added on',
+			'seer.title' => 'Requests',
+			'seer.login' => 'Login',
+			'seer.serverUrl' => 'Server URL',
+			'seer.username' => 'Username',
+			'seer.password' => 'Password',
+			'seer.loginMethod' => 'Login Method',
+			'seer.jellyfinLogin' => 'Jellyfin',
+			'seer.localLogin' => 'Local',
+			'seer.loginButton' => 'Login',
+			'seer.loggingIn' => 'Logging in…',
+			'seer.logout' => 'Logout',
+			'seer.notConnected' => 'Not connected',
+			'seer.notConnectedDescription' => 'Connect to your Jellyseerr or Overseerr instance to request media',
+			'seer.connect' => 'Connect',
+			'seer.myRequests' => 'My Requests',
+			'seer.available' => 'Available',
+			'seer.trending' => 'Trending',
+			'seer.discoverMovies' => 'Popular Movies',
+			'seer.discoverTv' => 'Popular TV',
+			'seer.search' => 'Search for movies and shows',
+			'seer.request' => 'Request',
+			'seer.requestMovie' => 'Request Movie',
+			'seer.requestTv' => 'Request Show',
+			'seer.requestConfirmed' => 'Request submitted!',
+			'seer.requestFailed' => 'Failed to create request',
+			'seer.approved' => 'Approved',
+			'seer.declined' => 'Declined',
+			'seer.pending' => 'Pending',
+			'seer.processing' => 'Processing',
+			'seer.partiallyAvailable' => 'Partially Available',
+			'seer.availableStatus' => 'Available',
+			'seer.approve' => 'Approve',
+			'seer.declineRequest' => 'Decline',
+			'seer.deleteRequest' => 'Delete',
+			'seer.seasons' => 'Seasons',
+			'seer.selectSeasons' => 'Select seasons to request',
+			'seer.is4k' => '4K',
+			'seer.advanced' => 'Advanced',
+			'seer.server' => 'Server',
+			'seer.qualityProfile' => 'Quality Profile',
+			'seer.rootFolder' => 'Root Folder',
+			'seer.noRequests' => 'No requests yet',
+			'seer.noRequestsDescription' => 'Search and request media to see it here',
+			'seer.overview' => 'Overview',
+			'seer.retry' => 'Retry',
 			_ => null,
 		};
 	}

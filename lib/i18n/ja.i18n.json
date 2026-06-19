@@ -808,7 +808,8 @@
     "libraries": "ライブラリ",
     "downloads": "ダウンロード",
     "liveTv": "ライブTV",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "ライブTV",

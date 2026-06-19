@@ -808,7 +808,8 @@
     "libraries": "미디어 라이브러리",
     "downloads": "다운로드",
     "liveTv": "실시간 TV",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "실시간 TV",

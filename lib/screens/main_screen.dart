@@ -44,6 +44,7 @@ import '../services/multi_server_manager.dart';
 import '../services/offline_watch_sync_service.dart';
 import '../services/settings_service.dart';
 import '../providers/offline_mode_provider.dart';
+import '../providers/seer_provider.dart';
 import '../services/companion_remote/companion_remote_host_controller.dart';
 import '../services/companion_remote/companion_remote_receiver.dart';
 import '../services/fullscreen_state_manager.dart';
@@ -59,6 +60,7 @@ import 'livetv/live_tv_screen.dart';
 import 'search_screen.dart';
 import 'downloads/downloads_screen.dart';
 import 'watchlist/watchlist_screen.dart';
+import 'requests/requests_screen.dart';
 import 'settings/settings_screen.dart';
 import 'profile/profile_switch_screen.dart';
 import '../services/system_shelf_service.dart';
@@ -183,6 +185,7 @@ class _MainScreenState extends State<MainScreen>
   final GlobalKey<State<SearchScreen>> _searchKey = GlobalKey();
   final GlobalKey<State<DownloadsScreen>> _downloadsKey = GlobalKey();
   final GlobalKey<State<WatchlistScreen>> _watchlistKey = GlobalKey();
+  final GlobalKey<State<RequestsScreen>> _requestsKey = GlobalKey();
   final GlobalKey<State<SettingsScreen>> _settingsKey = GlobalKey();
   final GlobalKey<SideNavigationRailState> _sideNavKey = GlobalKey();
 
@@ -857,6 +860,7 @@ class _MainScreenState extends State<MainScreen>
           ),
           NavigationTabId.liveTv => LiveTvScreen(key: _liveTvKey),
           NavigationTabId.search => SearchScreen(key: _searchKey),
+          NavigationTabId.requests => RequestsScreen(key: _requestsKey),
           NavigationTabId.downloads => DownloadsScreen(key: _downloadsKey),
           NavigationTabId.watchlist => WatchlistScreen(key: _watchlistKey),
           NavigationTabId.settings => SettingsScreen(key: _settingsKey),
@@ -875,6 +879,7 @@ class _MainScreenState extends State<MainScreen>
   NavigationTabId _defaultTabForMode(bool isOffline) => NavigationTab.resolveDefaultTab(
     isOffline: isOffline,
     hasLiveTv: _hasLiveTv,
+    hasRequests: context.read<SeerProvider>().isAuthenticated,
     preferredStartup: SettingsService.instanceOrNull?.read(SettingsService.startupSection),
   );
 
@@ -1443,7 +1448,12 @@ class _MainScreenState extends State<MainScreen>
 
   /// Get navigation tabs filtered by offline mode
   List<NavigationTab> _getVisibleTabs(bool isOffline) {
-    return NavigationTab.getVisibleTabs(isOffline: isOffline, hasLiveTv: _hasLiveTv);
+    final hasRequests = context.read<SeerProvider>().isAuthenticated;
+    return NavigationTab.getVisibleTabs(
+      isOffline: isOffline,
+      hasLiveTv: _hasLiveTv,
+      hasRequests: hasRequests,
+    );
   }
 
   List<NavigationTab> _getBottomNavigationTabs(BuildContext context) {
@@ -1459,6 +1469,7 @@ class _MainScreenState extends State<MainScreen>
       NavigationTabId.libraries => _librariesKey,
       NavigationTabId.liveTv => _liveTvKey,
       NavigationTabId.search => _searchKey,
+      NavigationTabId.requests => _requestsKey,
       NavigationTabId.downloads => _downloadsKey,
       NavigationTabId.watchlist => _watchlistKey,
       NavigationTabId.settings => _settingsKey,

@@ -808,7 +808,8 @@
     "libraries": "媒体库",
     "downloads": "下载",
     "liveTv": "电视直播",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "电视直播",

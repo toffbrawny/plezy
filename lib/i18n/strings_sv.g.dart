@@ -1032,6 +1032,7 @@ class _TranslationsNavigationSv extends TranslationsNavigationEn {
 	@override String get downloads => 'Nerladdat';
 	@override String get liveTv => 'Live-TV';
 	@override String get watchlist => 'Watchlist';
+	@override String get requests => 'Requests';
 }
 
 // Path: liveTv
@@ -2663,6 +2664,7 @@ extension on TranslationsSv {
 			'navigation.downloads' => 'Nerladdat',
 			'navigation.liveTv' => 'Live-TV',
 			'navigation.watchlist' => 'Watchlist',
+			'navigation.requests' => 'Requests',
 			'liveTv.title' => 'Live-TV',
 			'liveTv.guide' => 'Programguide',
 			'liveTv.noChannels' => 'Inga kanaler tillgängliga',
@@ -2947,9 +2949,9 @@ extension on TranslationsSv {
 			'companionRemote.remote.reconnecting' => 'Återansluter...',
 			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Försök ${current} av 5',
 			'companionRemote.remote.retryNow' => 'Försök nu',
-			'companionRemote.remote.tabRemote' => 'Fjärrkontroll',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabRemote' => 'Fjärrkontroll',
 			'companionRemote.remote.tabPlay' => 'Spela',
 			'companionRemote.remote.tabMore' => 'Mer',
 			'companionRemote.remote.menu' => 'Meny',

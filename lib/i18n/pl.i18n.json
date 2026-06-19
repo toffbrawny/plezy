@@ -808,7 +808,8 @@
     "libraries": "Biblioteki",
     "downloads": "Pobrania",
     "liveTv": "TV na żywo",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "TV na żywo",

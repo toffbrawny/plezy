@@ -1032,6 +1032,7 @@ class _TranslationsNavigationRu extends TranslationsNavigationEn {
 	@override String get downloads => 'Загрузки';
 	@override String get liveTv => 'ТВ в прямом эфире';
 	@override String get watchlist => 'Watchlist';
+	@override String get requests => 'Requests';
 }
 
 // Path: liveTv
@@ -2663,6 +2664,7 @@ extension on TranslationsRu {
 			'navigation.downloads' => 'Загрузки',
 			'navigation.liveTv' => 'ТВ в прямом эфире',
 			'navigation.watchlist' => 'Watchlist',
+			'navigation.requests' => 'Requests',
 			'liveTv.title' => 'ТВ в прямом эфире',
 			'liveTv.guide' => 'Программа',
 			'liveTv.noChannels' => 'Нет доступных каналов',
@@ -2947,9 +2949,9 @@ extension on TranslationsRu {
 			'companionRemote.remote.reconnecting' => 'Переподключение...',
 			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Попытка ${current} из 5',
 			'companionRemote.remote.retryNow' => 'Повторить сейчас',
-			'companionRemote.remote.tabRemote' => 'Пульт',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabRemote' => 'Пульт',
 			'companionRemote.remote.tabPlay' => 'Воспроизведение',
 			'companionRemote.remote.tabMore' => 'Ещё',
 			'companionRemote.remote.menu' => 'Меню',

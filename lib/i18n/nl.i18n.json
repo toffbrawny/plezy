@@ -808,7 +808,8 @@
     "libraries": "Media",
     "downloads": "Downloads",
     "liveTv": "Live TV",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "Live TV",

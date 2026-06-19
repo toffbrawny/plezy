@@ -47,6 +47,7 @@ import 'providers/multi_server_provider.dart';
 import 'providers/theme_provider.dart';
 import 'providers/download_provider.dart';
 import 'providers/watchlist_provider.dart';
+import 'providers/seer_provider.dart';
 import 'providers/offline_mode_provider.dart';
 import 'providers/offline_watch_provider.dart';
 import 'providers/shader_provider.dart';
@@ -781,6 +782,19 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
           update: (context, activeProfile, previous) {
             final provider = previous ?? WatchlistProvider(database: _appDatabase);
             provider.setActiveProfileId(activeProfile.activeId);
+            return provider;
+          },
+        ),
+        // Seer (Jellyseerr/Overseerr) provider — session-scoped to the
+        // active media-server user.
+        ChangeNotifierProxyProvider<ActiveProfileProvider, SeerProvider>(
+          create: (context) => SeerProvider(database: _appDatabase),
+          update: (context, activeProfile, previous) {
+            final provider = previous ?? SeerProvider(database: _appDatabase);
+            // Derive serverId/userId from the active profile's connection
+            // For now, we use the profile ID as a proxy — full wiring
+            // would extract the actual Jellyfin/Plex user id.
+            provider.setActiveSession(activeProfile.activeId, activeProfile.activeId);
             return provider;
           },
         ),

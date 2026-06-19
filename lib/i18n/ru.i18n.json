@@ -808,7 +808,8 @@
     "libraries": "Библиотеки",
     "downloads": "Загрузки",
     "liveTv": "ТВ в прямом эфире",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "ТВ в прямом эфире",

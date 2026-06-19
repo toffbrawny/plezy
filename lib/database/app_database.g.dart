@@ -6515,6 +6515,1505 @@ class WatchlistItemsCompanion extends UpdateCompanion<WatchlistItem> {
   }
 }
 
+class $SeerConfigTable extends SeerConfig
+    with TableInfo<$SeerConfigTable, SeerConfigItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SeerConfigTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _serverIdMeta = const VerificationMeta(
+    'serverId',
+  );
+  @override
+  late final GeneratedColumn<String> serverId = GeneratedColumn<String>(
+    'server_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  @override
+  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
+    'user_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _seerUrlMeta = const VerificationMeta(
+    'seerUrl',
+  );
+  @override
+  late final GeneratedColumn<String> seerUrl = GeneratedColumn<String>(
+    'seer_url',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _cookieMeta = const VerificationMeta('cookie');
+  @override
+  late final GeneratedColumn<String> cookie = GeneratedColumn<String>(
+    'cookie',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _usernameMeta = const VerificationMeta(
+    'username',
+  );
+  @override
+  late final GeneratedColumn<String> username = GeneratedColumn<String>(
+    'username',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _permissionsMeta = const VerificationMeta(
+    'permissions',
+  );
+  @override
+  late final GeneratedColumn<int> permissions = GeneratedColumn<int>(
+    'permissions',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _isLoggedInMeta = const VerificationMeta(
+    'isLoggedIn',
+  );
+  @override
+  late final GeneratedColumn<bool> isLoggedIn = GeneratedColumn<bool>(
+    'is_logged_in',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_logged_in" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _cachedAtMeta = const VerificationMeta(
+    'cachedAt',
+  );
+  @override
+  late final GeneratedColumn<int> cachedAt = GeneratedColumn<int>(
+    'cached_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    serverId,
+    userId,
+    seerUrl,
+    cookie,
+    username,
+    permissions,
+    isLoggedIn,
+    cachedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'seer_config';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SeerConfigItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('server_id')) {
+      context.handle(
+        _serverIdMeta,
+        serverId.isAcceptableOrUnknown(data['server_id']!, _serverIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_serverIdMeta);
+    }
+    if (data.containsKey('user_id')) {
+      context.handle(
+        _userIdMeta,
+        userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_userIdMeta);
+    }
+    if (data.containsKey('seer_url')) {
+      context.handle(
+        _seerUrlMeta,
+        seerUrl.isAcceptableOrUnknown(data['seer_url']!, _seerUrlMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_seerUrlMeta);
+    }
+    if (data.containsKey('cookie')) {
+      context.handle(
+        _cookieMeta,
+        cookie.isAcceptableOrUnknown(data['cookie']!, _cookieMeta),
+      );
+    }
+    if (data.containsKey('username')) {
+      context.handle(
+        _usernameMeta,
+        username.isAcceptableOrUnknown(data['username']!, _usernameMeta),
+      );
+    }
+    if (data.containsKey('permissions')) {
+      context.handle(
+        _permissionsMeta,
+        permissions.isAcceptableOrUnknown(
+          data['permissions']!,
+          _permissionsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('is_logged_in')) {
+      context.handle(
+        _isLoggedInMeta,
+        isLoggedIn.isAcceptableOrUnknown(
+          data['is_logged_in']!,
+          _isLoggedInMeta,
+        ),
+      );
+    }
+    if (data.containsKey('cached_at')) {
+      context.handle(
+        _cachedAtMeta,
+        cachedAt.isAcceptableOrUnknown(data['cached_at']!, _cachedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_cachedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {serverId, userId};
+  @override
+  SeerConfigItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SeerConfigItem(
+      serverId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}server_id'],
+      )!,
+      userId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}user_id'],
+      )!,
+      seerUrl: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}seer_url'],
+      )!,
+      cookie: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}cookie'],
+      ),
+      username: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}username'],
+      ),
+      permissions: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}permissions'],
+      )!,
+      isLoggedIn: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_logged_in'],
+      )!,
+      cachedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}cached_at'],
+      )!,
+    );
+  }
+
+  @override
+  $SeerConfigTable createAlias(String alias) {
+    return $SeerConfigTable(attachedDatabase, alias);
+  }
+}
+
+class SeerConfigItem extends DataClass implements Insertable<SeerConfigItem> {
+  final String serverId;
+  final String userId;
+  final String seerUrl;
+  final String? cookie;
+  final String? username;
+  final int permissions;
+  final bool isLoggedIn;
+  final int cachedAt;
+  const SeerConfigItem({
+    required this.serverId,
+    required this.userId,
+    required this.seerUrl,
+    this.cookie,
+    this.username,
+    required this.permissions,
+    required this.isLoggedIn,
+    required this.cachedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['server_id'] = Variable<String>(serverId);
+    map['user_id'] = Variable<String>(userId);
+    map['seer_url'] = Variable<String>(seerUrl);
+    if (!nullToAbsent || cookie != null) {
+      map['cookie'] = Variable<String>(cookie);
+    }
+    if (!nullToAbsent || username != null) {
+      map['username'] = Variable<String>(username);
+    }
+    map['permissions'] = Variable<int>(permissions);
+    map['is_logged_in'] = Variable<bool>(isLoggedIn);
+    map['cached_at'] = Variable<int>(cachedAt);
+    return map;
+  }
+
+  SeerConfigCompanion toCompanion(bool nullToAbsent) {
+    return SeerConfigCompanion(
+      serverId: Value(serverId),
+      userId: Value(userId),
+      seerUrl: Value(seerUrl),
+      cookie: cookie == null && nullToAbsent
+          ? const Value.absent()
+          : Value(cookie),
+      username: username == null && nullToAbsent
+          ? const Value.absent()
+          : Value(username),
+      permissions: Value(permissions),
+      isLoggedIn: Value(isLoggedIn),
+      cachedAt: Value(cachedAt),
+    );
+  }
+
+  factory SeerConfigItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SeerConfigItem(
+      serverId: serializer.fromJson<String>(json['serverId']),
+      userId: serializer.fromJson<String>(json['userId']),
+      seerUrl: serializer.fromJson<String>(json['seerUrl']),
+      cookie: serializer.fromJson<String?>(json['cookie']),
+      username: serializer.fromJson<String?>(json['username']),
+      permissions: serializer.fromJson<int>(json['permissions']),
+      isLoggedIn: serializer.fromJson<bool>(json['isLoggedIn']),
+      cachedAt: serializer.fromJson<int>(json['cachedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'serverId': serializer.toJson<String>(serverId),
+      'userId': serializer.toJson<String>(userId),
+      'seerUrl': serializer.toJson<String>(seerUrl),
+      'cookie': serializer.toJson<String?>(cookie),
+      'username': serializer.toJson<String?>(username),
+      'permissions': serializer.toJson<int>(permissions),
+      'isLoggedIn': serializer.toJson<bool>(isLoggedIn),
+      'cachedAt': serializer.toJson<int>(cachedAt),
+    };
+  }
+
+  SeerConfigItem copyWith({
+    String? serverId,
+    String? userId,
+    String? seerUrl,
+    Value<String?> cookie = const Value.absent(),
+    Value<String?> username = const Value.absent(),
+    int? permissions,
+    bool? isLoggedIn,
+    int? cachedAt,
+  }) => SeerConfigItem(
+    serverId: serverId ?? this.serverId,
+    userId: userId ?? this.userId,
+    seerUrl: seerUrl ?? this.seerUrl,
+    cookie: cookie.present ? cookie.value : this.cookie,
+    username: username.present ? username.value : this.username,
+    permissions: permissions ?? this.permissions,
+    isLoggedIn: isLoggedIn ?? this.isLoggedIn,
+    cachedAt: cachedAt ?? this.cachedAt,
+  );
+  SeerConfigItem copyWithCompanion(SeerConfigCompanion data) {
+    return SeerConfigItem(
+      serverId: data.serverId.present ? data.serverId.value : this.serverId,
+      userId: data.userId.present ? data.userId.value : this.userId,
+      seerUrl: data.seerUrl.present ? data.seerUrl.value : this.seerUrl,
+      cookie: data.cookie.present ? data.cookie.value : this.cookie,
+      username: data.username.present ? data.username.value : this.username,
+      permissions: data.permissions.present
+          ? data.permissions.value
+          : this.permissions,
+      isLoggedIn: data.isLoggedIn.present
+          ? data.isLoggedIn.value
+          : this.isLoggedIn,
+      cachedAt: data.cachedAt.present ? data.cachedAt.value : this.cachedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeerConfigItem(')
+          ..write('serverId: $serverId, ')
+          ..write('userId: $userId, ')
+          ..write('seerUrl: $seerUrl, ')
+          ..write('cookie: $cookie, ')
+          ..write('username: $username, ')
+          ..write('permissions: $permissions, ')
+          ..write('isLoggedIn: $isLoggedIn, ')
+          ..write('cachedAt: $cachedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    serverId,
+    userId,
+    seerUrl,
+    cookie,
+    username,
+    permissions,
+    isLoggedIn,
+    cachedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SeerConfigItem &&
+          other.serverId == this.serverId &&
+          other.userId == this.userId &&
+          other.seerUrl == this.seerUrl &&
+          other.cookie == this.cookie &&
+          other.username == this.username &&
+          other.permissions == this.permissions &&
+          other.isLoggedIn == this.isLoggedIn &&
+          other.cachedAt == this.cachedAt);
+}
+
+class SeerConfigCompanion extends UpdateCompanion<SeerConfigItem> {
+  final Value<String> serverId;
+  final Value<String> userId;
+  final Value<String> seerUrl;
+  final Value<String?> cookie;
+  final Value<String?> username;
+  final Value<int> permissions;
+  final Value<bool> isLoggedIn;
+  final Value<int> cachedAt;
+  final Value<int> rowid;
+  const SeerConfigCompanion({
+    this.serverId = const Value.absent(),
+    this.userId = const Value.absent(),
+    this.seerUrl = const Value.absent(),
+    this.cookie = const Value.absent(),
+    this.username = const Value.absent(),
+    this.permissions = const Value.absent(),
+    this.isLoggedIn = const Value.absent(),
+    this.cachedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SeerConfigCompanion.insert({
+    required String serverId,
+    required String userId,
+    required String seerUrl,
+    this.cookie = const Value.absent(),
+    this.username = const Value.absent(),
+    this.permissions = const Value.absent(),
+    this.isLoggedIn = const Value.absent(),
+    required int cachedAt,
+    this.rowid = const Value.absent(),
+  }) : serverId = Value(serverId),
+       userId = Value(userId),
+       seerUrl = Value(seerUrl),
+       cachedAt = Value(cachedAt);
+  static Insertable<SeerConfigItem> custom({
+    Expression<String>? serverId,
+    Expression<String>? userId,
+    Expression<String>? seerUrl,
+    Expression<String>? cookie,
+    Expression<String>? username,
+    Expression<int>? permissions,
+    Expression<bool>? isLoggedIn,
+    Expression<int>? cachedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (serverId != null) 'server_id': serverId,
+      if (userId != null) 'user_id': userId,
+      if (seerUrl != null) 'seer_url': seerUrl,
+      if (cookie != null) 'cookie': cookie,
+      if (username != null) 'username': username,
+      if (permissions != null) 'permissions': permissions,
+      if (isLoggedIn != null) 'is_logged_in': isLoggedIn,
+      if (cachedAt != null) 'cached_at': cachedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SeerConfigCompanion copyWith({
+    Value<String>? serverId,
+    Value<String>? userId,
+    Value<String>? seerUrl,
+    Value<String?>? cookie,
+    Value<String?>? username,
+    Value<int>? permissions,
+    Value<bool>? isLoggedIn,
+    Value<int>? cachedAt,
+    Value<int>? rowid,
+  }) {
+    return SeerConfigCompanion(
+      serverId: serverId ?? this.serverId,
+      userId: userId ?? this.userId,
+      seerUrl: seerUrl ?? this.seerUrl,
+      cookie: cookie ?? this.cookie,
+      username: username ?? this.username,
+      permissions: permissions ?? this.permissions,
+      isLoggedIn: isLoggedIn ?? this.isLoggedIn,
+      cachedAt: cachedAt ?? this.cachedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (serverId.present) {
+      map['server_id'] = Variable<String>(serverId.value);
+    }
+    if (userId.present) {
+      map['user_id'] = Variable<String>(userId.value);
+    }
+    if (seerUrl.present) {
+      map['seer_url'] = Variable<String>(seerUrl.value);
+    }
+    if (cookie.present) {
+      map['cookie'] = Variable<String>(cookie.value);
+    }
+    if (username.present) {
+      map['username'] = Variable<String>(username.value);
+    }
+    if (permissions.present) {
+      map['permissions'] = Variable<int>(permissions.value);
+    }
+    if (isLoggedIn.present) {
+      map['is_logged_in'] = Variable<bool>(isLoggedIn.value);
+    }
+    if (cachedAt.present) {
+      map['cached_at'] = Variable<int>(cachedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeerConfigCompanion(')
+          ..write('serverId: $serverId, ')
+          ..write('userId: $userId, ')
+          ..write('seerUrl: $seerUrl, ')
+          ..write('cookie: $cookie, ')
+          ..write('username: $username, ')
+          ..write('permissions: $permissions, ')
+          ..write('isLoggedIn: $isLoggedIn, ')
+          ..write('cachedAt: $cachedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SeerRequestsTable extends SeerRequests
+    with TableInfo<$SeerRequestsTable, SeerRequestItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SeerRequestsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _serverIdMeta = const VerificationMeta(
+    'serverId',
+  );
+  @override
+  late final GeneratedColumn<String> serverId = GeneratedColumn<String>(
+    'server_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  @override
+  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
+    'user_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _requestIdMeta = const VerificationMeta(
+    'requestId',
+  );
+  @override
+  late final GeneratedColumn<int> requestId = GeneratedColumn<int>(
+    'request_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<int> status = GeneratedColumn<int>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _mediaTypeMeta = const VerificationMeta(
+    'mediaType',
+  );
+  @override
+  late final GeneratedColumn<String> mediaType = GeneratedColumn<String>(
+    'media_type',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _tmdbIdMeta = const VerificationMeta('tmdbId');
+  @override
+  late final GeneratedColumn<int> tmdbId = GeneratedColumn<int>(
+    'tmdb_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _posterPathMeta = const VerificationMeta(
+    'posterPath',
+  );
+  @override
+  late final GeneratedColumn<String> posterPath = GeneratedColumn<String>(
+    'poster_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _backdropPathMeta = const VerificationMeta(
+    'backdropPath',
+  );
+  @override
+  late final GeneratedColumn<String> backdropPath = GeneratedColumn<String>(
+    'backdrop_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _releaseDateMeta = const VerificationMeta(
+    'releaseDate',
+  );
+  @override
+  late final GeneratedColumn<String> releaseDate = GeneratedColumn<String>(
+    'release_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _requestedByNameMeta = const VerificationMeta(
+    'requestedByName',
+  );
+  @override
+  late final GeneratedColumn<String> requestedByName = GeneratedColumn<String>(
+    'requested_by_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _requestedByAvatarMeta = const VerificationMeta(
+    'requestedByAvatar',
+  );
+  @override
+  late final GeneratedColumn<String> requestedByAvatar =
+      GeneratedColumn<String>(
+        'requested_by_avatar',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _is4kMeta = const VerificationMeta('is4k');
+  @override
+  late final GeneratedColumn<bool> is4k = GeneratedColumn<bool>(
+    'is4k',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is4k" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _mediaStatusMeta = const VerificationMeta(
+    'mediaStatus',
+  );
+  @override
+  late final GeneratedColumn<int> mediaStatus = GeneratedColumn<int>(
+    'media_status',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _seasonsMeta = const VerificationMeta(
+    'seasons',
+  );
+  @override
+  late final GeneratedColumn<String> seasons = GeneratedColumn<String>(
+    'seasons',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _cachedAtMeta = const VerificationMeta(
+    'cachedAt',
+  );
+  @override
+  late final GeneratedColumn<int> cachedAt = GeneratedColumn<int>(
+    'cached_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    serverId,
+    userId,
+    requestId,
+    status,
+    mediaType,
+    tmdbId,
+    title,
+    posterPath,
+    backdropPath,
+    releaseDate,
+    requestedByName,
+    requestedByAvatar,
+    is4k,
+    mediaStatus,
+    seasons,
+    cachedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'seer_requests';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SeerRequestItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('server_id')) {
+      context.handle(
+        _serverIdMeta,
+        serverId.isAcceptableOrUnknown(data['server_id']!, _serverIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_serverIdMeta);
+    }
+    if (data.containsKey('user_id')) {
+      context.handle(
+        _userIdMeta,
+        userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_userIdMeta);
+    }
+    if (data.containsKey('request_id')) {
+      context.handle(
+        _requestIdMeta,
+        requestId.isAcceptableOrUnknown(data['request_id']!, _requestIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_requestIdMeta);
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    if (data.containsKey('media_type')) {
+      context.handle(
+        _mediaTypeMeta,
+        mediaType.isAcceptableOrUnknown(data['media_type']!, _mediaTypeMeta),
+      );
+    }
+    if (data.containsKey('tmdb_id')) {
+      context.handle(
+        _tmdbIdMeta,
+        tmdbId.isAcceptableOrUnknown(data['tmdb_id']!, _tmdbIdMeta),
+      );
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    }
+    if (data.containsKey('poster_path')) {
+      context.handle(
+        _posterPathMeta,
+        posterPath.isAcceptableOrUnknown(data['poster_path']!, _posterPathMeta),
+      );
+    }
+    if (data.containsKey('backdrop_path')) {
+      context.handle(
+        _backdropPathMeta,
+        backdropPath.isAcceptableOrUnknown(
+          data['backdrop_path']!,
+          _backdropPathMeta,
+        ),
+      );
+    }
+    if (data.containsKey('release_date')) {
+      context.handle(
+        _releaseDateMeta,
+        releaseDate.isAcceptableOrUnknown(
+          data['release_date']!,
+          _releaseDateMeta,
+        ),
+      );
+    }
+    if (data.containsKey('requested_by_name')) {
+      context.handle(
+        _requestedByNameMeta,
+        requestedByName.isAcceptableOrUnknown(
+          data['requested_by_name']!,
+          _requestedByNameMeta,
+        ),
+      );
+    }
+    if (data.containsKey('requested_by_avatar')) {
+      context.handle(
+        _requestedByAvatarMeta,
+        requestedByAvatar.isAcceptableOrUnknown(
+          data['requested_by_avatar']!,
+          _requestedByAvatarMeta,
+        ),
+      );
+    }
+    if (data.containsKey('is4k')) {
+      context.handle(
+        _is4kMeta,
+        is4k.isAcceptableOrUnknown(data['is4k']!, _is4kMeta),
+      );
+    }
+    if (data.containsKey('media_status')) {
+      context.handle(
+        _mediaStatusMeta,
+        mediaStatus.isAcceptableOrUnknown(
+          data['media_status']!,
+          _mediaStatusMeta,
+        ),
+      );
+    }
+    if (data.containsKey('seasons')) {
+      context.handle(
+        _seasonsMeta,
+        seasons.isAcceptableOrUnknown(data['seasons']!, _seasonsMeta),
+      );
+    }
+    if (data.containsKey('cached_at')) {
+      context.handle(
+        _cachedAtMeta,
+        cachedAt.isAcceptableOrUnknown(data['cached_at']!, _cachedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_cachedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {serverId, userId, requestId};
+  @override
+  SeerRequestItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SeerRequestItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      serverId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}server_id'],
+      )!,
+      userId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}user_id'],
+      )!,
+      requestId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}request_id'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}status'],
+      )!,
+      mediaType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}media_type'],
+      ),
+      tmdbId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tmdb_id'],
+      ),
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      ),
+      posterPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}poster_path'],
+      ),
+      backdropPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}backdrop_path'],
+      ),
+      releaseDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}release_date'],
+      ),
+      requestedByName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}requested_by_name'],
+      ),
+      requestedByAvatar: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}requested_by_avatar'],
+      ),
+      is4k: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is4k'],
+      )!,
+      mediaStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}media_status'],
+      ),
+      seasons: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}seasons'],
+      ),
+      cachedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}cached_at'],
+      )!,
+    );
+  }
+
+  @override
+  $SeerRequestsTable createAlias(String alias) {
+    return $SeerRequestsTable(attachedDatabase, alias);
+  }
+}
+
+class SeerRequestItem extends DataClass implements Insertable<SeerRequestItem> {
+  final int id;
+  final String serverId;
+  final String userId;
+  final int requestId;
+  final int status;
+  final String? mediaType;
+  final int? tmdbId;
+  final String? title;
+  final String? posterPath;
+  final String? backdropPath;
+  final String? releaseDate;
+  final String? requestedByName;
+  final String? requestedByAvatar;
+  final bool is4k;
+  final int? mediaStatus;
+  final String? seasons;
+  final int cachedAt;
+  const SeerRequestItem({
+    required this.id,
+    required this.serverId,
+    required this.userId,
+    required this.requestId,
+    required this.status,
+    this.mediaType,
+    this.tmdbId,
+    this.title,
+    this.posterPath,
+    this.backdropPath,
+    this.releaseDate,
+    this.requestedByName,
+    this.requestedByAvatar,
+    required this.is4k,
+    this.mediaStatus,
+    this.seasons,
+    required this.cachedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['server_id'] = Variable<String>(serverId);
+    map['user_id'] = Variable<String>(userId);
+    map['request_id'] = Variable<int>(requestId);
+    map['status'] = Variable<int>(status);
+    if (!nullToAbsent || mediaType != null) {
+      map['media_type'] = Variable<String>(mediaType);
+    }
+    if (!nullToAbsent || tmdbId != null) {
+      map['tmdb_id'] = Variable<int>(tmdbId);
+    }
+    if (!nullToAbsent || title != null) {
+      map['title'] = Variable<String>(title);
+    }
+    if (!nullToAbsent || posterPath != null) {
+      map['poster_path'] = Variable<String>(posterPath);
+    }
+    if (!nullToAbsent || backdropPath != null) {
+      map['backdrop_path'] = Variable<String>(backdropPath);
+    }
+    if (!nullToAbsent || releaseDate != null) {
+      map['release_date'] = Variable<String>(releaseDate);
+    }
+    if (!nullToAbsent || requestedByName != null) {
+      map['requested_by_name'] = Variable<String>(requestedByName);
+    }
+    if (!nullToAbsent || requestedByAvatar != null) {
+      map['requested_by_avatar'] = Variable<String>(requestedByAvatar);
+    }
+    map['is4k'] = Variable<bool>(is4k);
+    if (!nullToAbsent || mediaStatus != null) {
+      map['media_status'] = Variable<int>(mediaStatus);
+    }
+    if (!nullToAbsent || seasons != null) {
+      map['seasons'] = Variable<String>(seasons);
+    }
+    map['cached_at'] = Variable<int>(cachedAt);
+    return map;
+  }
+
+  SeerRequestsCompanion toCompanion(bool nullToAbsent) {
+    return SeerRequestsCompanion(
+      id: Value(id),
+      serverId: Value(serverId),
+      userId: Value(userId),
+      requestId: Value(requestId),
+      status: Value(status),
+      mediaType: mediaType == null && nullToAbsent
+          ? const Value.absent()
+          : Value(mediaType),
+      tmdbId: tmdbId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tmdbId),
+      title: title == null && nullToAbsent
+          ? const Value.absent()
+          : Value(title),
+      posterPath: posterPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(posterPath),
+      backdropPath: backdropPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(backdropPath),
+      releaseDate: releaseDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(releaseDate),
+      requestedByName: requestedByName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(requestedByName),
+      requestedByAvatar: requestedByAvatar == null && nullToAbsent
+          ? const Value.absent()
+          : Value(requestedByAvatar),
+      is4k: Value(is4k),
+      mediaStatus: mediaStatus == null && nullToAbsent
+          ? const Value.absent()
+          : Value(mediaStatus),
+      seasons: seasons == null && nullToAbsent
+          ? const Value.absent()
+          : Value(seasons),
+      cachedAt: Value(cachedAt),
+    );
+  }
+
+  factory SeerRequestItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SeerRequestItem(
+      id: serializer.fromJson<int>(json['id']),
+      serverId: serializer.fromJson<String>(json['serverId']),
+      userId: serializer.fromJson<String>(json['userId']),
+      requestId: serializer.fromJson<int>(json['requestId']),
+      status: serializer.fromJson<int>(json['status']),
+      mediaType: serializer.fromJson<String?>(json['mediaType']),
+      tmdbId: serializer.fromJson<int?>(json['tmdbId']),
+      title: serializer.fromJson<String?>(json['title']),
+      posterPath: serializer.fromJson<String?>(json['posterPath']),
+      backdropPath: serializer.fromJson<String?>(json['backdropPath']),
+      releaseDate: serializer.fromJson<String?>(json['releaseDate']),
+      requestedByName: serializer.fromJson<String?>(json['requestedByName']),
+      requestedByAvatar: serializer.fromJson<String?>(
+        json['requestedByAvatar'],
+      ),
+      is4k: serializer.fromJson<bool>(json['is4k']),
+      mediaStatus: serializer.fromJson<int?>(json['mediaStatus']),
+      seasons: serializer.fromJson<String?>(json['seasons']),
+      cachedAt: serializer.fromJson<int>(json['cachedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'serverId': serializer.toJson<String>(serverId),
+      'userId': serializer.toJson<String>(userId),
+      'requestId': serializer.toJson<int>(requestId),
+      'status': serializer.toJson<int>(status),
+      'mediaType': serializer.toJson<String?>(mediaType),
+      'tmdbId': serializer.toJson<int?>(tmdbId),
+      'title': serializer.toJson<String?>(title),
+      'posterPath': serializer.toJson<String?>(posterPath),
+      'backdropPath': serializer.toJson<String?>(backdropPath),
+      'releaseDate': serializer.toJson<String?>(releaseDate),
+      'requestedByName': serializer.toJson<String?>(requestedByName),
+      'requestedByAvatar': serializer.toJson<String?>(requestedByAvatar),
+      'is4k': serializer.toJson<bool>(is4k),
+      'mediaStatus': serializer.toJson<int?>(mediaStatus),
+      'seasons': serializer.toJson<String?>(seasons),
+      'cachedAt': serializer.toJson<int>(cachedAt),
+    };
+  }
+
+  SeerRequestItem copyWith({
+    int? id,
+    String? serverId,
+    String? userId,
+    int? requestId,
+    int? status,
+    Value<String?> mediaType = const Value.absent(),
+    Value<int?> tmdbId = const Value.absent(),
+    Value<String?> title = const Value.absent(),
+    Value<String?> posterPath = const Value.absent(),
+    Value<String?> backdropPath = const Value.absent(),
+    Value<String?> releaseDate = const Value.absent(),
+    Value<String?> requestedByName = const Value.absent(),
+    Value<String?> requestedByAvatar = const Value.absent(),
+    bool? is4k,
+    Value<int?> mediaStatus = const Value.absent(),
+    Value<String?> seasons = const Value.absent(),
+    int? cachedAt,
+  }) => SeerRequestItem(
+    id: id ?? this.id,
+    serverId: serverId ?? this.serverId,
+    userId: userId ?? this.userId,
+    requestId: requestId ?? this.requestId,
+    status: status ?? this.status,
+    mediaType: mediaType.present ? mediaType.value : this.mediaType,
+    tmdbId: tmdbId.present ? tmdbId.value : this.tmdbId,
+    title: title.present ? title.value : this.title,
+    posterPath: posterPath.present ? posterPath.value : this.posterPath,
+    backdropPath: backdropPath.present ? backdropPath.value : this.backdropPath,
+    releaseDate: releaseDate.present ? releaseDate.value : this.releaseDate,
+    requestedByName: requestedByName.present
+        ? requestedByName.value
+        : this.requestedByName,
+    requestedByAvatar: requestedByAvatar.present
+        ? requestedByAvatar.value
+        : this.requestedByAvatar,
+    is4k: is4k ?? this.is4k,
+    mediaStatus: mediaStatus.present ? mediaStatus.value : this.mediaStatus,
+    seasons: seasons.present ? seasons.value : this.seasons,
+    cachedAt: cachedAt ?? this.cachedAt,
+  );
+  SeerRequestItem copyWithCompanion(SeerRequestsCompanion data) {
+    return SeerRequestItem(
+      id: data.id.present ? data.id.value : this.id,
+      serverId: data.serverId.present ? data.serverId.value : this.serverId,
+      userId: data.userId.present ? data.userId.value : this.userId,
+      requestId: data.requestId.present ? data.requestId.value : this.requestId,
+      status: data.status.present ? data.status.value : this.status,
+      mediaType: data.mediaType.present ? data.mediaType.value : this.mediaType,
+      tmdbId: data.tmdbId.present ? data.tmdbId.value : this.tmdbId,
+      title: data.title.present ? data.title.value : this.title,
+      posterPath: data.posterPath.present
+          ? data.posterPath.value
+          : this.posterPath,
+      backdropPath: data.backdropPath.present
+          ? data.backdropPath.value
+          : this.backdropPath,
+      releaseDate: data.releaseDate.present
+          ? data.releaseDate.value
+          : this.releaseDate,
+      requestedByName: data.requestedByName.present
+          ? data.requestedByName.value
+          : this.requestedByName,
+      requestedByAvatar: data.requestedByAvatar.present
+          ? data.requestedByAvatar.value
+          : this.requestedByAvatar,
+      is4k: data.is4k.present ? data.is4k.value : this.is4k,
+      mediaStatus: data.mediaStatus.present
+          ? data.mediaStatus.value
+          : this.mediaStatus,
+      seasons: data.seasons.present ? data.seasons.value : this.seasons,
+      cachedAt: data.cachedAt.present ? data.cachedAt.value : this.cachedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeerRequestItem(')
+          ..write('id: $id, ')
+          ..write('serverId: $serverId, ')
+          ..write('userId: $userId, ')
+          ..write('requestId: $requestId, ')
+          ..write('status: $status, ')
+          ..write('mediaType: $mediaType, ')
+          ..write('tmdbId: $tmdbId, ')
+          ..write('title: $title, ')
+          ..write('posterPath: $posterPath, ')
+          ..write('backdropPath: $backdropPath, ')
+          ..write('releaseDate: $releaseDate, ')
+          ..write('requestedByName: $requestedByName, ')
+          ..write('requestedByAvatar: $requestedByAvatar, ')
+          ..write('is4k: $is4k, ')
+          ..write('mediaStatus: $mediaStatus, ')
+          ..write('seasons: $seasons, ')
+          ..write('cachedAt: $cachedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    serverId,
+    userId,
+    requestId,
+    status,
+    mediaType,
+    tmdbId,
+    title,
+    posterPath,
+    backdropPath,
+    releaseDate,
+    requestedByName,
+    requestedByAvatar,
+    is4k,
+    mediaStatus,
+    seasons,
+    cachedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SeerRequestItem &&
+          other.id == this.id &&
+          other.serverId == this.serverId &&
+          other.userId == this.userId &&
+          other.requestId == this.requestId &&
+          other.status == this.status &&
+          other.mediaType == this.mediaType &&
+          other.tmdbId == this.tmdbId &&
+          other.title == this.title &&
+          other.posterPath == this.posterPath &&
+          other.backdropPath == this.backdropPath &&
+          other.releaseDate == this.releaseDate &&
+          other.requestedByName == this.requestedByName &&
+          other.requestedByAvatar == this.requestedByAvatar &&
+          other.is4k == this.is4k &&
+          other.mediaStatus == this.mediaStatus &&
+          other.seasons == this.seasons &&
+          other.cachedAt == this.cachedAt);
+}
+
+class SeerRequestsCompanion extends UpdateCompanion<SeerRequestItem> {
+  final Value<int> id;
+  final Value<String> serverId;
+  final Value<String> userId;
+  final Value<int> requestId;
+  final Value<int> status;
+  final Value<String?> mediaType;
+  final Value<int?> tmdbId;
+  final Value<String?> title;
+  final Value<String?> posterPath;
+  final Value<String?> backdropPath;
+  final Value<String?> releaseDate;
+  final Value<String?> requestedByName;
+  final Value<String?> requestedByAvatar;
+  final Value<bool> is4k;
+  final Value<int?> mediaStatus;
+  final Value<String?> seasons;
+  final Value<int> cachedAt;
+  final Value<int> rowid;
+  const SeerRequestsCompanion({
+    this.id = const Value.absent(),
+    this.serverId = const Value.absent(),
+    this.userId = const Value.absent(),
+    this.requestId = const Value.absent(),
+    this.status = const Value.absent(),
+    this.mediaType = const Value.absent(),
+    this.tmdbId = const Value.absent(),
+    this.title = const Value.absent(),
+    this.posterPath = const Value.absent(),
+    this.backdropPath = const Value.absent(),
+    this.releaseDate = const Value.absent(),
+    this.requestedByName = const Value.absent(),
+    this.requestedByAvatar = const Value.absent(),
+    this.is4k = const Value.absent(),
+    this.mediaStatus = const Value.absent(),
+    this.seasons = const Value.absent(),
+    this.cachedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SeerRequestsCompanion.insert({
+    this.id = const Value.absent(),
+    required String serverId,
+    required String userId,
+    required int requestId,
+    this.status = const Value.absent(),
+    this.mediaType = const Value.absent(),
+    this.tmdbId = const Value.absent(),
+    this.title = const Value.absent(),
+    this.posterPath = const Value.absent(),
+    this.backdropPath = const Value.absent(),
+    this.releaseDate = const Value.absent(),
+    this.requestedByName = const Value.absent(),
+    this.requestedByAvatar = const Value.absent(),
+    this.is4k = const Value.absent(),
+    this.mediaStatus = const Value.absent(),
+    this.seasons = const Value.absent(),
+    required int cachedAt,
+    this.rowid = const Value.absent(),
+  }) : serverId = Value(serverId),
+       userId = Value(userId),
+       requestId = Value(requestId),
+       cachedAt = Value(cachedAt);
+  static Insertable<SeerRequestItem> custom({
+    Expression<int>? id,
+    Expression<String>? serverId,
+    Expression<String>? userId,
+    Expression<int>? requestId,
+    Expression<int>? status,
+    Expression<String>? mediaType,
+    Expression<int>? tmdbId,
+    Expression<String>? title,
+    Expression<String>? posterPath,
+    Expression<String>? backdropPath,
+    Expression<String>? releaseDate,
+    Expression<String>? requestedByName,
+    Expression<String>? requestedByAvatar,
+    Expression<bool>? is4k,
+    Expression<int>? mediaStatus,
+    Expression<String>? seasons,
+    Expression<int>? cachedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (serverId != null) 'server_id': serverId,
+      if (userId != null) 'user_id': userId,
+      if (requestId != null) 'request_id': requestId,
+      if (status != null) 'status': status,
+      if (mediaType != null) 'media_type': mediaType,
+      if (tmdbId != null) 'tmdb_id': tmdbId,
+      if (title != null) 'title': title,
+      if (posterPath != null) 'poster_path': posterPath,
+      if (backdropPath != null) 'backdrop_path': backdropPath,
+      if (releaseDate != null) 'release_date': releaseDate,
+      if (requestedByName != null) 'requested_by_name': requestedByName,
+      if (requestedByAvatar != null) 'requested_by_avatar': requestedByAvatar,
+      if (is4k != null) 'is4k': is4k,
+      if (mediaStatus != null) 'media_status': mediaStatus,
+      if (seasons != null) 'seasons': seasons,
+      if (cachedAt != null) 'cached_at': cachedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SeerRequestsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? serverId,
+    Value<String>? userId,
+    Value<int>? requestId,
+    Value<int>? status,
+    Value<String?>? mediaType,
+    Value<int?>? tmdbId,
+    Value<String?>? title,
+    Value<String?>? posterPath,
+    Value<String?>? backdropPath,
+    Value<String?>? releaseDate,
+    Value<String?>? requestedByName,
+    Value<String?>? requestedByAvatar,
+    Value<bool>? is4k,
+    Value<int?>? mediaStatus,
+    Value<String?>? seasons,
+    Value<int>? cachedAt,
+    Value<int>? rowid,
+  }) {
+    return SeerRequestsCompanion(
+      id: id ?? this.id,
+      serverId: serverId ?? this.serverId,
+      userId: userId ?? this.userId,
+      requestId: requestId ?? this.requestId,
+      status: status ?? this.status,
+      mediaType: mediaType ?? this.mediaType,
+      tmdbId: tmdbId ?? this.tmdbId,
+      title: title ?? this.title,
+      posterPath: posterPath ?? this.posterPath,
+      backdropPath: backdropPath ?? this.backdropPath,
+      releaseDate: releaseDate ?? this.releaseDate,
+      requestedByName: requestedByName ?? this.requestedByName,
+      requestedByAvatar: requestedByAvatar ?? this.requestedByAvatar,
+      is4k: is4k ?? this.is4k,
+      mediaStatus: mediaStatus ?? this.mediaStatus,
+      seasons: seasons ?? this.seasons,
+      cachedAt: cachedAt ?? this.cachedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (serverId.present) {
+      map['server_id'] = Variable<String>(serverId.value);
+    }
+    if (userId.present) {
+      map['user_id'] = Variable<String>(userId.value);
+    }
+    if (requestId.present) {
+      map['request_id'] = Variable<int>(requestId.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<int>(status.value);
+    }
+    if (mediaType.present) {
+      map['media_type'] = Variable<String>(mediaType.value);
+    }
+    if (tmdbId.present) {
+      map['tmdb_id'] = Variable<int>(tmdbId.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (posterPath.present) {
+      map['poster_path'] = Variable<String>(posterPath.value);
+    }
+    if (backdropPath.present) {
+      map['backdrop_path'] = Variable<String>(backdropPath.value);
+    }
+    if (releaseDate.present) {
+      map['release_date'] = Variable<String>(releaseDate.value);
+    }
+    if (requestedByName.present) {
+      map['requested_by_name'] = Variable<String>(requestedByName.value);
+    }
+    if (requestedByAvatar.present) {
+      map['requested_by_avatar'] = Variable<String>(requestedByAvatar.value);
+    }
+    if (is4k.present) {
+      map['is4k'] = Variable<bool>(is4k.value);
+    }
+    if (mediaStatus.present) {
+      map['media_status'] = Variable<int>(mediaStatus.value);
+    }
+    if (seasons.present) {
+      map['seasons'] = Variable<String>(seasons.value);
+    }
+    if (cachedAt.present) {
+      map['cached_at'] = Variable<int>(cachedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeerRequestsCompanion(')
+          ..write('id: $id, ')
+          ..write('serverId: $serverId, ')
+          ..write('userId: $userId, ')
+          ..write('requestId: $requestId, ')
+          ..write('status: $status, ')
+          ..write('mediaType: $mediaType, ')
+          ..write('tmdbId: $tmdbId, ')
+          ..write('title: $title, ')
+          ..write('posterPath: $posterPath, ')
+          ..write('backdropPath: $backdropPath, ')
+          ..write('releaseDate: $releaseDate, ')
+          ..write('requestedByName: $requestedByName, ')
+          ..write('requestedByAvatar: $requestedByAvatar, ')
+          ..write('is4k: $is4k, ')
+          ..write('mediaStatus: $mediaStatus, ')
+          ..write('seasons: $seasons, ')
+          ..write('cachedAt: $cachedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -6532,6 +8031,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $ProfileConnectionsTable profileConnections =
       $ProfileConnectionsTable(this);
   late final $WatchlistItemsTable watchlistItems = $WatchlistItemsTable(this);
+  late final $SeerConfigTable seerConfig = $SeerConfigTable(this);
+  late final $SeerRequestsTable seerRequests = $SeerRequestsTable(this);
   late final Index idxDownloadedMediaStatus = Index(
     'idx_downloaded_media_status',
     'CREATE INDEX idx_downloaded_media_status ON downloaded_media (status)',
@@ -6592,6 +8093,14 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     'idx_watchlist_profile_key',
     'CREATE INDEX idx_watchlist_profile_key ON watchlist_items (profile_id, global_key)',
   );
+  late final Index idxSeerConfigSession = Index(
+    'idx_seer_config_session',
+    'CREATE INDEX idx_seer_config_session ON seer_config (server_id, user_id)',
+  );
+  late final Index idxSeerRequestsSession = Index(
+    'idx_seer_requests_session',
+    'CREATE INDEX idx_seer_requests_session ON seer_requests (server_id, user_id)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -6607,6 +8116,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     profiles,
     profileConnections,
     watchlistItems,
+    seerConfig,
+    seerRequests,
     idxDownloadedMediaStatus,
     idxDownloadedMediaServer,
     idxDownloadedMediaParent,
@@ -6622,6 +8133,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     idxProfileConnectionsProfileId,
     idxWatchlistProfile,
     idxWatchlistProfileKey,
+    idxSeerConfigSession,
+    idxSeerRequestsSession,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -9986,6 +11499,707 @@ typedef $$WatchlistItemsTableProcessedTableManager =
       WatchlistItem,
       PrefetchHooks Function()
     >;
+typedef $$SeerConfigTableCreateCompanionBuilder =
+    SeerConfigCompanion Function({
+      required String serverId,
+      required String userId,
+      required String seerUrl,
+      Value<String?> cookie,
+      Value<String?> username,
+      Value<int> permissions,
+      Value<bool> isLoggedIn,
+      required int cachedAt,
+      Value<int> rowid,
+    });
+typedef $$SeerConfigTableUpdateCompanionBuilder =
+    SeerConfigCompanion Function({
+      Value<String> serverId,
+      Value<String> userId,
+      Value<String> seerUrl,
+      Value<String?> cookie,
+      Value<String?> username,
+      Value<int> permissions,
+      Value<bool> isLoggedIn,
+      Value<int> cachedAt,
+      Value<int> rowid,
+    });
+
+class $$SeerConfigTableFilterComposer
+    extends Composer<_$AppDatabase, $SeerConfigTable> {
+  $$SeerConfigTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get serverId => $composableBuilder(
+    column: $table.serverId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get seerUrl => $composableBuilder(
+    column: $table.seerUrl,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get cookie => $composableBuilder(
+    column: $table.cookie,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get username => $composableBuilder(
+    column: $table.username,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get permissions => $composableBuilder(
+    column: $table.permissions,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isLoggedIn => $composableBuilder(
+    column: $table.isLoggedIn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get cachedAt => $composableBuilder(
+    column: $table.cachedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SeerConfigTableOrderingComposer
+    extends Composer<_$AppDatabase, $SeerConfigTable> {
+  $$SeerConfigTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get serverId => $composableBuilder(
+    column: $table.serverId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get seerUrl => $composableBuilder(
+    column: $table.seerUrl,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get cookie => $composableBuilder(
+    column: $table.cookie,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get username => $composableBuilder(
+    column: $table.username,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get permissions => $composableBuilder(
+    column: $table.permissions,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isLoggedIn => $composableBuilder(
+    column: $table.isLoggedIn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get cachedAt => $composableBuilder(
+    column: $table.cachedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SeerConfigTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SeerConfigTable> {
+  $$SeerConfigTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get serverId =>
+      $composableBuilder(column: $table.serverId, builder: (column) => column);
+
+  GeneratedColumn<String> get userId =>
+      $composableBuilder(column: $table.userId, builder: (column) => column);
+
+  GeneratedColumn<String> get seerUrl =>
+      $composableBuilder(column: $table.seerUrl, builder: (column) => column);
+
+  GeneratedColumn<String> get cookie =>
+      $composableBuilder(column: $table.cookie, builder: (column) => column);
+
+  GeneratedColumn<String> get username =>
+      $composableBuilder(column: $table.username, builder: (column) => column);
+
+  GeneratedColumn<int> get permissions => $composableBuilder(
+    column: $table.permissions,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get isLoggedIn => $composableBuilder(
+    column: $table.isLoggedIn,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get cachedAt =>
+      $composableBuilder(column: $table.cachedAt, builder: (column) => column);
+}
+
+class $$SeerConfigTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SeerConfigTable,
+          SeerConfigItem,
+          $$SeerConfigTableFilterComposer,
+          $$SeerConfigTableOrderingComposer,
+          $$SeerConfigTableAnnotationComposer,
+          $$SeerConfigTableCreateCompanionBuilder,
+          $$SeerConfigTableUpdateCompanionBuilder,
+          (
+            SeerConfigItem,
+            BaseReferences<_$AppDatabase, $SeerConfigTable, SeerConfigItem>,
+          ),
+          SeerConfigItem,
+          PrefetchHooks Function()
+        > {
+  $$SeerConfigTableTableManager(_$AppDatabase db, $SeerConfigTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SeerConfigTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SeerConfigTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SeerConfigTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> serverId = const Value.absent(),
+                Value<String> userId = const Value.absent(),
+                Value<String> seerUrl = const Value.absent(),
+                Value<String?> cookie = const Value.absent(),
+                Value<String?> username = const Value.absent(),
+                Value<int> permissions = const Value.absent(),
+                Value<bool> isLoggedIn = const Value.absent(),
+                Value<int> cachedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SeerConfigCompanion(
+                serverId: serverId,
+                userId: userId,
+                seerUrl: seerUrl,
+                cookie: cookie,
+                username: username,
+                permissions: permissions,
+                isLoggedIn: isLoggedIn,
+                cachedAt: cachedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String serverId,
+                required String userId,
+                required String seerUrl,
+                Value<String?> cookie = const Value.absent(),
+                Value<String?> username = const Value.absent(),
+                Value<int> permissions = const Value.absent(),
+                Value<bool> isLoggedIn = const Value.absent(),
+                required int cachedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => SeerConfigCompanion.insert(
+                serverId: serverId,
+                userId: userId,
+                seerUrl: seerUrl,
+                cookie: cookie,
+                username: username,
+                permissions: permissions,
+                isLoggedIn: isLoggedIn,
+                cachedAt: cachedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SeerConfigTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SeerConfigTable,
+      SeerConfigItem,
+      $$SeerConfigTableFilterComposer,
+      $$SeerConfigTableOrderingComposer,
+      $$SeerConfigTableAnnotationComposer,
+      $$SeerConfigTableCreateCompanionBuilder,
+      $$SeerConfigTableUpdateCompanionBuilder,
+      (
+        SeerConfigItem,
+        BaseReferences<_$AppDatabase, $SeerConfigTable, SeerConfigItem>,
+      ),
+      SeerConfigItem,
+      PrefetchHooks Function()
+    >;
+typedef $$SeerRequestsTableCreateCompanionBuilder =
+    SeerRequestsCompanion Function({
+      Value<int> id,
+      required String serverId,
+      required String userId,
+      required int requestId,
+      Value<int> status,
+      Value<String?> mediaType,
+      Value<int?> tmdbId,
+      Value<String?> title,
+      Value<String?> posterPath,
+      Value<String?> backdropPath,
+      Value<String?> releaseDate,
+      Value<String?> requestedByName,
+      Value<String?> requestedByAvatar,
+      Value<bool> is4k,
+      Value<int?> mediaStatus,
+      Value<String?> seasons,
+      required int cachedAt,
+      Value<int> rowid,
+    });
+typedef $$SeerRequestsTableUpdateCompanionBuilder =
+    SeerRequestsCompanion Function({
+      Value<int> id,
+      Value<String> serverId,
+      Value<String> userId,
+      Value<int> requestId,
+      Value<int> status,
+      Value<String?> mediaType,
+      Value<int?> tmdbId,
+      Value<String?> title,
+      Value<String?> posterPath,
+      Value<String?> backdropPath,
+      Value<String?> releaseDate,
+      Value<String?> requestedByName,
+      Value<String?> requestedByAvatar,
+      Value<bool> is4k,
+      Value<int?> mediaStatus,
+      Value<String?> seasons,
+      Value<int> cachedAt,
+      Value<int> rowid,
+    });
+
+class $$SeerRequestsTableFilterComposer
+    extends Composer<_$AppDatabase, $SeerRequestsTable> {
+  $$SeerRequestsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get serverId => $composableBuilder(
+    column: $table.serverId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get requestId => $composableBuilder(
+    column: $table.requestId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get mediaType => $composableBuilder(
+    column: $table.mediaType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get tmdbId => $composableBuilder(
+    column: $table.tmdbId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get releaseDate => $composableBuilder(
+    column: $table.releaseDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get requestedByName => $composableBuilder(
+    column: $table.requestedByName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get requestedByAvatar => $composableBuilder(
+    column: $table.requestedByAvatar,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get is4k => $composableBuilder(
+    column: $table.is4k,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get mediaStatus => $composableBuilder(
+    column: $table.mediaStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get seasons => $composableBuilder(
+    column: $table.seasons,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get cachedAt => $composableBuilder(
+    column: $table.cachedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SeerRequestsTableOrderingComposer
+    extends Composer<_$AppDatabase, $SeerRequestsTable> {
+  $$SeerRequestsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get serverId => $composableBuilder(
+    column: $table.serverId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get requestId => $composableBuilder(
+    column: $table.requestId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get mediaType => $composableBuilder(
+    column: $table.mediaType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get tmdbId => $composableBuilder(
+    column: $table.tmdbId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get releaseDate => $composableBuilder(
+    column: $table.releaseDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get requestedByName => $composableBuilder(
+    column: $table.requestedByName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get requestedByAvatar => $composableBuilder(
+    column: $table.requestedByAvatar,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get is4k => $composableBuilder(
+    column: $table.is4k,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get mediaStatus => $composableBuilder(
+    column: $table.mediaStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get seasons => $composableBuilder(
+    column: $table.seasons,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get cachedAt => $composableBuilder(
+    column: $table.cachedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SeerRequestsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SeerRequestsTable> {
+  $$SeerRequestsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get serverId =>
+      $composableBuilder(column: $table.serverId, builder: (column) => column);
+
+  GeneratedColumn<String> get userId =>
+      $composableBuilder(column: $table.userId, builder: (column) => column);
+
+  GeneratedColumn<int> get requestId =>
+      $composableBuilder(column: $table.requestId, builder: (column) => column);
+
+  GeneratedColumn<int> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get mediaType =>
+      $composableBuilder(column: $table.mediaType, builder: (column) => column);
+
+  GeneratedColumn<int> get tmdbId =>
+      $composableBuilder(column: $table.tmdbId, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get releaseDate => $composableBuilder(
+    column: $table.releaseDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get requestedByName => $composableBuilder(
+    column: $table.requestedByName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get requestedByAvatar => $composableBuilder(
+    column: $table.requestedByAvatar,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get is4k =>
+      $composableBuilder(column: $table.is4k, builder: (column) => column);
+
+  GeneratedColumn<int> get mediaStatus => $composableBuilder(
+    column: $table.mediaStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get seasons =>
+      $composableBuilder(column: $table.seasons, builder: (column) => column);
+
+  GeneratedColumn<int> get cachedAt =>
+      $composableBuilder(column: $table.cachedAt, builder: (column) => column);
+}
+
+class $$SeerRequestsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SeerRequestsTable,
+          SeerRequestItem,
+          $$SeerRequestsTableFilterComposer,
+          $$SeerRequestsTableOrderingComposer,
+          $$SeerRequestsTableAnnotationComposer,
+          $$SeerRequestsTableCreateCompanionBuilder,
+          $$SeerRequestsTableUpdateCompanionBuilder,
+          (
+            SeerRequestItem,
+            BaseReferences<_$AppDatabase, $SeerRequestsTable, SeerRequestItem>,
+          ),
+          SeerRequestItem,
+          PrefetchHooks Function()
+        > {
+  $$SeerRequestsTableTableManager(_$AppDatabase db, $SeerRequestsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SeerRequestsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SeerRequestsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SeerRequestsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> serverId = const Value.absent(),
+                Value<String> userId = const Value.absent(),
+                Value<int> requestId = const Value.absent(),
+                Value<int> status = const Value.absent(),
+                Value<String?> mediaType = const Value.absent(),
+                Value<int?> tmdbId = const Value.absent(),
+                Value<String?> title = const Value.absent(),
+                Value<String?> posterPath = const Value.absent(),
+                Value<String?> backdropPath = const Value.absent(),
+                Value<String?> releaseDate = const Value.absent(),
+                Value<String?> requestedByName = const Value.absent(),
+                Value<String?> requestedByAvatar = const Value.absent(),
+                Value<bool> is4k = const Value.absent(),
+                Value<int?> mediaStatus = const Value.absent(),
+                Value<String?> seasons = const Value.absent(),
+                Value<int> cachedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SeerRequestsCompanion(
+                id: id,
+                serverId: serverId,
+                userId: userId,
+                requestId: requestId,
+                status: status,
+                mediaType: mediaType,
+                tmdbId: tmdbId,
+                title: title,
+                posterPath: posterPath,
+                backdropPath: backdropPath,
+                releaseDate: releaseDate,
+                requestedByName: requestedByName,
+                requestedByAvatar: requestedByAvatar,
+                is4k: is4k,
+                mediaStatus: mediaStatus,
+                seasons: seasons,
+                cachedAt: cachedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String serverId,
+                required String userId,
+                required int requestId,
+                Value<int> status = const Value.absent(),
+                Value<String?> mediaType = const Value.absent(),
+                Value<int?> tmdbId = const Value.absent(),
+                Value<String?> title = const Value.absent(),
+                Value<String?> posterPath = const Value.absent(),
+                Value<String?> backdropPath = const Value.absent(),
+                Value<String?> releaseDate = const Value.absent(),
+                Value<String?> requestedByName = const Value.absent(),
+                Value<String?> requestedByAvatar = const Value.absent(),
+                Value<bool> is4k = const Value.absent(),
+                Value<int?> mediaStatus = const Value.absent(),
+                Value<String?> seasons = const Value.absent(),
+                required int cachedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => SeerRequestsCompanion.insert(
+                id: id,
+                serverId: serverId,
+                userId: userId,
+                requestId: requestId,
+                status: status,
+                mediaType: mediaType,
+                tmdbId: tmdbId,
+                title: title,
+                posterPath: posterPath,
+                backdropPath: backdropPath,
+                releaseDate: releaseDate,
+                requestedByName: requestedByName,
+                requestedByAvatar: requestedByAvatar,
+                is4k: is4k,
+                mediaStatus: mediaStatus,
+                seasons: seasons,
+                cachedAt: cachedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SeerRequestsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SeerRequestsTable,
+      SeerRequestItem,
+      $$SeerRequestsTableFilterComposer,
+      $$SeerRequestsTableOrderingComposer,
+      $$SeerRequestsTableAnnotationComposer,
+      $$SeerRequestsTableCreateCompanionBuilder,
+      $$SeerRequestsTableUpdateCompanionBuilder,
+      (
+        SeerRequestItem,
+        BaseReferences<_$AppDatabase, $SeerRequestsTable, SeerRequestItem>,
+      ),
+      SeerRequestItem,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -10010,4 +12224,8 @@ class $AppDatabaseManager {
       $$ProfileConnectionsTableTableManager(_db, _db.profileConnections);
   $$WatchlistItemsTableTableManager get watchlistItems =>
       $$WatchlistItemsTableTableManager(_db, _db.watchlistItems);
+  $$SeerConfigTableTableManager get seerConfig =>
+      $$SeerConfigTableTableManager(_db, _db.seerConfig);
+  $$SeerRequestsTableTableManager get seerRequests =>
+      $$SeerRequestsTableTableManager(_db, _db.seerRequests);
 }

@@ -808,7 +808,8 @@
     "libraries": "Библиотеки",
     "downloads": "Изтегляния",
     "liveTv": "Телевизия на живо",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "Телевизия на живо",

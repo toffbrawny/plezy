@@ -51,6 +51,8 @@ enum OfflineActionType {
     Profiles,
     ProfileConnections,
     WatchlistItems,
+    SeerConfig,
+    SeerRequests,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -62,7 +64,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 16;
+  int get schemaVersion => 17;
 
   @override
   MigrationStrategy get migration {
@@ -222,6 +224,19 @@ class AppDatabase extends _$AppDatabase {
           await _ignoreAlreadyExists(
             'Index idx_watchlist_profile_key',
             () => m.create(idxWatchlistProfileKey),
+          );
+        }
+        if (from < 17) {
+          appLogger.i('Adding SeerConfig and SeerRequests tables (v17 migration)');
+          await m.createTable(seerConfig);
+          await _ignoreAlreadyExists(
+            'Index idx_seer_config_session',
+            () => m.create(idxSeerConfigSession),
+          );
+          await m.createTable(seerRequests);
+          await _ignoreAlreadyExists(
+            'Index idx_seer_requests_session',
+            () => m.create(idxSeerRequestsSession),
           );
         }
       },

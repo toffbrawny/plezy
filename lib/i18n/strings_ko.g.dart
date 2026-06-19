@@ -1032,6 +1032,7 @@ class _TranslationsNavigationKo extends TranslationsNavigationEn {
 	@override String get downloads => '다운로드';
 	@override String get liveTv => '실시간 TV';
 	@override String get watchlist => 'Watchlist';
+	@override String get requests => 'Requests';
 }
 
 // Path: liveTv
@@ -2663,6 +2664,7 @@ extension on TranslationsKo {
 			'navigation.downloads' => '다운로드',
 			'navigation.liveTv' => '실시간 TV',
 			'navigation.watchlist' => 'Watchlist',
+			'navigation.requests' => 'Requests',
 			'liveTv.title' => '실시간 TV',
 			'liveTv.guide' => '편성표',
 			'liveTv.noChannels' => '사용 가능한 채널이 없습니다',
@@ -2947,9 +2949,9 @@ extension on TranslationsKo {
 			'companionRemote.remote.reconnecting' => '재연결 중...',
 			'companionRemote.remote.attemptOf' => ({required Object current}) => '${current}/5 시도 중',
 			'companionRemote.remote.retryNow' => '지금 재시도',
-			'companionRemote.remote.tabRemote' => '리모컨',
 			_ => null,
 		} ?? switch (path) {
+			'companionRemote.remote.tabRemote' => '리모컨',
 			'companionRemote.remote.tabPlay' => '재생',
 			'companionRemote.remote.tabMore' => '더 보기',
 			'companionRemote.remote.menu' => '메뉴',

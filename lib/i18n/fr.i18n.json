@@ -808,7 +808,8 @@
     "libraries": "Medias",
     "downloads": "Téléch.",
     "liveTv": "TV direct",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "TV en direct",

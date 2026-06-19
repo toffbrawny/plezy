@@ -260,6 +260,56 @@ class OfflineWatchProgress extends Table {
   TextColumn get lastError => text().nullable()();
 }
 
+/// Seer (Jellyseerr/Overseerr) configuration per media-server session.
+///
+/// Keyed by (serverId, userId) so each Jellyfin user can have its own Seer
+/// login. Stores the server URL, session cookie, username, and permissions.
+@DataClassName('SeerConfigItem')
+@TableIndex(name: 'idx_seer_config_session', columns: {#serverId, #userId})
+class SeerConfig extends Table {
+  TextColumn get serverId => text()();
+  TextColumn get userId => text()();
+  TextColumn get seerUrl => text()();
+  TextColumn get cookie => text().nullable()();
+  TextColumn get username => text().nullable()();
+  IntColumn get permissions => integer().withDefault(const Constant(0))();
+  BoolColumn get isLoggedIn => boolean().withDefault(const Constant(false))();
+  IntColumn get cachedAt => integer()();
+
+  @override
+  Set<Column> get primaryKey => {serverId, userId};
+}
+
+/// Cached Seer requests for offline display.
+///
+/// Denormalized: stores enough display info (title, poster, status) to render
+/// the Requests tab without a network round-trip. Has a TTL — stale entries
+/// are replaced on fresh fetch.
+@DataClassName('SeerRequestItem')
+@TableIndex(name: 'idx_seer_requests_session', columns: {#serverId, #userId})
+class SeerRequests extends Table {
+  IntColumn get id => integer().withDefault(const Constant(0))();
+  TextColumn get serverId => text()();
+  TextColumn get userId => text()();
+  IntColumn get requestId => integer()();
+  IntColumn get status => integer().withDefault(const Constant(1))();
+  TextColumn get mediaType => text().nullable()();
+  IntColumn get tmdbId => integer().nullable()();
+  TextColumn get title => text().nullable()();
+  TextColumn get posterPath => text().nullable()();
+  TextColumn get backdropPath => text().nullable()();
+  TextColumn get releaseDate => text().nullable()();
+  TextColumn get requestedByName => text().nullable()();
+  TextColumn get requestedByAvatar => text().nullable()();
+  BoolColumn get is4k => boolean().withDefault(const Constant(false))();
+  IntColumn get mediaStatus => integer().nullable()();
+  TextColumn get seasons => text().nullable()();
+  IntColumn get cachedAt => integer()();
+
+  @override
+  Set<Column> get primaryKey => {serverId, userId, requestId};
+}
+
 /// Client-side watchlist — items the user has bookmarked for later viewing.
 ///
 /// Unlike the server-side "liked"/"favorite" flags on Plex/Jellyfin, this

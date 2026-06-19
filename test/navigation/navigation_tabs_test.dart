@@ -5,39 +5,39 @@ void main() {
   group('NavigationTab.resolveDefaultTab', () {
     test('offline prefers Downloads when available', () {
       expect(
-        NavigationTab.resolveDefaultTab(isOffline: true, hasLiveTv: false, preferredStartup: null),
+        NavigationTab.resolveDefaultTab(isOffline: true, hasLiveTv: false, preferredStartup: null, hasRequests: false),
         NavigationTabId.downloads,
       );
     });
 
     test('offline ignores an online-only preferred section', () {
       expect(
-        NavigationTab.resolveDefaultTab(isOffline: true, hasLiveTv: true, preferredStartup: NavigationTabId.liveTv),
+        NavigationTab.resolveDefaultTab(isOffline: true, hasLiveTv: true, preferredStartup: NavigationTabId.liveTv, hasRequests: false),
         NavigationTabId.downloads,
       );
     });
 
     test('online honours the preferred section when it is visible', () {
       expect(
-        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: true, preferredStartup: NavigationTabId.liveTv),
+        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: true, preferredStartup: NavigationTabId.liveTv, hasRequests: false),
         NavigationTabId.liveTv,
       );
       expect(
-        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: false, preferredStartup: NavigationTabId.search),
+        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: false, preferredStartup: NavigationTabId.search, hasRequests: false),
         NavigationTabId.search,
       );
     });
 
     test('online falls back to Home when preferred Live TV is unavailable', () {
       expect(
-        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: false, preferredStartup: NavigationTabId.liveTv),
+        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: false, preferredStartup: NavigationTabId.liveTv, hasRequests: false),
         NavigationTabId.discover,
       );
     });
 
     test('online defaults to Home when no preference is set', () {
       expect(
-        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: true, preferredStartup: null),
+        NavigationTab.resolveDefaultTab(isOffline: false, hasLiveTv: true, preferredStartup: null, hasRequests: false),
         NavigationTabId.discover,
       );
     });

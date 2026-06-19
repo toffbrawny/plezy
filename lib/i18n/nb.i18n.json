@@ -808,7 +808,8 @@
     "libraries": "Biblioteker",
     "downloads": "Nedlastinger",
     "liveTv": "Direkte-TV",
-    "watchlist": "Watchlist"
+    "watchlist": "Watchlist",
+    "requests": "Requests"
   },
   "liveTv": {
     "title": "Direkte-TV",
