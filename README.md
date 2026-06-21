@@ -1,125 +1,178 @@
-# Plezy
+<h1>
+  <img src="assets/plezy.png" alt="Plezy Logo" height="24" style="vertical-align: middle;" />
+  Plezy
+</h1>
 
-A beautiful Plex and Jellyfin client for Flutter, with client-side watchlist, Seer (Jellyseerr/Overseerr) integration, and StreamyStats AI recommendations.
+A modern client for Plex and Jellyfin on desktop, mobile, and TV. Built with Flutter for native performance and a clean interface.
 
-Based on [Plezy](https://github.com/edde746/plezy) by edde746.
+<p>
+  <a href="https://plezy.app">Website</a> ·
+  <a href="https://plezy.app/#screenshots">Screenshots</a> ·
+  <a href="#download">Download</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a> ·
+  <a href="LICENSE">License</a>
+</p>
 
-## Downloads
+<p align="center">
+  <img src="assets/readme-showcase.webp" alt="Plezy mobile screenshots" width="900" />
+</p>
 
-Download the latest release from [Releases](https://git.toffbrawny.com/toffbrawny/plezy/releases):
+## Download
 
-- **Android**: `Plezy-v3.0.0-arm64.apk` — sideload on your Android device
-- **iPad/iOS**: `Plezy-v3.0.0-iPad.ipa` — sideload via Xcode (see below)
+<a href='https://apps.apple.com/us/app/id6754315964'><img height='60' alt='Download on the App Store' src='./assets/app-store-badge.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.edde746.plezy'><img height='60' alt='Get it on Google Play' src='./assets/play-store-badge.png'/></a>
+<a href='https://www.amazon.com/gp/product/B0GK65CVS1'><img height='60' alt='Available at the Amazon App Store' src='./assets/amazon-badge.png'/></a>
 
----
+| Platform | Download |
+| --- | --- |
+| Windows | [Installer (x64, arm64)](https://github.com/edde746/plezy/releases/latest/download/plezy-windows-installer.exe) · [Portable x64](https://github.com/edde746/plezy/releases/latest/download/plezy-windows-x64-portable.7z) · [Portable arm64](https://github.com/edde746/plezy/releases/latest/download/plezy-windows-arm64-portable.7z) |
+| macOS | [DMG (x64, arm64)](https://github.com/edde746/plezy/releases/latest/download/plezy-macos.dmg) |
+| Linux x64 | [.deb](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.deb) · [.rpm](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.rpm) · [.pkg.tar.zst](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.pkg.tar.zst) · [portable tar.gz](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.tar.gz) |
+| Linux arm64 | [.deb](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.deb) · [.rpm](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.rpm) · [.pkg.tar.zst](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.pkg.tar.zst) · [portable tar.gz](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.tar.gz) |
 
-## iOS: Reinstall Every 7 Days
+Package managers:
 
-Free Apple Developer accounts only allow app installs for 7 days. After that, the app stops launching and must be reinstalled. **All your settings, downloads, Seer login, watchlist, and StreamyStats config are preserved across reinstalls** — only the signing certificate expires.
-
-### Prerequisites (one-time setup)
-
-1. **Xcode 16.2+** installed on your Mac
-2. **iOS 18.2 Simulator Runtime** installed (Xcode → Settings → Platforms)
-3. **Apple ID** added to Xcode (Xcode → Settings → Accounts → your free Apple ID)
-4. **iPad paired** with your Mac (connect via USB once, trust the computer)
-5. **Flutter SDK** at `~/flutter`
-6. **Java (Amazon Corretto 21)** at `~/Library/Java/JavaVirtualMachines/`
-
-### Quick Reinstall (every 7 days)
-
-1. Make sure your iPad is on the same Wi-Fi network as your Mac (or connected via USB)
-2. Open Terminal and run:
-
-```bash
-cd /path/to/plezy
-./reinstall_ipad.sh
-```
-
-3. Wait ~3 minutes for the build + install to complete
-4. The app is refreshed — all your data and settings are preserved
-
-### What the script does
-
-The `reinstall_ipad.sh` script automates three steps:
-
-1. **Builds the IPA** — `flutter build ipa --release`
-2. **Exports the archive** — uses development signing with your free Apple ID team
-3. **Installs on iPad** — `xcrun devicectl device install app` over Wi-Fi or USB
-
-### Manual reinstall (if the script fails)
-
-If the script doesn't work, do it step by step:
-
-```bash
-# 1. Set up environment
-export JAVA_HOME="$HOME/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home"
-export PATH="$JAVA_HOME/bin:$HOME/flutter/bin:$PATH"
-
-# 2. Go to the project
-cd /path/to/plezy
-
-# 3. Build the IPA
-flutter build ipa --release
-
-# 4. Export with development signing
-cat > /tmp/export.plist << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>method</key>
-  <string>debugging</string>
-  <key>teamID</key>
-  <string>YOUR_TEAM_ID</string>
-  <key>signingStyle</key>
-  <string>automatic</string>
-  <key>compileBitcode</key>
-  <false/>
-</dict>
-</plist>
-EOF
-
-xcodebuild -exportArchive \
-  -archivePath build/ios/archive/Runner.xcarchive \
-  -exportOptionsPlist /tmp/export.plist \
-  -exportPath build/ios/ipa \
-  -allowProvisioningUpdates
-
-# 5. Install on iPad (wireless or USB)
-xcrun devicectl device install app \
-  --device YOUR_IPAD_ID \
-  build/ios/ipa/Plezy.ipa
-```
-
-### Troubleshooting
-
-- **"No Account for Team"** — Open Xcode → Settings → Accounts, make sure your Apple ID is listed and has valid credentials
-- **"iPad not found"** — Connect via USB, unlock the iPad, and ensure it's trusted. Wireless debugging works once paired
-- **"iOS 18.2 is not installed"** — Install the iOS 18.2 Simulator Runtime from Xcode → Settings → Platforms
-- **Build errors** — Run `flutter clean` then retry
-- **App won't launch after 7 days** — This is expected with free accounts. Just run `./reinstall_ipad.sh` again
-
----
-
-## Android: Install
-
-Download `Plezy-v3.0.0-arm64.apk` from the releases page and sideload on your device. No reinstallation needed — the app stays installed permanently.
-
----
+- [Nix](https://search.nixos.org/packages?channel=unstable&query=plezy) - Community package by [@mio-19](https://github.com/mio-19) and [@MiniHarinn](https://github.com/MiniHarinn)
+- **Homebrew** (macOS):
+  ```bash
+  brew tap edde746/plezy https://github.com/edde746/plezy
+  brew install --cask plezy
+  ```
+- [AUR](https://aur.archlinux.org/packages/plezy-bin) (Arch Linux) - Community maintained by [@jianglai](https://github.com/jianglai):
+  ```bash
+  yay -S plezy-bin
+  ```
+- **WinGet** (Windows):
+  ```bash
+  winget install edde746.Plezy
+  ```
 
 ## Features
 
-- **Watchlist** — bookmark movies/shows/seasons/episodes, stored locally, works offline
-- **Seer Integration** — connect to Jellyseerr/Overseerr to request media, browse trending/genres/studios/networks
-- **StreamyStats AI Recommendations** — vector-based movie & series recommendations in the Search tab
-- **Full Plex & Jellyfin support** — browse, play, download, manage
+### <img src="assets/readme_icons/browse.svg" height="20" alt="" align="center" /> Browse & Discover
+- Libraries, collections, and playlists
+- Discover hub — Continue Watching, Next Up, trending, and recommendations
+- Cross-server search
+- Filtering, sorting, and alphabetical jump navigation
+- Extras — trailers, deleted scenes, behind-the-scenes
 
-## Built With
+### <img src="assets/readme_icons/playback.svg" height="20" alt="" align="center" /> Playback
+- Wide codec support (HEVC, AV1, VP9, and more)
+- HDR and Dolby Vision[^1]
+- Full ASS/SSA subtitles with customizable styling
+- Online subtitle search & download[^2]
+- Audio & subtitle choices remembered per title
+- Progress sync and resume
+- Auto-play next episode with skip intro / skip credits
+- Chapter navigation with thumbnail scrub previews
+- Playback speed, audio sync offset, sleep timer
+- Ambient lighting and GLSL shader presets[^3]
+- Picture-in-Picture[^4]
+- Refresh-rate matching[^5]
+- External player launch (VLC, MX Player, etc.)
 
-- Flutter 3.44.2
-- Dart 3.12.2
-- Drift (SQLite)
-- Provider state management
-- MPV player
-- Material Symbols icons
+### <img src="assets/readme_icons/live-tv.svg" height="20" alt="" align="center" /> Live TV & DVR
+- Live TV channel browsing with favorites
+- DVR support with EPG guide, recording rules, and scheduled recordings[^2]
+- Multi-server Live TV support where available
+
+### <img src="assets/readme_icons/downloads.svg" height="20" alt="" align="center" /> Downloads & Offline
+- Download media for offline viewing
+- Background queue with pause / resume
+- Sync rules for automatic downloads
+- Offline browsing with watch state sync-back on reconnect
+
+### <img src="assets/readme_icons/watch-together.svg" height="20" alt="" align="center" /> Watch Together
+- Synchronized playback with friends
+- Real-time play / pause / seek sync
+
+### <img src="assets/readme_icons/integrations.svg" height="20" alt="" align="center" /> Integrations
+- Discord Rich Presence[^7]
+- Trakt, MyAnimeList, AniList, and Simkl tracking & rating
+- Plezy Remote — control desktop and TV from mobile
+- Watch Next row[^6]
+
+### <img src="assets/readme_icons/customization.svg" height="20" alt="" align="center" /> Platform & Customization
+- Desktop, mobile, and TV — full D-pad, keyboard, and gamepad support
+- Customizable keyboard shortcuts[^7]
+- Metadata and artwork editing[^2]
+- Settings import/export
+- Localized in English plus 14 translations
+
+[^1]: Not available on Linux.
+[^2]: Plex only.
+[^3]: Not available on iOS or tvOS.
+[^4]: Android, iOS, and macOS.
+[^5]: Windows, Android, and tvOS.
+[^6]: Android TV only.
+[^7]: Desktop only.
+
+## Building from Source
+
+### Prerequisites
+- Flutter SDK 3.38.4+
+- A Plex account or Jellyfin server with user credentials
+
+### Setup
+
+```bash
+git clone https://github.com/edde746/plezy.git
+cd plezy
+flutter pub get
+scripts/codegen.sh
+flutter run
+```
+
+### Code Generation
+
+After modifying model classes or other generated sources:
+
+```bash
+scripts/codegen.sh
+```
+
+After modifying translations:
+
+```bash
+dart run slang
+```
+
+### Local Checks
+
+```bash
+scripts/ci_checks.sh
+```
+
+To install the same pre-commit checks locally:
+
+```bash
+scripts/setup_hooks.sh
+```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow, formatting, tests, and translation guidelines.
+
+## License
+
+Plezy is licensed under [GPL-3.0](LICENSE).
+
+## Acknowledgments
+
+- Built with [Flutter](https://flutter.dev)
+- Supports [Plex Media Server](https://www.plex.tv) and [Jellyfin](https://jellyfin.org)
+- Playback powered by [mpv](https://mpv.io), [MPVKit](https://github.com/mpvkit/MPVKit), Android [ExoPlayer](https://developer.android.com/media/media3/exoplayer), [libass-android](https://github.com/peerless2012/libass-android), and [libmpv-android](https://github.com/jarnedemeulemeester/libmpv-android)
+
+---
+
+## New features (this fork)
+
+This fork builds on [Plezy](https://github.com/edde746/plezy) with the following additions:
+
+- **Client-side Watchlist** — bookmark movies/shows/seasons/episodes; stored locally on-device, works offline.
+- **Seer integration** — connect to Jellyseerr/Overseerr to request media and browse trending, genres, studios, and networks.
+- **StreamyStats AI recommendations** — vector-based movie & series recommendations in the Search tab.
+- **Genre / Studio / Network discovery** with request enrichment.
+- **iOS / iPadOS support** — app icon, free-Apple-account build fixes (team ID, bundle ID, Xcode 16.2 Swift compat), and a `reinstall_ipad.sh` script for the 7-day signing refresh.
+
+Mirrored from [git.toffbrawny.com/toffbrawny/plezy](https://git.toffbrawny.com/toffbrawny/plezy).
