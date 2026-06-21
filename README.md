@@ -22,7 +22,7 @@ Grab the latest build from the [GitHub releases](https://github.com/toffbrawny/p
 | Platform | Download |
 | --- | --- |
 | Android (arm64) | [`Plezy-v3.0.0-arm64.apk`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-arm64.apk) — sideload on your device |
-| iPad / iOS | [`Plezy-v3.0.0-iPad.ipa`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-iPad.ipa) — sideload via Xcode. Free Apple Developer account: the app expires after 7 days; refresh with `reinstall_ipad.sh` (settings/data are preserved across refreshes) |
+| iPad / iOS | [`Plezy-v3.0.0-iPad.ipa`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-iPad.ipa) — sideload via Xcode. Free Apple Developer account: the app expires after 7 days and must be re-signed and reinstalled (app data is preserved across reinstalls) |
 
 ## Features
 
@@ -150,6 +150,6 @@ This fork builds on Plezy with the following additions:
 - **Seer integration** — connect to Jellyseerr/Overseerr to request media and browse trending, genres, studios, and networks.
 - **StreamyStats AI recommendations** — vector-based movie & series recommendations in the Search tab.
 - **Genre / Studio / Network discovery** with request enrichment.
-- **iOS / iPadOS support** — app icon, free-Apple-account build fixes (team ID, bundle ID, Xcode 16.2 Swift compat), and a `reinstall_ipad.sh` script for the 7-day signing refresh.
+- **iOS / iPadOS support** — app icon and free-Apple-account build fixes (team ID, bundle ID, Xcode 16.2 Swift compatibility).
 
 Mirrored from [git.toffbrawny.com/toffbrawny/plezy](https://git.toffbrawny.com/toffbrawny/plezy).
