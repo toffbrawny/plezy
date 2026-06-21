@@ -22,7 +22,7 @@ Grab the latest build from the [GitHub releases](https://github.com/toffbrawny/p
 | Platform | Download |
 | --- | --- |
 | Android (arm64) | [`Plezy-v3.0.0-arm64.apk`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-arm64.apk) — sideload on your device |
-| iPad / iOS | [`Plezy-v3.0.0-iPad.ipa`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-iPad.ipa) — sideload via Xcode. Free Apple Developer account: the app expires after 7 days and must be re-signed and reinstalled (app data is preserved across reinstalls) |
+| iPad / iOS | No prebuilt download — build it yourself with a free Apple account (see [Building for iOS / iPadOS](#building-for-ios--ipados-free-apple-developer-account)). Free-account installs expire after 7 days |
 
 ## Features
 
@@ -125,6 +125,60 @@ To install the same pre-commit checks locally:
 ```bash
 scripts/setup_hooks.sh
 ```
+
+## Building for iOS / iPadOS (free Apple Developer account)
+
+There is **no prebuilt iOS download**. A free Apple Developer account can only sign apps for *your own registered devices*, so a published `.ipa` wouldn't install for anyone else (and it expires after 7 days). Build it yourself — it takes a few minutes.
+
+### Prerequisites
+- Xcode 16.x with an iOS Simulator runtime installed
+- Flutter SDK on `PATH`
+- A JDK — set `JAVA_HOME` (e.g. Amazon Corretto 21)
+- A free Apple ID added to Xcode → **Settings → Accounts**
+- Your iPad/iPhone paired via USB and trusted (wireless works once paired)
+
+### One-time: use your own signing identity
+The iOS target is configured with the maintainer's bundle ID and team. To build under **your** free account, edit `ios/Runner.xcodeproj/project.pbxproj`:
+- `PRODUCT_BUNDLE_IDENTIFIER` → your own unique value (e.g. `com.<your-handle>.plezy`)
+- `DEVELOPMENT_TEAM` → your Apple Developer team ID (Xcode → Settings → Accounts)
+
+### Build, export, and install
+```bash
+export JAVA_HOME=/path/to/jdk
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# 1. Build the archive. The default export step fails on a free account — that's expected;
+#    the archive is still produced at build/ios/archive/Runner.xcarchive
+flutter build ipa --release
+
+# 2. Export with development signing (free-account compatible)
+cat > /tmp/export.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>method</key><string>debugging</string>
+  <key>teamID</key><string>YOUR_TEAM_ID</string>
+  <key>signingStyle</key><string>automatic</string>
+  <key>compileBitcode</key><false/>
+</dict>
+</plist>
+EOF
+
+xcodebuild -exportArchive \
+  -archivePath build/ios/archive/Runner.xcarchive \
+  -exportOptionsPlist /tmp/export.plist \
+  -exportPath build/ios/ipa \
+  -allowProvisioningUpdates
+
+# 3. Install on your device (find the ID with: xcrun devicectl list devices)
+xcrun devicectl device install app --device YOUR_IPAD_ID build/ios/ipa/*.ipa
+```
+
+### 7-day refresh
+Free-account installs **expire after 7 days**. Rebuild and reinstall to refresh — app settings and data are preserved across reinstalls. The `reinstall_ipad.sh` template in this repo automates the build → export → install steps; set the `IPAD_ID`, `TEAM_ID`, and `JAVA_HOME` environment variables and run it.
+
+> **macOS:** no prebuilt/download is provided, and macOS builds currently require a newer Xcode/MPVKit toolchain than this setup targets — see [CONTRIBUTING.md](CONTRIBUTING.md) for the general build workflow.
 
 ## Contributing
 
