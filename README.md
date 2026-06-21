@@ -24,6 +24,8 @@ Grab the latest build from the [GitHub releases](https://github.com/toffbrawny/p
 | Android (arm64) | [`Plezy-v3.0.0-arm64.apk`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-arm64.apk) — sideload on your device |
 | iPad / iOS | No prebuilt download — build it yourself with a free Apple account (see [Building for iOS / iPadOS](#building-for-ios--ipados-free-apple-developer-account)). Free-account installs expire after 7 days |
 
+> **Note on the Android APK:** this build uses the upstream package id `com.edde746.plezy` and is signed with the maintainer's debug key, which is **different from the official Plezy's signing key**. If you have the official Plezy installed (e.g. from Google Play), this APK **will not install alongside it** — Android rejects the same package id with a different signature ("App not installed"). Uninstall the official Plezy first, then sideload this build.
+
 ## Features
 
 ### <img src="assets/readme_icons/browse.svg" height="20" alt="" align="center" /> Browse & Discover
