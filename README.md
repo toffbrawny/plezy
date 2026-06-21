@@ -6,8 +6,6 @@
 A modern client for Plex and Jellyfin on desktop, mobile, and TV. Built with Flutter for native performance and a clean interface.
 
 <p>
-  <a href="https://plezy.app">Website</a> ·
-  <a href="https://plezy.app/#screenshots">Screenshots</a> ·
   <a href="#download">Download</a> ·
   <a href="CONTRIBUTING.md">Contributing</a> ·
   <a href="LICENSE">License</a>
@@ -19,33 +17,12 @@ A modern client for Plex and Jellyfin on desktop, mobile, and TV. Built with Flu
 
 ## Download
 
-<a href='https://apps.apple.com/us/app/id6754315964'><img height='60' alt='Download on the App Store' src='./assets/app-store-badge.png'/></a>
-<a href='https://play.google.com/store/apps/details?id=com.edde746.plezy'><img height='60' alt='Get it on Google Play' src='./assets/play-store-badge.png'/></a>
-<a href='https://www.amazon.com/gp/product/B0GK65CVS1'><img height='60' alt='Available at the Amazon App Store' src='./assets/amazon-badge.png'/></a>
+Grab the latest build from the [GitHub releases](https://github.com/toffbrawny/plezy/releases):
 
 | Platform | Download |
 | --- | --- |
-| Windows | [Installer (x64, arm64)](https://github.com/edde746/plezy/releases/latest/download/plezy-windows-installer.exe) · [Portable x64](https://github.com/edde746/plezy/releases/latest/download/plezy-windows-x64-portable.7z) · [Portable arm64](https://github.com/edde746/plezy/releases/latest/download/plezy-windows-arm64-portable.7z) |
-| macOS | [DMG (x64, arm64)](https://github.com/edde746/plezy/releases/latest/download/plezy-macos.dmg) |
-| Linux x64 | [.deb](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.deb) · [.rpm](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.rpm) · [.pkg.tar.zst](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.pkg.tar.zst) · [portable tar.gz](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-x64.tar.gz) |
-| Linux arm64 | [.deb](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.deb) · [.rpm](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.rpm) · [.pkg.tar.zst](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.pkg.tar.zst) · [portable tar.gz](https://github.com/edde746/plezy/releases/latest/download/plezy-linux-arm64.tar.gz) |
-
-Package managers:
-
-- [Nix](https://search.nixos.org/packages?channel=unstable&query=plezy) - Community package by [@mio-19](https://github.com/mio-19) and [@MiniHarinn](https://github.com/MiniHarinn)
-- **Homebrew** (macOS):
-  ```bash
-  brew tap edde746/plezy https://github.com/edde746/plezy
-  brew install --cask plezy
-  ```
-- [AUR](https://aur.archlinux.org/packages/plezy-bin) (Arch Linux) - Community maintained by [@jianglai](https://github.com/jianglai):
-  ```bash
-  yay -S plezy-bin
-  ```
-- **WinGet** (Windows):
-  ```bash
-  winget install edde746.Plezy
-  ```
+| Android (arm64) | [`Plezy-v3.0.0-arm64.apk`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-arm64.apk) — sideload on your device |
+| iPad / iOS | [`Plezy-v3.0.0-iPad.ipa`](https://github.com/toffbrawny/plezy/releases/latest/download/Plezy-v3.0.0-iPad.ipa) — sideload via Xcode. Free Apple Developer account: the app expires after 7 days; refresh with `reinstall_ipad.sh` (settings/data are preserved across refreshes) |
 
 ## Features
 
@@ -110,13 +87,13 @@ Package managers:
 ## Building from Source
 
 ### Prerequisites
-- Flutter SDK 3.38.4+
+- Flutter SDK 3.44.0+
 - A Plex account or Jellyfin server with user credentials
 
 ### Setup
 
 ```bash
-git clone https://github.com/edde746/plezy.git
+git clone https://github.com/toffbrawny/plezy.git
 cd plezy
 flutter pub get
 scripts/codegen.sh
@@ -167,7 +144,7 @@ Plezy is licensed under [GPL-3.0](LICENSE).
 
 ## New features (this fork)
 
-This fork builds on [Plezy](https://github.com/edde746/plezy) with the following additions:
+This fork builds on Plezy with the following additions:
 
 - **Client-side Watchlist** — bookmark movies/shows/seasons/episodes; stored locally on-device, works offline.
 - **Seer integration** — connect to Jellyseerr/Overseerr to request media and browse trending, genres, studios, and networks.
